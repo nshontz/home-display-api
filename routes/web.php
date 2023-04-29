@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+if (!Request::is('api*')) {
+    Route::get('/{any?}', function () {
+        return view('spa');
+    });
+}
