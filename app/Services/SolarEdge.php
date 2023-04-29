@@ -48,6 +48,18 @@ class SolarEdge
     }
 
 
+    public function details(Carbon $startDate)
+    {
+        $solarData = $this->httpRequest($this->buildUrl('powerDetails', [
+            'meters' => 'PRODUCTION,CONSUMPTION',
+            'startTime' => $startDate->format('Y-m-d'),
+            'endTime' => $startDate->addDays(7)->format('Y-m-d'),
+        ]));
+
+        return $solarData?->energy;
+    }
+
+
     public function benefits()
     {
         $benefits = $this->httpRequest($this->buildUrl('envBenefits', [
