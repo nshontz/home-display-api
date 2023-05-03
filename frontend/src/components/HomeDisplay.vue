@@ -74,7 +74,7 @@ export default {
         }
     },
     mounted() {
-        this.startDate = moment();
+        this.startDate = moment().startOf('week').add(1,'day');
         this.fetch();
         this.scheduleFetch(this.dataRefresh);
     },
@@ -100,6 +100,9 @@ export default {
         refresh() {
             let forceRefresh = 1;
             this.fetch(forceRefresh);
+            setTimeout(function (){
+                location.href = window.location.href
+            }, 1000);
         },
         fetch(forceRefresh = 0) {
             this.secondsUntilRefresh = this.dataRefresh;
@@ -148,7 +151,7 @@ footer {
 
 .day {
     text-align: center;
-    padding: 40px 0;
+    padding: 10px ;
 }
 
 .next-week,

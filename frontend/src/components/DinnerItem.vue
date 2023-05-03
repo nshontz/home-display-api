@@ -45,7 +45,7 @@ export default {
 <style scoped>
 
 .dinner-item {
-    min-height: 150px;
+    min-height: 120px;
     position: relative;
     width: 100%;
 }

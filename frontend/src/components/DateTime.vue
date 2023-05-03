@@ -42,7 +42,7 @@ export default {
 .date-time {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    height: 131px;
+    height: 100px;
 }
 
 .time {

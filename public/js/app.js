@@ -303,7 +303,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted() {
-    this.startDate = moment__WEBPACK_IMPORTED_MODULE_5___default()();
+    this.startDate = moment__WEBPACK_IMPORTED_MODULE_5___default()().startOf('week').add(1, 'day');
     this.fetch();
     this.scheduleFetch(this.dataRefresh);
   },
@@ -329,6 +329,9 @@ __webpack_require__.r(__webpack_exports__);
     refresh() {
       let forceRefresh = 1;
       this.fetch(forceRefresh);
+      setTimeout(function () {
+        location.href = window.location.href;
+      }, 1000);
     },
     fetch(forceRefresh = 0) {
       this.secondsUntilRefresh = this.dataRefresh;
@@ -594,7 +597,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.date-time[data-v-4c2c0a4b] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    height: 131px;\n}\n.time[data-v-4c2c0a4b] {\n    font-size: 6rem;\n}\n.date[data-v-4c2c0a4b] {\n    text-align: right;\n    margin-top: 30px;\n    font-size: 4rem;\n}\n", ""]);
+exports.push([module.i, "\n.date-time[data-v-4c2c0a4b] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    height: 100px;\n}\n.time[data-v-4c2c0a4b] {\n    font-size: 6rem;\n}\n.date[data-v-4c2c0a4b] {\n    text-align: right;\n    margin-top: 30px;\n    font-size: 4rem;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -612,7 +615,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.dinner-item[data-v-84badb56] {\n    min-height: 150px;\n    position: relative;\n    width: 100%;\n}\n.dinner-item h2[data-v-84badb56] {\n    margin: 0;\n    width: 100%;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.complete h2[data-v-84badb56] {\n    filter: blur(3px);\n}\n", ""]);
+exports.push([module.i, "\n.dinner-item[data-v-84badb56] {\n    min-height: 120px;\n    position: relative;\n    width: 100%;\n}\n.dinner-item h2[data-v-84badb56] {\n    margin: 0;\n    width: 100%;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.complete h2[data-v-84badb56] {\n    filter: blur(3px);\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -630,7 +633,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\nheader[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 100px 1fr 100px;\n}\nfooter[data-v-79f5313a] {\n    margin-top: 20px;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n}\n.week[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;\n}\n.day[data-v-79f5313a] {\n    text-align: center;\n    padding: 40px 0;\n}\n.next-week[data-v-79f5313a],\n.previous-week[data-v-79f5313a] {\n    margin-top: 25px;\n    font-size: 70px;\n    text-align: center;\n    color: #a0aec0;\n}\n.refresh[data-v-79f5313a] {\n    text-align: right;\n    margin-right: 100px;\n}\n.today[data-v-79f5313a] {\n    background-color: #ADD8E6;\n}\n.solar-benefits[data-v-79f5313a] {\n    margin-left: 100px;\n    text-align: left;\n    font-size: 1.4rem\n}\n", ""]);
+exports.push([module.i, "\nheader[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 100px 1fr 100px;\n}\nfooter[data-v-79f5313a] {\n    margin-top: 20px;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n}\n.week[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;\n}\n.day[data-v-79f5313a] {\n    text-align: center;\n    padding: 10px ;\n}\n.next-week[data-v-79f5313a],\n.previous-week[data-v-79f5313a] {\n    margin-top: 25px;\n    font-size: 70px;\n    text-align: center;\n    color: #a0aec0;\n}\n.refresh[data-v-79f5313a] {\n    text-align: right;\n    margin-right: 100px;\n}\n.today[data-v-79f5313a] {\n    background-color: #ADD8E6;\n}\n.solar-benefits[data-v-79f5313a] {\n    margin-left: 100px;\n    text-align: left;\n    font-size: 1.4rem\n}\n", ""]);
 // Exports
 module.exports = exports;
 
