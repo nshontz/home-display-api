@@ -27,8 +27,11 @@ class SolarEdge
         return $this->baseUrl . '/' . $this->siteId . '/' . $path . "?" . http_build_query($params);
     }
 
-    private function httpRequest($url, $cacheTimeout = 1)
+    private function httpRequest($url, $clearCache = false, $cacheTimeout = 1)
     {
+        if ($clearCache) {
+            Cache::forget($url);
+        }
         return Cache::remember($url, Carbon::now()->addHours($cacheTimeout), function () use ($url) {
             return \Httpful\Request::get($url)
                 ->expectsJson()
@@ -36,35 +39,47 @@ class SolarEdge
         })->body;
     }
 
-    public function energy(Carbon $startDate)
+    public function energy(Carbon $startDate, $clearCache = false)
     {
         $solarData = $this->httpRequest($this->buildUrl('energy', [
             'timeUnit' => 'DAY',
             'startDate' => $startDate->format('Y-m-d'),
-            'endDate' => $startDate->addDays(7)->format('Y-m-d'),
-        ]));
+            'endDate' => $startDate->clone()->addDays(7)->format('Y-m-d'),
+        ]), $clearCache);
 
         return $solarData?->energy;
     }
 
 
-    public function details(Carbon $startDate)
+    public function powerDetails(Carbon $startDate, $clearCache = false)
     {
-        $solarData = $this->httpRequest($this->buildUrl('powerDetails', [
-            'meters' => 'PRODUCTION,CONSUMPTION',
-            'startTime' => $startDate->format('Y-m-d'),
-            'endTime' => $startDate->addDays(7)->format('Y-m-d'),
-        ]));
-
+        $url = $this->buildUrl('powerDetails', [
+            'meters' => collect(['Production', 'Consumption', 'SelfConsumption', 'FeedIn', 'Purchased'])->implode(','),
+            'endTime' => $startDate->format('Y-m-d h:m:s'),
+            'startTime' => $startDate->subDay(7)->format('Y-m-d h:m:s'),
+        ]);
+        $solarData = $this->httpRequest($url, $clearCache);
         return $solarData?->energy;
     }
 
+    public function energyDetails(Carbon $startDate, $clearCache = false)
+    {
+        $url = $this->buildUrl('energyDetails', [
+            'timeUnit' => 'DAY',
+            'meters' => collect(['Production', 'Consumption', 'SelfConsumption', 'FeedIn', 'Purchased'])->implode(','),
+            'endTime' => $startDate->format('Y-m-d h:m:s'),
+            'startTime' => $startDate->subDay(7)->format('Y-m-d h:m:s'),
+        ]);
+        $solarData = $this->httpRequest($url);
+        return $solarData?->energyDetails;
+    }
 
-    public function benefits()
+
+    public function benefits($clearCache = false)
     {
         $benefits = $this->httpRequest($this->buildUrl('envBenefits', [
             'systemUnits' => 'Imperial'
-        ]));
+        ]), $clearCache);
 
         return [
             'benefits' => $benefits?->envBenefits

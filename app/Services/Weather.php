@@ -27,13 +27,14 @@ class Weather
 
     }
 
-    public function forecast()
+    public function forecast($clearCache = false)
     {
-
-        $forecastUrl = $this->locationData->properties->forecast;
-
-        $forecast = Cache::remember($forecastUrl, Carbon::now()->addHours(5), function () use ($forecastUrl) {
-            return \Httpful\Request::get($forecastUrl)
+        $url = $this->locationData->properties->forecast;
+        if ($clearCache) {
+            Cache::forget($url);
+        }
+        $forecast = Cache::remember($url, Carbon::now()->addHours(5), function () use ($url) {
+            return \Httpful\Request::get($url)
                 ->expectsJson()
                 ->send();
         });
@@ -59,7 +60,7 @@ class Weather
     private function locateAlternativeIcon($iconPath)
     {
 
-        $iconName = collect(explode('/',parse_url($iconPath)['path']))->last(). '.jpg';
+        $iconName = collect(explode('/', parse_url($iconPath)['path']))->last() . '.jpg';
         if (file_exists(public_path('icons/' . $iconName))) {
             $iconPath = asset('icons/' . $iconName);
         }

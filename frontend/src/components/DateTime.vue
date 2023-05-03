@@ -1,7 +1,7 @@
 <template>
     <div class="date-time">
         <div class="time" v-if="this.datetime && this.time">{{ this.time }}</div>
-        <div class="date" v-if="this.datetime && this.date">{{ this.date }}</div>
+        <div class="date" v-if="this.datetime && this.date" @click="this.emitCurrentWeek">{{ this.date }}</div>
     </div>
 </template>
 
@@ -19,6 +19,9 @@ export default {
         }
     },
     methods: {
+        emitCurrentWeek(){
+            this.$emit('currentWeek')
+        },
         updateDatetime() {
             this.datetime = moment();
         }
@@ -48,6 +51,7 @@ export default {
 
 .date {
     text-align: right;
+    margin-top: 30px;
     font-size: 4rem;
 }
 </style>

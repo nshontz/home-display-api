@@ -16,7 +16,8 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    protected $anyList, $solarEdge, $weather;
+    protected $anyList, $solarEdge, $weather, $startDate;
+    private bool $forceRefresh = false;
 
     public function __construct()
     {
@@ -24,19 +25,27 @@ class Controller extends BaseController
         $this->anyList = new AnyList(env('ANYLIST_CODE'));
         $location = explode(',', env('WEATHER_LOCATION'));
         $this->weather = new Weather($location[0], $location[1]);
+        if (Carbon::now()->isSaturday()) {
+            $this->startDate = Carbon::now()->endOfWeek()->subDays(1)->startOfDay();
+        } else {
+            $this->startDate = Carbon::now()->startOfWeek()->subDays(2)->startOfDay();
+        }
     }
 
-    public function home()
+    public function home(Request $request)
     {
-        $weekStart = Carbon::now()->startOfWeek()->subDay()->startOfDay();
+        if ($request->filled('start_date')) {
+            $this->startDate = Carbon::parse($request->start_date);
+        }
+        if ($request->filled('force_refresh') && $request->force_refresh == 1) {
+            $this->forceRefresh = true;
+        }
 
-        $dinnerList = $this->anyList->fetchDinnerList();
-        $solar = $this->solarEdge->energy($weekStart->clone());
-        $weatherData = $this->weather->forecast();
+        $dinnerList = $this->anyList->fetchDinnerList($this->forceRefresh);
+        $solar = $this->solarEdge->energy($this->startDate, $this->forceRefresh);
+        $weatherData = $this->weather->forecast($this->forceRefresh);
 
         $days = collect();
-
-
         $solar->values = collect($solar->values)->map(function ($day) use ($solar) {
             $day->unit = $solar->unit;
             return $day;
@@ -44,7 +53,7 @@ class Controller extends BaseController
 
         for ($i = 0; $i < 7; $i++) {
 
-            $day = clone($weekStart);
+            $day = clone($this->startDate);
             $day = $day->addDays($i);
 
             $dayData = (object)[
@@ -73,7 +82,7 @@ class Controller extends BaseController
 
         return response()->json([
             'days' => $days,
-            'solar' => $this->solarEdge->benefits(),
+            'solar_benefits' => $this->solarEdge->benefits(),
         ]);
     }
 

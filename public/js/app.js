@@ -198,6 +198,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    emitCurrentWeek() {
+      this.$emit('currentWeek');
+    },
     updateDatetime() {
       this.datetime = moment__WEBPACK_IMPORTED_MODULE_0___default()();
     }
@@ -232,11 +235,19 @@ __webpack_require__.r(__webpack_exports__);
     days: Array,
     day: Object
   },
+  data() {
+    return {
+      dinner: null
+    };
+  },
+  mounted() {
+    this.dinner = this.day.dinner;
+  },
   methods: {
     toggleMeal() {
-      this.day.dinner.complete = !this.day.dinner.complete;
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].post(this.homeFeed + '/dinner/' + this.day.dinner.uid, {
-        'complete': this.day.dinner.complete
+      this.dinner.complete = !this.dinner.complete;
+      axios__WEBPACK_IMPORTED_MODULE_0__["default"].post(this.homeFeed + '/dinner/' + this.dinner.uid, {
+        'complete': this.dinner.complete
       });
     }
   }
@@ -259,6 +270,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_WeatherDay_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/WeatherDay.vue */ "./src/components/WeatherDay.vue");
 /* harmony import */ var _components_DateTime_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/DateTime.vue */ "./src/components/DateTime.vue");
 /* harmony import */ var _components_DinnerItem_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/DinnerItem.vue */ "./src/components/DinnerItem.vue");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
+
+
 
 
 
@@ -266,6 +282,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
+    FontAwesomeIcon: _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_6__["FontAwesomeIcon"],
     DinnerItem: _components_DinnerItem_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     DateTime: _components_DateTime_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
     WeatherDay: _components_WeatherDay_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
@@ -276,42 +293,61 @@ __webpack_require__.r(__webpack_exports__);
   },
   data() {
     return {
-      data: [],
+      data: {
+        days: [],
+        solar_benefits: {}
+      },
       dataRefresh: 5,
-      secondsUntilRefresh: 0
+      secondsUntilRefresh: 0,
+      startDate: null
     };
   },
+  mounted() {
+    this.startDate = moment__WEBPACK_IMPORTED_MODULE_5___default()();
+    this.fetch();
+    this.scheduleFetch(this.dataRefresh);
+  },
   methods: {
+    previousWeek() {
+      this.startDate = this.startDate.subtract(1, 'week');
+      this.fetch();
+    },
+    nextWeek() {
+      this.startDate = this.startDate.add(1, 'week');
+      this.fetch();
+    },
+    currentWeek() {
+      this.startDate = moment__WEBPACK_IMPORTED_MODULE_5___default()();
+      this.fetch();
+    },
     createDate(dateString) {
       return new Date(dateString);
     },
     scheduleFetch(timeout) {
       setTimeout(() => this.fetch(), timeout);
     },
-    fetch() {
+    refresh() {
+      let forceRefresh = 1;
+      this.fetch(forceRefresh);
+    },
+    fetch(forceRefresh = 0) {
       this.secondsUntilRefresh = this.dataRefresh;
-      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.homeFeed + '/home').then(response => this.data = response.data);
+      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.homeFeed + '/home?start_date=' + this.startDate.format('MMMM Do YYYY, h:mm:ss a') + '&force_refresh=' + forceRefresh).then(response => this.updateData(response));
+    },
+    updateData(response) {
+      this.data.days = response.data.days;
+      this.data.solar_benefits = response.data.solar_benefits;
     },
     isToday(dateString) {
-      const date = new Date(new Date(dateString).toLocaleString('en', {
-        timeZone: 'America/Denver'
-      }));
-      const today = new Date(new Date().toLocaleString('en', {
-        timeZone: 'America/Denver'
-      }));
-      return date.getDate() == today.getDate() - 1 && date.getMonth() == today.getMonth() && date.getFullYear() == today.getFullYear();
+      return moment__WEBPACK_IMPORTED_MODULE_5___default()(dateString).isSame(moment__WEBPACK_IMPORTED_MODULE_5___default()(), "day");
     }
-  },
-  mounted() {
-    this.fetch();
-    this.scheduleFetch(this.dataRefresh);
   },
   computed: {
     days() {
       return this.data.days;
     },
     solarData() {
-      return this.data.solar;
+      return this.data.solar_benefits;
     }
   }
 });
@@ -382,12 +418,12 @@ const _hoisted_2 = {
   key: 0,
   class: "time"
 };
-const _hoisted_3 = {
-  key: 1,
-  class: "date"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [this.datetime && this.time ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_2, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.time), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), this.datetime && this.date ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.date), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]);
+  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [this.datetime && this.time ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_2, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.time), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), this.datetime && this.date ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", {
+    key: 1,
+    class: "date",
+    onClick: _cache[0] || (_cache[0] = (...args) => this.emitCurrentWeek && this.emitCurrentWeek(...args))
+  }, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.date), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]);
 }
 
 /***/ }),
@@ -410,15 +446,15 @@ const _hoisted_1 = {
 };
 const _hoisted_2 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("h2", {
   class: "text-muted"
-}, ":(", -1 /* HOISTED */));
+}, "--", -1 /* HOISTED */));
 const _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", {
-    class: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeClass"])(["dinner-item", [$props.day.dinner && $props.day.dinner.complete ? 'complete' : '']])
-  }, [$props.day.dinner ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", {
+    class: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeClass"])(["dinner-item", [$data.dinner && $data.dinner.complete ? 'complete' : '']])
+  }, [$data.dinner ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", {
     key: 0,
     onClick: _cache[0] || (_cache[0] = $event => $options.toggleMeal())
-  }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("h2", null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.day.dinner.title), 1 /* TEXT */)])) : (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, _hoisted_3))], 2 /* CLASS */);
+  }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("h2", null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($data.dinner.title), 1 /* TEXT */)])) : (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, _hoisted_3))], 2 /* CLASS */);
 }
 
 /***/ }),
@@ -448,21 +484,31 @@ const _hoisted_3 = {
   class: "solar"
 };
 const _hoisted_4 = {
-  class: "footer"
-};
-const _hoisted_5 = {
   class: "solar-benefits"
 };
-const _hoisted_6 = {
+const _hoisted_5 = {
   key: 0
 };
-const _hoisted_7 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("sub", null, "2", -1 /* HOISTED */));
+const _hoisted_6 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("sub", null, "2", -1 /* HOISTED */));
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  const _component_date = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("date");
+  const _component_font_awesome_icon = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("font-awesome-icon");
+  const _component_date_time = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("date-time");
   const _component_dinner_item = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("dinner-item");
   const _component_weather_day = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("weather-day");
-  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_date), this.days ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_2, [(Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["renderList"])(this.days, day => {
+  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("header", null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+    class: "previous-week",
+    onClick: _cache[0] || (_cache[0] = (...args) => this.previousWeek && this.previousWeek(...args))
+  }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_font_awesome_icon, {
+    icon: ['fas', 'angles-left']
+  })]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_date_time, {
+    onCurrentWeek: this.currentWeek
+  }, null, 8 /* PROPS */, ["onCurrentWeek"]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+    class: "next-week",
+    onClick: _cache[1] || (_cache[1] = (...args) => this.nextWeek && this.nextWeek(...args))
+  }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_font_awesome_icon, {
+    icon: ['fas', 'angles-right']
+  })])]), this.days ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_2, [(Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["renderList"])(this.days, day => {
     return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", {
       class: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeClass"])(["day", [$options.isToday(day.date) ? 'today' : '']]),
       key: day.date
@@ -478,7 +524,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       low: day.weather.temperature,
       description: day.weather.shortForecast
     }, null, 8 /* PROPS */, ["icon", "date", "high", "low", "description"])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), day.solar && day.solar.value ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round(day.solar.value / 10) / 100) + " K" + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(day.solar.unit), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */))])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_4, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_5, [this.solarData ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_6, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round(this.solarData.benefits.treesPlanted)) + " Trees Saved • " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.solarData.benefits.gasEmissionSaved.co2) + " " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.solarData.benefits.gasEmissionSaved.units) + " Reduced CO", 1 /* TEXT */), _hoisted_7, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(" Emissions ")])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)])])]);
+  }), 128 /* KEYED_FRAGMENT */))])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("footer", null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_4, [this.solarData.benefits ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_5, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round(this.solarData.benefits.treesPlanted)) + " Trees Saved • " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.solarData.benefits.gasEmissionSaved.co2) + " " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.solarData.benefits.gasEmissionSaved.units) + " Reduced CO", 1 /* TEXT */), _hoisted_6, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(" Emissions ")])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+    class: "refresh",
+    onClick: _cache[2] || (_cache[2] = $event => $options.refresh())
+  }, " refresh ")])]);
 }
 
 /***/ }),
@@ -545,7 +594,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.date-time[data-v-4c2c0a4b] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    height: 131px;\n}\n.time[data-v-4c2c0a4b] {\n    font-size: 6rem;\n}\n.date[data-v-4c2c0a4b] {\n    text-align: right;\n    font-size: 4rem;\n}\n", ""]);
+exports.push([module.i, "\n.date-time[data-v-4c2c0a4b] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    height: 131px;\n}\n.time[data-v-4c2c0a4b] {\n    font-size: 6rem;\n}\n.date[data-v-4c2c0a4b] {\n    text-align: right;\n    margin-top: 30px;\n    font-size: 4rem;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -581,7 +630,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.footer[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n}\n.week[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;\n}\n.day[data-v-79f5313a] {\n    text-align: center;\n    padding-top: 40px;\n}\n.today[data-v-79f5313a] {\n    background-color: #ADD8E6;\n}\n.solar-benefits[data-v-79f5313a] {\n    margin-left: 100px;\n    text-align: left;\n    font-size: 1.4rem\n}\n", ""]);
+exports.push([module.i, "\nheader[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 100px 1fr 100px;\n}\nfooter[data-v-79f5313a] {\n    margin-top: 20px;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n}\n.week[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;\n}\n.day[data-v-79f5313a] {\n    text-align: center;\n    padding: 40px 0;\n}\n.next-week[data-v-79f5313a],\n.previous-week[data-v-79f5313a] {\n    margin-top: 25px;\n    font-size: 70px;\n    text-align: center;\n    color: #a0aec0;\n}\n.refresh[data-v-79f5313a] {\n    text-align: right;\n    margin-right: 100px;\n}\n.today[data-v-79f5313a] {\n    background-color: #ADD8E6;\n}\n.solar-benefits[data-v-79f5313a] {\n    margin-left: 100px;\n    text-align: left;\n    font-size: 1.4rem\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -1419,9 +1468,24 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
 /* harmony import */ var _App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./App.vue */ "./src/App.vue");
+/* harmony import */ var _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/fontawesome-svg-core */ "./node_modules/@fortawesome/fontawesome-svg-core/index.mjs");
+/* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
+/* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.mjs");
 
 
-Object(vue__WEBPACK_IMPORTED_MODULE_0__["createApp"])(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]).mount('#app');
+
+/* import the fontawesome core */
+
+
+/* import font awesome icon component */
+
+
+/* import specific icons */
+
+
+/* add icons to the library */
+_fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_2__["library"].add(_fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faAnglesLeft"], _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_4__["faAnglesRight"]);
+Object(vue__WEBPACK_IMPORTED_MODULE_0__["createApp"])(_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]).component('font-awesome-icon', _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_3__["FontAwesomeIcon"]).mount('#app');
 
 /***/ }),
 

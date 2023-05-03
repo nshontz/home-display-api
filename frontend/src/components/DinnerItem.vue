@@ -1,10 +1,10 @@
 <template>
-    <div class="dinner-item" :class="[( day.dinner && day.dinner.complete?'complete' :'')]">
-        <div v-if="day.dinner" @click="toggleMeal()">
-            <h2>{{ day.dinner.title }}</h2>
+    <div class="dinner-item" :class="[( dinner && dinner.complete?'complete' :'')]">
+        <div v-if="dinner" @click="toggleMeal()">
+            <h2>{{ dinner.title }}</h2>
         </div>
         <div v-else>
-            <h2 class="text-muted">:(</h2>
+            <h2 class="text-muted">--</h2>
         </div>
     </div>
 </template>
@@ -20,13 +20,21 @@ export default {
         days: Array,
         day: Object
     },
+    data() {
+        return {
+            dinner: null
+        }
+    },
+    mounted() {
+        this.dinner = this.day.dinner;
+    },
     methods: {
         toggleMeal() {
-            this.day.dinner.complete = !this.day.dinner.complete;
+            this.dinner.complete = !this.dinner.complete;
 
             axios
-                .post(this.homeFeed + '/dinner/' + this.day.dinner.uid, {
-                    'complete': this.day.dinner.complete
+                .post(this.homeFeed + '/dinner/' + this.dinner.uid, {
+                    'complete': this.dinner.complete
                 })
 
         },

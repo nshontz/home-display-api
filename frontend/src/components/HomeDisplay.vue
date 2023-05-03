@@ -1,6 +1,16 @@
 <template>
     <div class="home-display">
-        <date></date>
+        <header>
+            <div class="previous-week" @click="this.previousWeek">
+                <font-awesome-icon :icon="['fas', 'angles-left']" />
+            </div>
+            <date-time
+                @currentWeek="this.currentWeek">
+            </date-time>
+            <div class="next-week" @click="this.nextWeek">
+                <font-awesome-icon :icon="['fas', 'angles-right']" />
+            </div>
+        </header>
         <div class="week" v-if="this.days">
             <div class="day" v-for="(day) in this.days" :key="day.date" :class="[( isToday(day.date) ? 'today' : '')]">
                 {{ day.date_display }}
@@ -22,15 +32,18 @@
                 </div>
             </div>
         </div>
-        <div class="footer">
+        <footer>
             <div class="solar-benefits">
-                <div v-if="this.solarData">
+                <div v-if="this.solarData.benefits">
                     {{ Math.round(this.solarData.benefits.treesPlanted) }} Trees Saved •
                     {{ this.solarData.benefits.gasEmissionSaved.co2 }} {{ this.solarData.benefits.gasEmissionSaved.units }}
                     Reduced CO<sub>2</sub> Emissions
                 </div>
             </div>
-        </div>
+            <div class="refresh" @click="refresh()">
+                refresh
+            </div>
+        </footer>
     </div>
 </template>
 
@@ -40,52 +53,74 @@ import 'vue-cal/dist/vuecal.css'
 import WeatherDay from "@/components/WeatherDay.vue";
 import DateTime from "@/components/DateTime.vue";
 import DinnerItem from "@/components/DinnerItem.vue";
+import moment from "moment";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 
 export default {
-    components: {DinnerItem, DateTime, WeatherDay},
+    components: {FontAwesomeIcon, DinnerItem, DateTime, WeatherDay},
     name: 'Home',
     props: {
         homeFeed: String
     },
     data() {
         return {
-            data: [],
+            data: {
+                days: [],
+                solar_benefits: {},
+            },
             dataRefresh: 5,
             secondsUntilRefresh: 0,
+            startDate: null,
         }
     },
+    mounted() {
+        this.startDate = moment();
+        this.fetch();
+        this.scheduleFetch(this.dataRefresh);
+    },
     methods: {
+        previousWeek() {
+            this.startDate = this.startDate.subtract(1, 'week');
+            this.fetch();
+        },
+        nextWeek() {
+            this.startDate = this.startDate.add(1, 'week');
+            this.fetch();
+        },
+        currentWeek() {
+            this.startDate = moment();
+            this.fetch();
+        },
         createDate(dateString) {
             return new Date(dateString);
         },
         scheduleFetch(timeout) {
             setTimeout(() => this.fetch(), timeout);
         },
-        fetch() {
+        refresh() {
+            let forceRefresh = 1;
+            this.fetch(forceRefresh);
+        },
+        fetch(forceRefresh = 0) {
             this.secondsUntilRefresh = this.dataRefresh;
             axios
-                .get(this.homeFeed + '/home')
-                .then(response => (this.data = response.data))
+                .get(this.homeFeed + '/home?start_date=' + this.startDate.format('MMMM Do YYYY, h:mm:ss a') + '&force_refresh=' + forceRefresh)
+                .then(response => (this.updateData(response)))
+        },
+        updateData(response) {
+            this.data.days = response.data.days;
+            this.data.solar_benefits = response.data.solar_benefits;
         },
         isToday(dateString) {
-            const date = new Date(new Date(dateString).toLocaleString('en', {timeZone: 'America/Denver'}))
-            const today = new Date(new Date().toLocaleString('en', {timeZone: 'America/Denver'}))
-
-            return date.getDate() == today.getDate() - 1 &&
-                date.getMonth() == today.getMonth() &&
-                date.getFullYear() == today.getFullYear()
+            return moment(dateString).isSame(moment(), "day");
         }
-    },
-    mounted() {
-        this.fetch();
-        this.scheduleFetch(this.dataRefresh);
     },
     computed: {
         days() {
             return this.data.days;
         },
         solarData() {
-            return this.data.solar;
+            return this.data.solar_benefits;
         }
     }
 }
@@ -94,7 +129,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-.footer {
+header {
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+}
+
+footer {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -107,9 +148,21 @@ export default {
 
 .day {
     text-align: center;
-    padding-top: 40px;
+    padding: 40px 0;
 }
 
+.next-week,
+.previous-week {
+    margin-top: 25px;
+    font-size: 70px;
+    text-align: center;
+    color: #a0aec0;
+}
+
+.refresh {
+    text-align: right;
+    margin-right: 100px;
+}
 
 .today {
     background-color: #ADD8E6;

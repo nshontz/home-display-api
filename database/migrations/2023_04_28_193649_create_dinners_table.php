@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('uid');
             $table->string('title');
             $table->timestamp('complete')->nullable();
-            $table->timestamp('date');
-            $table->json('event');
+            $table->timestamp('date')->nullable();
+            $table->json('event')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
