@@ -1,5 +1,5 @@
 <template>
-    <div class="home-display">
+    <div class="home-display darkmode">
         <header>
             <div class="previous-week" @click="this.previousWeek">
                 <font-awesome-icon :icon="['fas', 'angles-left']"/>
@@ -162,6 +162,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
+.home-display.darkmode{
+    background-color: #222;
+    color: #eee;
+}
+
+
 .weather-day {
     height: 170px;
 }
@@ -214,7 +220,7 @@ footer {
 }
 
 .today {
-    background-color: #ADD8E6;
+    background-color: #999;
 }
 
 .solar-benefits {
