@@ -111,7 +111,7 @@ export default {
             let forceRefresh = 1;
             this.fetch(forceRefresh);
             setTimeout(function () {
-                location.href = window.location.href
+                location.href = window.location.href+"?t="+moment()
             }, 1000);
         },
         fetch(forceRefresh = 0) {
