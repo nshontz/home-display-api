@@ -102,9 +102,35 @@ class Weather
 
     private function locateAlternativeIcon($iconPath)
     {
+        $path = str_replace(['/icons/land/', 'night/', 'day/'], '', parse_url($iconPath)['path']);
+        $path = str_replace(',', '-', $path);
+        if (is_numeric(stripos($path, 'rain'))) {
+            if (
+                is_numeric(stripos($path, 'rain-10')) ||
+                is_numeric(stripos($path, 'rain-20')) ||
+                is_numeric(stripos($path, 'rain-30'))
+            ) {
+                $path = 'rain';
+            }
+            if (
+                is_numeric(stripos($path, 'rain-40')) ||
+                is_numeric(stripos($path, 'rain-50')) ||
+                is_numeric(stripos($path, 'rain-60'))
+            ) {
+                $path = 'rain-medium';
+            }
+            if (
+                is_numeric(stripos($path, 'rain-70')) ||
+                is_numeric(stripos($path, 'rain-80')) ||
+                is_numeric(stripos($path, 'rain-90')) ||
+                is_numeric(stripos($path, 'rain-100'))
+            ) {
+                $path = 'rain-heavy';
+            }
+        }
 
-        $iconName = collect(explode('/', parse_url($iconPath)['path']))->last() . '.png';
-//        dd($iconName);
+        $iconName = $path . '.png';
+//        dump($iconName);
         if (file_exists(public_path('icons/' . $iconName))) {
             $iconPath = asset('icons/' . $iconName);
         }
