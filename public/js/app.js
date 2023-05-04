@@ -702,7 +702,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.date-time[data-v-4c2c0a4b] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    height: 100px;\n}\n.time[data-v-4c2c0a4b] {\n    font-size: 6rem;\n}\n.date[data-v-4c2c0a4b] {\n    text-align: right;\n    margin-top: 30px;\n    font-size: 4rem;\n}\n", ""]);
+exports.push([module.i, "\n.date-time[data-v-4c2c0a4b] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    height: 100px;\n}\n.time[data-v-4c2c0a4b] {\n    font-size: 5.5rem;\n}\n.date[data-v-4c2c0a4b] {\n    text-align: right;\n    margin-top: 30px;\n    font-size: 4rem;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

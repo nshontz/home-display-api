@@ -46,7 +46,7 @@ export default {
 }
 
 .time {
-    font-size: 6rem;
+    font-size: 5.5rem;
 }
 
 .date {
