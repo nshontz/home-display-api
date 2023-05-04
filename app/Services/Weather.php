@@ -25,6 +25,13 @@ class Weather
                 ->send();
         })->body;
 
+        $stationsUrl = $this->locationData->properties->observationStations;
+        $this->stations = Cache::remember($stationsUrl, Carbon::now()->addHours(5), function () use ($stationsUrl) {
+            return \Httpful\Request::get($stationsUrl)
+                ->expectsJson()
+                ->send();
+        })->body;
+
     }
 
     public function forecast($clearCache = false)
@@ -41,6 +48,7 @@ class Weather
 
         return collect($forecast->body->properties->periods)->map(function ($day) {
             return (object)[
+                'day' => Carbon::parse($day->startTime)->format('Y-m-d'),
                 'startTime' => $day->startTime,
                 'name' => $day->name,
                 'temperature' => $day->temperature,
@@ -53,8 +61,43 @@ class Weather
                 'detailedForecast' => $day->detailedForecast,
                 'object' => $day
             ];
+        })->groupBy('day')->map(function ($weatherPeriods, $day) {
+            $day = (object)[
+                'startTime' => $day,
+            ];
+            $temps = $weatherPeriods->pluck('temperature')->sort();
+            $day->high = $temps->pop();
+            $day->low = $temps->pop();
+            $day->icon = $weatherPeriods->first()->icon;
+            $day->icon_alt = $this->locateAlternativeIcon($weatherPeriods->first()->icon);
+            $day->shortForecast = $weatherPeriods->first()->shortForecast;
+
+            $day->periods = $weatherPeriods;
+            return $day;
         });
 
+    }
+
+    public function current($clearCache = false)
+    {
+        $url = collect($this->stations->observationStations)->first() . '/observations/latest';
+        if ($clearCache) {
+            Cache::forget($url);
+        }
+
+        $current = Cache::remember($url, Carbon::now()->addHours(5), function () use ($url) {
+            return \Httpful\Request::get($url)
+                ->expectsJson()
+                ->send();
+        })->body;
+
+        return [
+            'icon_alt' => $this->locateAlternativeIcon($current->properties->icon),
+            'icon' => $current->properties->icon,
+            'maxTemperatureLast24Hours' => $current->properties->maxTemperatureLast24Hours->value,
+            'text_description' => $current->properties->textDescription,
+            'current_temp' => ($current->properties->temperature->value * (9 / 5)) + 32
+        ];;
     }
 
     private function locateAlternativeIcon($iconPath)

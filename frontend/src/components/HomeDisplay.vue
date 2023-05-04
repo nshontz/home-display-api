@@ -2,41 +2,49 @@
     <div class="home-display">
         <header>
             <div class="previous-week" @click="this.previousWeek">
-                <font-awesome-icon :icon="['fas', 'angles-left']" />
+                <font-awesome-icon :icon="['fas', 'angles-left']"/>
             </div>
             <date-time
                 @currentWeek="this.currentWeek">
             </date-time>
             <div class="next-week" @click="this.nextWeek">
-                <font-awesome-icon :icon="['fas', 'angles-right']" />
+                <font-awesome-icon :icon="['fas', 'angles-right']"/>
             </div>
         </header>
-        <div class="week" v-if="this.days">
-            <div class="day" v-for="(day) in this.days" :key="day.date" :class="[( isToday(day.date) ? 'today' : '')]">
+        <div class="week" v-if="this.data.days">
+            <div class="day" v-for="(day) in this.data.days" :key="day.date" :class="[( isToday(day) ? 'today' : '')]">
                 {{ day.date_display }}
-                <dinner-item
-                    :days="this.days"
-                    :day="day"
-                    :home-feed="homeFeed"
-                ></dinner-item>
-                <weather-day
-                    v-if="day.weather"
-                    :icon="day.weather.icon_alt"
-                    :date="this.createDate(day.weather.startTime)"
-                    :high="day.weather.temperature"
-                    :low="day.weather.temperature"
-                    :description="day.weather.shortForecast"
-                ></weather-day>
-                <div class="solar" v-if="day.solar && day.solar.value">
-                    {{ Math.round(day.solar.value / 10) / 100 }} K{{ day.solar.unit }}
+                <div class="dinner-item">
+                    <dinner-item
+                        :days="this.data.days"
+                        :day="day"
+                        :home-feed="homeFeed"
+                    ></dinner-item>
+                </div>
+                <div class="weather-day">
+                    <weather-day
+                        v-if="day.weather"
+                        :icon="day.weather.icon_alt"
+                        :date="this.createDate(day.weather.startTime)"
+                        :high="day.weather.high"
+                        :low="day.weather.low"
+                        :description="day.weather.shortForecast"
+                    ></weather-day>
+                </div>
+                <div class="solar">
+                    <solar-daily
+                        :solar="day.solar"
+                        :solar-max="this.maxSolarValue"
+                        v-if="day.solar && day.solar.value">
+                    </solar-daily>
                 </div>
             </div>
         </div>
         <footer>
             <div class="solar-benefits">
-                <div v-if="this.solarData.benefits">
-                    {{ Math.round(this.solarData.benefits.treesPlanted) }} Trees Saved •
-                    {{ this.solarData.benefits.gasEmissionSaved.co2 }} {{ this.solarData.benefits.gasEmissionSaved.units }}
+                <div v-if="this.data.solar_benefits.benefits">
+                    {{ Math.round(this.data.solar_benefits.benefits.treesPlanted) }} Trees Saved •
+                    {{ this.data.solar_benefits.benefits.gasEmissionSaved.co2 }} {{ this.data.solar_benefits.benefits.gasEmissionSaved.units }}
                     Reduced CO<sub>2</sub> Emissions
                 </div>
             </div>
@@ -53,11 +61,12 @@ import 'vue-cal/dist/vuecal.css'
 import WeatherDay from "@/components/WeatherDay.vue";
 import DateTime from "@/components/DateTime.vue";
 import DinnerItem from "@/components/DinnerItem.vue";
-import moment from "moment";
+import moment from 'moment-timezone';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import SolarDaily from "@/components/SolarDaily.vue";
 
 export default {
-    components: {FontAwesomeIcon, DinnerItem, DateTime, WeatherDay},
+    components: {SolarDaily, FontAwesomeIcon, DinnerItem, DateTime, WeatherDay},
     name: 'Home',
     props: {
         homeFeed: String
@@ -65,6 +74,7 @@ export default {
     data() {
         return {
             data: {
+                currentTemp: null,
                 days: [],
                 solar_benefits: {},
             },
@@ -74,7 +84,7 @@ export default {
         }
     },
     mounted() {
-        this.startDate = moment().startOf('week').add(1,'day');
+        this.startDate = moment.tz(moment(), "America/Denver").startOf('week').add(-1, 'day');
         this.fetch();
         this.scheduleFetch(this.dataRefresh);
     },
@@ -88,7 +98,7 @@ export default {
             this.fetch();
         },
         currentWeek() {
-            this.startDate = moment();
+            this.startDate = moment.tz(moment(), "America/Denver");
             this.fetch();
         },
         createDate(dateString) {
@@ -100,7 +110,7 @@ export default {
         refresh() {
             let forceRefresh = 1;
             this.fetch(forceRefresh);
-            setTimeout(function (){
+            setTimeout(function () {
                 location.href = window.location.href
             }, 1000);
         },
@@ -111,26 +121,61 @@ export default {
                 .then(response => (this.updateData(response)))
         },
         updateData(response) {
+            this.data.currentTemp = response.data.current_weather.current_temp;
             this.data.days = response.data.days;
             this.data.solar_benefits = response.data.solar_benefits;
+            console.log(this.data.days);
         },
-        isToday(dateString) {
-            return moment(dateString).isSame(moment(), "day");
+        isToday(day) {
+
+            let date = moment.tz(moment(day.date), "America/Denver").add(1,'day');
+            let today = moment.tz(moment(), "America/Denver");
+
+            let isToday = date.isSame(today, "day");
+
+            if (isToday) {
+                console.log('tody',
+                    [
+                        day,
+                        date.format('MMMM Do YYYY, h:mm:ss a')
+                    ]
+                );
+            }
+
+            return isToday;
         }
     },
     computed: {
-        days() {
-            return this.data.days;
+        maxSolarValue() {
+            let max = 0;
+            this.data.days.forEach(function (day) {
+                if (day.solar.value > max) {
+                    max = day.solar.value
+                }
+            })
+            return max
         },
-        solarData() {
-            return this.data.solar_benefits;
-        }
     }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.weather-day {
+    height: 170px;
+}
+
+.dinner-item {
+    min-height: 120px;
+    position: relative;
+    width: 100%;
+}
+
+.home-display {
+    max-height: 545px;
+    overflow: hidden;
+}
 
 header {
     display: grid;
@@ -147,11 +192,12 @@ footer {
 .week {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    min-height: 350px;
 }
 
 .day {
     text-align: center;
-    padding: 10px ;
+    padding: 10px;
 }
 
 .next-week,

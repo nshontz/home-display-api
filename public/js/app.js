@@ -210,7 +210,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.datetime.format('h:mm');
     },
     date() {
-      return this.datetime.format('MMMM Do YYYY');
+      return this.datetime.format('MMMM Do, YYYY');
     }
   }
 });
@@ -270,9 +270,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_WeatherDay_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/components/WeatherDay.vue */ "./src/components/WeatherDay.vue");
 /* harmony import */ var _components_DateTime_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/components/DateTime.vue */ "./src/components/DateTime.vue");
 /* harmony import */ var _components_DinnerItem_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/components/DinnerItem.vue */ "./src/components/DinnerItem.vue");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment-timezone */ "./node_modules/moment-timezone/index.js");
+/* harmony import */ var moment_timezone__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment_timezone__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fortawesome/vue-fontawesome */ "./node_modules/@fortawesome/vue-fontawesome/index.es.js");
+/* harmony import */ var _components_SolarDaily_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/components/SolarDaily.vue */ "./src/components/SolarDaily.vue");
+
 
 
 
@@ -282,6 +284,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
+    SolarDaily: _components_SolarDaily_vue__WEBPACK_IMPORTED_MODULE_7__["default"],
     FontAwesomeIcon: _fortawesome_vue_fontawesome__WEBPACK_IMPORTED_MODULE_6__["FontAwesomeIcon"],
     DinnerItem: _components_DinnerItem_vue__WEBPACK_IMPORTED_MODULE_4__["default"],
     DateTime: _components_DateTime_vue__WEBPACK_IMPORTED_MODULE_3__["default"],
@@ -294,6 +297,7 @@ __webpack_require__.r(__webpack_exports__);
   data() {
     return {
       data: {
+        currentTemp: null,
         days: [],
         solar_benefits: {}
       },
@@ -303,7 +307,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted() {
-    this.startDate = moment__WEBPACK_IMPORTED_MODULE_5___default()().startOf('week').add(1, 'day');
+    this.startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(), "America/Denver").startOf('week').add(-1, 'day');
     this.fetch();
     this.scheduleFetch(this.dataRefresh);
   },
@@ -317,7 +321,7 @@ __webpack_require__.r(__webpack_exports__);
       this.fetch();
     },
     currentWeek() {
-      this.startDate = moment__WEBPACK_IMPORTED_MODULE_5___default()();
+      this.startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(), "America/Denver");
       this.fetch();
     },
     createDate(dateString) {
@@ -338,19 +342,65 @@ __webpack_require__.r(__webpack_exports__);
       axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(this.homeFeed + '/home?start_date=' + this.startDate.format('MMMM Do YYYY, h:mm:ss a') + '&force_refresh=' + forceRefresh).then(response => this.updateData(response));
     },
     updateData(response) {
+      this.data.currentTemp = response.data.current_weather.current_temp;
       this.data.days = response.data.days;
       this.data.solar_benefits = response.data.solar_benefits;
+      console.log(this.data.days);
     },
-    isToday(dateString) {
-      return moment__WEBPACK_IMPORTED_MODULE_5___default()(dateString).isSame(moment__WEBPACK_IMPORTED_MODULE_5___default()(), "day");
+    isToday(day) {
+      let date = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(day.date), "America/Denver").add(1, 'day');
+      let today = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(), "America/Denver");
+      let isToday = date.isSame(today, "day");
+      if (isToday) {
+        console.log('tody', [day, date.format('MMMM Do YYYY, h:mm:ss a')]);
+      }
+      return isToday;
     }
   },
   computed: {
-    days() {
-      return this.data.days;
+    maxSolarValue() {
+      let max = 0;
+      this.data.days.forEach(function (day) {
+        if (day.solar.value > max) {
+          max = day.solar.value;
+        }
+      });
+      return max;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/SolarDaily.vue?vue&type=script&lang=js":
+/*!*************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/babel-loader/lib!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SolarDaily.vue?vue&type=script&lang=js ***!
+  \*************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "SolarDaily",
+  props: {
+    solar: Object,
+    solarMax: {
+      type: Number,
+      default: 45000
+    }
+  },
+  methods: {
+    intensityValue(value) {
+      let intensity = value / this.solarMax * 100;
+      return 100 - intensity;
     },
-    solarData() {
-      return this.data.solar_benefits;
+    calculateLabelPadding(value) {
+      let padding = this.intensityValue(value) + 3;
+      if (padding > 60) {
+        padding = padding - 22;
+      }
+      return padding;
     }
   }
 });
@@ -453,7 +503,7 @@ const _hoisted_2 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/Object(vue__WEBP
 const _hoisted_3 = [_hoisted_2];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", {
-    class: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeClass"])(["dinner-item", [$data.dinner && $data.dinner.complete ? 'complete' : '']])
+    class: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeClass"])([$data.dinner && $data.dinner.complete ? 'complete' : ''])
   }, [$data.dinner ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", {
     key: 0,
     onClick: _cache[0] || (_cache[0] = $event => $options.toggleMeal())
@@ -483,22 +533,28 @@ const _hoisted_2 = {
   class: "week"
 };
 const _hoisted_3 = {
-  key: 1,
-  class: "solar"
+  class: "dinner-item"
 };
 const _hoisted_4 = {
-  class: "solar-benefits"
+  class: "weather-day"
 };
 const _hoisted_5 = {
+  class: "solar"
+};
+const _hoisted_6 = {
+  class: "solar-benefits"
+};
+const _hoisted_7 = {
   key: 0
 };
-const _hoisted_6 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("sub", null, "2", -1 /* HOISTED */));
+const _hoisted_8 = /*#__PURE__*/_withScopeId(() => /*#__PURE__*/Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("sub", null, "2", -1 /* HOISTED */));
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_font_awesome_icon = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("font-awesome-icon");
   const _component_date_time = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("date-time");
   const _component_dinner_item = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("dinner-item");
   const _component_weather_day = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("weather-day");
+  const _component_solar_daily = Object(vue__WEBPACK_IMPORTED_MODULE_0__["resolveComponent"])("solar-daily");
   return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("header", null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
     class: "previous-week",
     onClick: _cache[0] || (_cache[0] = (...args) => this.previousWeek && this.previousWeek(...args))
@@ -511,26 +567,62 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = (...args) => this.nextWeek && this.nextWeek(...args))
   }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_font_awesome_icon, {
     icon: ['fas', 'angles-right']
-  })])]), this.days ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_2, [(Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["renderList"])(this.days, day => {
+  })])]), this.data.days ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_2, [(Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["renderList"])(this.data.days, day => {
     return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", {
-      class: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeClass"])(["day", [$options.isToday(day.date) ? 'today' : '']]),
+      class: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeClass"])(["day", [$options.isToday(day) ? 'today' : '']]),
       key: day.date
-    }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(day.date_display) + " ", 1 /* TEXT */), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_dinner_item, {
-      days: this.days,
+    }, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(day.date_display) + " ", 1 /* TEXT */), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_3, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createVNode"])(_component_dinner_item, {
+      days: this.data.days,
       day: day,
       "home-feed": $props.homeFeed
-    }, null, 8 /* PROPS */, ["days", "day", "home-feed"]), day.weather ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])(_component_weather_day, {
+    }, null, 8 /* PROPS */, ["days", "day", "home-feed"])]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_4, [day.weather ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])(_component_weather_day, {
       key: 0,
       icon: day.weather.icon_alt,
       date: this.createDate(day.weather.startTime),
-      high: day.weather.temperature,
-      low: day.weather.temperature,
+      high: day.weather.high,
+      low: day.weather.low,
       description: day.weather.shortForecast
-    }, null, 8 /* PROPS */, ["icon", "date", "high", "low", "description"])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), day.solar && day.solar.value ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round(day.solar.value / 10) / 100) + " K" + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(day.solar.unit), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */))])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("footer", null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_4, [this.solarData.benefits ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_5, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round(this.solarData.benefits.treesPlanted)) + " Trees Saved • " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.solarData.benefits.gasEmissionSaved.co2) + " " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.solarData.benefits.gasEmissionSaved.units) + " Reduced CO", 1 /* TEXT */), _hoisted_6, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(" Emissions ")])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+    }, null, 8 /* PROPS */, ["icon", "date", "high", "low", "description"])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_5, [day.solar && day.solar.value ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createBlock"])(_component_solar_daily, {
+      key: 0,
+      solar: day.solar,
+      "solar-max": this.maxSolarValue
+    }, null, 8 /* PROPS */, ["solar", "solar-max"])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)])], 2 /* CLASS */);
+  }), 128 /* KEYED_FRAGMENT */))])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("footer", null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_6, [this.data.solar_benefits.benefits ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_7, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round(this.data.solar_benefits.benefits.treesPlanted)) + " Trees Saved • " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.data.solar_benefits.benefits.gasEmissionSaved.co2) + " " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.data.solar_benefits.benefits.gasEmissionSaved.units) + " Reduced CO", 1 /* TEXT */), _hoisted_8, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(" Emissions ")])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
     class: "refresh",
     onClick: _cache[2] || (_cache[2] = $event => $options.refresh())
   }, " refresh ")])]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader-v16/dist/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/SolarDaily.vue?vue&type=template&id=38f4a708&scoped=true":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/cache-loader/dist/cjs.js??ref--13-0!./node_modules/babel-loader/lib!./node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SolarDaily.vue?vue&type=template&id=38f4a708&scoped=true ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.runtime.esm-bundler.js");
+
+const _withScopeId = n => (Object(vue__WEBPACK_IMPORTED_MODULE_0__["pushScopeId"])("data-v-38f4a708"), n = n(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["popScopeId"])(), n);
+const _hoisted_1 = {
+  class: "solar-bar"
+};
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+    class: "gradient",
+    style: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeStyle"])({
+      'width': this.intensityValue($props.solar.value) + '%'
+    })
+  }, null, 4 /* STYLE */), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+    class: "label",
+    style: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeStyle"])({
+      'padding-right': this.calculateLabelPadding($props.solar.value) + '%'
+    })
+  }, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round($props.solar.value / 10) / 100), 5 /* TEXT, STYLE */)]);
 }
 
 /***/ }),
@@ -549,21 +641,27 @@ __webpack_require__.r(__webpack_exports__);
 
 const _withScopeId = n => (Object(vue__WEBPACK_IMPORTED_MODULE_0__["pushScopeId"])("data-v-30fe9590"), n = n(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["popScopeId"])(), n);
 const _hoisted_1 = {
-  class: "weather-day"
-};
-const _hoisted_2 = {
   key: 0
 };
-const _hoisted_3 = {
+const _hoisted_2 = {
   key: 1
 };
+const _hoisted_3 = {
+  key: 0
+};
+const _hoisted_4 = {
+  key: 1
+};
+const _hoisted_5 = {
+  key: 2
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
     class: "icon",
     style: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeStyle"])({
       'background-image': 'url(' + $props.icon + ')'
     })
-  }, null, 4 /* STYLE */), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("p", null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.description), 1 /* TEXT */), $props.current ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_2, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.current), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.high && $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.high) + " / " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.low), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]);
+  }, null, 4 /* STYLE */), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("p", null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.description), 1 /* TEXT */), $props.current ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_1, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.current), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.high || $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_2, [$props.high ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.high), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.high && $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_4, " / ")) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_5, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.low), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -615,7 +713,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.dinner-item[data-v-84badb56] {\n    min-height: 120px;\n    position: relative;\n    width: 100%;\n}\n.dinner-item h2[data-v-84badb56] {\n    margin: 0;\n    width: 100%;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.complete h2[data-v-84badb56] {\n    filter: blur(3px);\n}\n", ""]);
+exports.push([module.i, "\nh2[data-v-84badb56] {\n    margin: 0;\n    width: 100%;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.complete h2[data-v-84badb56] {\n    filter: blur(3px);\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -633,7 +731,25 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\nheader[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 100px 1fr 100px;\n}\nfooter[data-v-79f5313a] {\n    margin-top: 20px;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n}\n.week[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;\n}\n.day[data-v-79f5313a] {\n    text-align: center;\n    padding: 10px ;\n}\n.next-week[data-v-79f5313a],\n.previous-week[data-v-79f5313a] {\n    margin-top: 25px;\n    font-size: 70px;\n    text-align: center;\n    color: #a0aec0;\n}\n.refresh[data-v-79f5313a] {\n    text-align: right;\n    margin-right: 100px;\n}\n.today[data-v-79f5313a] {\n    background-color: #ADD8E6;\n}\n.solar-benefits[data-v-79f5313a] {\n    margin-left: 100px;\n    text-align: left;\n    font-size: 1.4rem\n}\n", ""]);
+exports.push([module.i, "\n.weather-day[data-v-79f5313a] {\n    height: 170px;\n}\n.dinner-item[data-v-79f5313a] {\n    min-height: 120px;\n    position: relative;\n    width: 100%;\n}\n.home-display[data-v-79f5313a] {\n    max-height: 545px;\n    overflow: hidden;\n}\nheader[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 100px 1fr 100px;\n}\nfooter[data-v-79f5313a] {\n    margin-top: 20px;\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n}\n.week[data-v-79f5313a] {\n    display: grid;\n    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;\n    min-height: 350px;\n}\n.day[data-v-79f5313a] {\n    text-align: center;\n    padding: 10px;\n}\n.next-week[data-v-79f5313a],\n.previous-week[data-v-79f5313a] {\n    margin-top: 25px;\n    font-size: 70px;\n    text-align: center;\n    color: #a0aec0;\n}\n.refresh[data-v-79f5313a] {\n    text-align: right;\n    margin-right: 100px;\n}\n.today[data-v-79f5313a] {\n    background-color: #ADD8E6;\n}\n.solar-benefits[data-v-79f5313a] {\n    margin-left: 100px;\n    text-align: left;\n    font-size: 1.4rem\n}\n", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ref--7-oneOf-1-1!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-oneOf-1-2!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.i, "\n.solar-bar[data-v-38f4a708] {\n    position: relative;\n    height: 30px;\n    width: 100%;\n    background-image: linear-gradient(to right, yellow, red);\n}\n.label[data-v-38f4a708] {\n    top: 0;\n    width: 100%;\n    position: absolute;\n    padding: 5px 0px;\n    text-align: right;\n    color: white;\n    text-shadow: 0px 0px 2px #222;\n    box-sizing: border-box\n}\n.gradient[data-v-38f4a708] {\n    top: 0;\n    right: 0;\n    position: absolute;\n    height: 30px;\n    background-color: white;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -1048,6 +1164,28 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js?!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-style-loader??ref--7-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--7-oneOf-1-1!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-oneOf-1-2!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js??ref--7-oneOf-1-1!../../node_modules/vue-loader-v16/dist/stylePostLoader.js!../../node_modules/postcss-loader/src??ref--7-oneOf-1-2!../../node_modules/cache-loader/dist/cjs.js??ref--1-0!../../node_modules/vue-loader-v16/dist??ref--1-1!./SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css */ "./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css");
+if(content.__esModule) content = content.default;
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var add = __webpack_require__(/*! ../../node_modules/vue-style-loader/lib/addStylesClient.js */ "./node_modules/vue-style-loader/lib/addStylesClient.js").default
+var update = add("815e864c", content, false, {"sourceMap":false,"shadowMode":false});
+// Hot Module Replacement
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js?!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/WeatherDay.vue?vue&type=style&index=0&id=30fe9590&scoped=true&lang=css":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-style-loader??ref--7-oneOf-1-0!./node_modules/css-loader/dist/cjs.js??ref--7-oneOf-1-1!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src??ref--7-oneOf-1-2!./node_modules/cache-loader/dist/cjs.js??ref--1-0!./node_modules/vue-loader-v16/dist??ref--1-1!./src/components/WeatherDay.vue?vue&type=style&index=0&id=30fe9590&scoped=true&lang=css ***!
@@ -1377,6 +1515,84 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_13_0_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_v16_dist_templateLoader_js_ref_6_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_HomeDisplay_vue_vue_type_template_id_79f5313a_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/cache-loader/dist/cjs.js??ref--13-0!../../node_modules/babel-loader/lib!../../node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!../../node_modules/cache-loader/dist/cjs.js??ref--1-0!../../node_modules/vue-loader-v16/dist??ref--1-1!./HomeDisplay.vue?vue&type=template&id=79f5313a&scoped=true */ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader-v16/dist/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/HomeDisplay.vue?vue&type=template&id=79f5313a&scoped=true");
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_cache_loader_dist_cjs_js_ref_13_0_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_v16_dist_templateLoader_js_ref_6_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_HomeDisplay_vue_vue_type_template_id_79f5313a_scoped_true__WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+
+
+/***/ }),
+
+/***/ "./src/components/SolarDaily.vue":
+/*!***************************************!*\
+  !*** ./src/components/SolarDaily.vue ***!
+  \***************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SolarDaily_vue_vue_type_template_id_38f4a708_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SolarDaily.vue?vue&type=template&id=38f4a708&scoped=true */ "./src/components/SolarDaily.vue?vue&type=template&id=38f4a708&scoped=true");
+/* harmony import */ var _SolarDaily_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SolarDaily.vue?vue&type=script&lang=js */ "./src/components/SolarDaily.vue?vue&type=script&lang=js");
+/* empty/unused harmony star reexport *//* harmony import */ var _SolarDaily_vue_vue_type_style_index_0_id_38f4a708_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css */ "./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css");
+/* harmony import */ var _Users_nickshontz_Code_Sites_home_api_frontend_node_modules_vue_loader_v16_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./node_modules/vue-loader-v16/dist/exportHelper.js */ "./node_modules/vue-loader-v16/dist/exportHelper.js");
+/* harmony import */ var _Users_nickshontz_Code_Sites_home_api_frontend_node_modules_vue_loader_v16_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_Users_nickshontz_Code_Sites_home_api_frontend_node_modules_vue_loader_v16_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3__);
+
+
+
+
+
+
+
+const __exports__ = /*#__PURE__*/_Users_nickshontz_Code_Sites_home_api_frontend_node_modules_vue_loader_v16_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_3___default()(_SolarDaily_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_SolarDaily_vue_vue_type_template_id_38f4a708_scoped_true__WEBPACK_IMPORTED_MODULE_0__["render"]],['__scopeId',"data-v-38f4a708"],['__file',"src/components/SolarDaily.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ __webpack_exports__["default"] = (__exports__);
+
+/***/ }),
+
+/***/ "./src/components/SolarDaily.vue?vue&type=script&lang=js":
+/*!***************************************************************!*\
+  !*** ./src/components/SolarDaily.vue?vue&type=script&lang=js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_13_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/cache-loader/dist/cjs.js??ref--13-0!../../node_modules/babel-loader/lib!../../node_modules/cache-loader/dist/cjs.js??ref--1-0!../../node_modules/vue-loader-v16/dist??ref--1-1!./SolarDaily.vue?vue&type=script&lang=js */ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/SolarDaily.vue?vue&type=script&lang=js");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "default", function() { return _node_modules_cache_loader_dist_cjs_js_ref_13_0_node_modules_babel_loader_lib_index_js_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"]; });
+
+/* empty/unused harmony star reexport */ 
+
+/***/ }),
+
+/***/ "./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css":
+/*!***********************************************************************************************!*\
+  !*** ./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css ***!
+  \***********************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_style_index_0_id_38f4a708_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/vue-style-loader??ref--7-oneOf-1-0!../../node_modules/css-loader/dist/cjs.js??ref--7-oneOf-1-1!../../node_modules/vue-loader-v16/dist/stylePostLoader.js!../../node_modules/postcss-loader/src??ref--7-oneOf-1-2!../../node_modules/cache-loader/dist/cjs.js??ref--1-0!../../node_modules/vue-loader-v16/dist??ref--1-1!./SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css */ "./node_modules/vue-style-loader/index.js?!./node_modules/css-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/SolarDaily.vue?vue&type=style&index=0&id=38f4a708&scoped=true&lang=css");
+/* harmony import */ var _node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_style_index_0_id_38f4a708_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_style_index_0_id_38f4a708_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_style_index_0_id_38f4a708_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_vue_style_loader_index_js_ref_7_oneOf_1_0_node_modules_css_loader_dist_cjs_js_ref_7_oneOf_1_1_node_modules_vue_loader_v16_dist_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_7_oneOf_1_2_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_style_index_0_id_38f4a708_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+
+
+/***/ }),
+
+/***/ "./src/components/SolarDaily.vue?vue&type=template&id=38f4a708&scoped=true":
+/*!*********************************************************************************!*\
+  !*** ./src/components/SolarDaily.vue?vue&type=template&id=38f4a708&scoped=true ***!
+  \*********************************************************************************/
+/*! exports provided: render */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_cache_loader_dist_cjs_js_ref_13_0_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_v16_dist_templateLoader_js_ref_6_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_template_id_38f4a708_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../node_modules/cache-loader/dist/cjs.js??ref--13-0!../../node_modules/babel-loader/lib!../../node_modules/vue-loader-v16/dist/templateLoader.js??ref--6!../../node_modules/cache-loader/dist/cjs.js??ref--1-0!../../node_modules/vue-loader-v16/dist??ref--1-1!./SolarDaily.vue?vue&type=template&id=38f4a708&scoped=true */ "./node_modules/cache-loader/dist/cjs.js?!./node_modules/babel-loader/lib/index.js!./node_modules/vue-loader-v16/dist/templateLoader.js?!./node_modules/cache-loader/dist/cjs.js?!./node_modules/vue-loader-v16/dist/index.js?!./src/components/SolarDaily.vue?vue&type=template&id=38f4a708&scoped=true");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_cache_loader_dist_cjs_js_ref_13_0_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_v16_dist_templateLoader_js_ref_6_node_modules_cache_loader_dist_cjs_js_ref_1_0_node_modules_vue_loader_v16_dist_index_js_ref_1_1_SolarDaily_vue_vue_type_template_id_38f4a708_scoped_true__WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 
 

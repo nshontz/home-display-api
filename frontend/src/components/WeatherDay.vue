@@ -1,10 +1,12 @@
 <template>
-    <div class="weather-day">
         <div class="icon" v-bind:style="{ 'background-image': 'url(' + icon + ')' }"></div>
         <p>{{ description }}</p>
         <p v-if="current">{{ current }}</p>
-        <p v-if="high && low">{{ high }} / {{ low }}</p>
-    </div>
+        <p v-if="high || low">
+            <span v-if="high">{{ high }} </span>
+            <span v-if="high && low"> / </span>
+            <span v-if="low">{{ low }} </span>
+        </p>
 </template>
 
 <script>
@@ -22,7 +24,6 @@ export default {
 </script>
 
 <style scoped>
-
 .icon {
     height: 50px;
     background-size: contain;

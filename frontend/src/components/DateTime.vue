@@ -31,7 +31,7 @@ export default {
             return this.datetime.format('h:mm');
         },
         date() {
-            return this.datetime.format('MMMM Do YYYY');
+            return this.datetime.format('MMMM Do, YYYY');
         },
     }
 }

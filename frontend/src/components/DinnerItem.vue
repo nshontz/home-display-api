@@ -1,5 +1,5 @@
 <template>
-    <div class="dinner-item" :class="[( dinner && dinner.complete?'complete' :'')]">
+    <div :class="[( dinner && dinner.complete?'complete' :'')]">
         <div v-if="dinner" @click="toggleMeal()">
             <h2>{{ dinner.title }}</h2>
         </div>
@@ -44,13 +44,8 @@ export default {
 
 <style scoped>
 
-.dinner-item {
-    min-height: 120px;
-    position: relative;
-    width: 100%;
-}
 
-.dinner-item h2 {
+h2 {
     margin: 0;
     width: 100%;
     position: absolute;

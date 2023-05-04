@@ -26,9 +26,9 @@ class Controller extends BaseController
         $location = explode(',', env('WEATHER_LOCATION'));
         $this->weather = new Weather($location[0], $location[1]);
         if (Carbon::now()->isSaturday()) {
-            $this->startDate = Carbon::now()->endOfWeek()->subDays(1)->startOfDay();
+            $this->startDate = Carbon::now('America/Denver')->endOfWeek()->subDays(1)->startOfDay();
         } else {
-            $this->startDate = Carbon::now()->startOfWeek()->subDays(2)->startOfDay();
+            $this->startDate = Carbon::now('America/Denver')->startOfWeek()->subDays(2)->startOfDay();
         }
     }
 
@@ -37,6 +37,7 @@ class Controller extends BaseController
         if ($request->filled('start_date')) {
             $this->startDate = Carbon::parse($request->start_date);
         }
+
         if ($request->filled('force_refresh') && $request->force_refresh == 1) {
             $this->forceRefresh = true;
         }
@@ -57,8 +58,9 @@ class Controller extends BaseController
             $day = $day->addDays($i);
 
             $dayData = (object)[
-                'date' => $day,
-                'date_display' => $day->format('l M d'),
+                'date' => $day->format('c'),
+                'ts' => $day->format('U'),
+                'date_display' => $day->format('l M jS'),
             ];
 
             $dayData->dinner = $dinnerList->filter(function ($dinner) use ($day) {
@@ -82,6 +84,7 @@ class Controller extends BaseController
 
         return response()->json([
             'days' => $days,
+            'current_weather' => $this->weather->current($this->forceRefresh),
             'solar_benefits' => $this->solarEdge->benefits(),
         ]);
     }

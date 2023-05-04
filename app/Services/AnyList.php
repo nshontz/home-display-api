@@ -30,11 +30,12 @@ class AnyList
         $upcomingWeek = $events->map(function ($event) {
             $dinner = Dinner::firstOrNew(['uid' => $event->uid]);
             $dinner->title = $event->summary;
-            $dinner->date = Carbon::parse($event->dtstart);
+            $dinner->date = Carbon::parse($event->dtstart,'America/Denver')->setTime(12,0);
             $dinner->event = $event;
             $dinner->save();
             return $dinner;
         })->sortBy('date');
+
 
 
         return $upcomingWeek->values();
