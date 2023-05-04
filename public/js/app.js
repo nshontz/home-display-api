@@ -321,7 +321,7 @@ __webpack_require__.r(__webpack_exports__);
       this.fetch();
     },
     currentWeek() {
-      this.startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(), "America/Denver");
+      this.startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(), "America/Denver").startOf('week').add(-1, 'day');
       this.fetch();
     },
     createDate(dateString) {

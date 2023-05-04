@@ -86,7 +86,7 @@ export default {
             this.fetch();
         },
         currentWeek() {
-            this.startDate = moment.tz(moment(), "America/Denver");
+            this.startDate = moment.tz(moment(), "America/Denver").startOf('week').add(-1, 'day');
             this.fetch();
         },
         createDate(dateString) {
