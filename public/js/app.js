@@ -641,10 +641,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const _withScopeId = n => (Object(vue__WEBPACK_IMPORTED_MODULE_0__["pushScopeId"])("data-v-30fe9590"), n = n(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["popScopeId"])(), n);
 const _hoisted_1 = {
-  key: 0
+  class: "weather"
 };
 const _hoisted_2 = {
-  key: 1
+  class: "temperature"
 };
 const _hoisted_3 = {
   key: 0
@@ -653,15 +653,21 @@ const _hoisted_4 = {
   key: 1
 };
 const _hoisted_5 = {
+  key: 0
+};
+const _hoisted_6 = {
+  key: 1
+};
+const _hoisted_7 = {
   key: 2
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])(vue__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+  return Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_1, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_2, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("p", null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.description), 1 /* TEXT */), $props.current ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.current), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.high || $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_4, [$props.high ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_5, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.high), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.high && $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_6, " / ")) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_7, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.low), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
     class: "icon",
     style: Object(vue__WEBPACK_IMPORTED_MODULE_0__["normalizeStyle"])({
       'background-image': 'url(' + $props.icon + ')'
     })
-  }, null, 4 /* STYLE */), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("p", null, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.description), 1 /* TEXT */), $props.current ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_1, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.current), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.high || $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("p", _hoisted_2, [$props.high ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_3, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.high), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.high && $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_4, " / ")) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), $props.low ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("span", _hoisted_5, Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])($props.low), 1 /* TEXT */)) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)], 64 /* STABLE_FRAGMENT */);
+  }, null, 4 /* STYLE */)]);
 }
 
 /***/ }),
@@ -677,7 +683,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n#app {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  color: #2c3e50;\n}\nbody {\n  margin: 0;\n}\n", ""]);
+exports.push([module.i, "\n#app {\n  font-family: Avenir, Helvetica, Arial, sans-serif;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n  color: #2c3e50;\n}\nbody {\n  margin: 0;    \n  background-color: #12151c;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -713,7 +719,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\nh2[data-v-84badb56] {\n    margin: 0;\n    width: 100%;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.complete h2[data-v-84badb56] {\n    filter: blur(3px);\n}\n", ""]);
+exports.push([module.i, "\nh2[data-v-84badb56] {\n    margin: 0;\n    width: 100%;\n    position: absolute;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.complete h2[data-v-84badb56] {\n    filter: blur(3px);\n    color: #7c7f8c;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -767,7 +773,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.icon[data-v-30fe9590] {\n    height: 50px;\n    background-size: contain;\n    background-position: center center;\n    background-repeat: no-repeat;\n}\n", ""]);
+exports.push([module.i, "\n.icon[data-v-30fe9590] {\n    height: 75px;\n    background-size: contain;\n    background-position: center center;\n    background-repeat: no-repeat;\n}\n.weather[data-v-30fe9590]{\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n}\n.weather p[data-v-30fe9590]{\n    margin-top: 0;\n    margin-left: 20px;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

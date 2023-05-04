@@ -55,5 +55,6 @@ h2 {
 
 .complete h2 {
     filter: blur(3px);
+    color: #7c7f8c;
 }
 </style>
