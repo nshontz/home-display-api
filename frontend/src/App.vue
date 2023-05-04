@@ -1,29 +1,29 @@
 <template>
-  <HomeDisplay home-feed="/api" />
+    <HomeDisplay home-feed="/api"/>
 </template>
 
 <script>
 import HomeDisplay from './components/HomeDisplay.vue'
 
 export default {
-  name: 'App',
-  components: {
-    HomeDisplay
-  }
+    name: 'App',
+    components: {
+        HomeDisplay
+    }
 }
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2c3e50;
 }
 
 body {
-  margin: 0;
-  background-color: #12151c;
-
+    margin: 0;
+    background-color: #12151c;
+    cursor: none;
 }
 </style>
