@@ -60,6 +60,6 @@ export default {
     right: 0;
     position: absolute;
     height: 30px;
-    background-color: white;
+    background-color: #222;
 }
 </style>

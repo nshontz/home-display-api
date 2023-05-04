@@ -749,7 +749,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "\n.solar-bar[data-v-38f4a708] {\n    position: relative;\n    height: 30px;\n    width: 100%;\n    background-image: linear-gradient(to right, yellow, #f0f);\n}\n.label[data-v-38f4a708] {\n    top: 0;\n    width: 100%;\n    position: absolute;\n    padding: 5px 0px;\n    text-align: right;\n    color: white;\n    text-shadow: 0px 0px 2px #222;\n    box-sizing: border-box\n}\n.gradient[data-v-38f4a708] {\n    top: 0;\n    right: 0;\n    position: absolute;\n    height: 30px;\n    background-color: white;\n}\n", ""]);
+exports.push([module.i, "\n.solar-bar[data-v-38f4a708] {\n    position: relative;\n    height: 30px;\n    width: 100%;\n    background-image: linear-gradient(to right, yellow, #f0f);\n}\n.label[data-v-38f4a708] {\n    top: 0;\n    width: 100%;\n    position: absolute;\n    padding: 5px 0px;\n    text-align: right;\n    color: white;\n    text-shadow: 0px 0px 2px #222;\n    box-sizing: border-box\n}\n.gradient[data-v-38f4a708] {\n    top: 0;\n    right: 0;\n    position: absolute;\n    height: 30px;\n    background-color: #222;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
