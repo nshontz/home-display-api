@@ -25,5 +25,6 @@ body {
     margin: 0;
     background-color: #12151c;
     cursor: none;
+    overflow: hidden;
 }
 </style>

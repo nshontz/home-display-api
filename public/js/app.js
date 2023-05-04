@@ -684,7 +684,7 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-lo
 exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.i, "@import url(https://fonts.googleapis.com/css2?family=Abel&family=IBM+Plex+Sans:wght@200&display=swap);"]);
 // Module
-exports.push([module.i, "\n#app {\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n}\nbody {\n    font-family: 'IBM Plex Sans', sans-serif;\n    margin: 0;\n    background-color: #12151c;\n    cursor: none;\n}\n", ""]);
+exports.push([module.i, "\n#app {\n    -webkit-font-smoothing: antialiased;\n    -moz-osx-font-smoothing: grayscale;\n}\nbody {\n    font-family: 'IBM Plex Sans', sans-serif;\n    margin: 0;\n    background-color: #12151c;\n    cursor: none;\n    overflow: hidden;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
