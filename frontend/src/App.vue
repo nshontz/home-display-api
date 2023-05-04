@@ -14,14 +14,14 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=IBM+Plex+Sans:wght@200&display=swap');
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
 }
 
 body {
+    font-family: 'IBM Plex Sans', sans-serif;
     margin: 0;
     background-color: #12151c;
     cursor: none;
