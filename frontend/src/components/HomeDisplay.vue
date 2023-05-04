@@ -195,7 +195,7 @@ footer {
 
 .next-week,
 .previous-week {
-    margin-top: 25px;
+    margin-top: 10px;
     font-size: 70px;
     text-align: center;
     color: #971c1e;
