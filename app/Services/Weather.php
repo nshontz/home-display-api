@@ -103,7 +103,8 @@ class Weather
     private function locateAlternativeIcon($iconPath)
     {
 
-        $iconName = collect(explode('/', parse_url($iconPath)['path']))->last() . '.jpg';
+        $iconName = collect(explode('/', parse_url($iconPath)['path']))->last() . '.png';
+//        dd($iconName);
         if (file_exists(public_path('icons/' . $iconName))) {
             $iconPath = asset('icons/' . $iconName);
         }
