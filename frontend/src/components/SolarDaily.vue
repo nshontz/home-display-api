@@ -41,7 +41,7 @@ export default {
     position: relative;
     height: 30px;
     width: 100%;
-    background-image: linear-gradient(to right, yellow, #f0f);
+    background-image: linear-gradient(to right, #12151c, #FF272A);
 }
 
 .label {
@@ -51,7 +51,7 @@ export default {
     padding: 5px 0px;
     text-align: right;
     color: white;
-    text-shadow: 0px 0px 2px #222;
+    text-shadow: 0px 0px 2px #12151c;
     box-sizing: border-box
 }
 
@@ -60,6 +60,6 @@ export default {
     right: 0;
     position: absolute;
     height: 30px;
-    background-color: #222;
+    background-color: #12151c;
 }
 </style>

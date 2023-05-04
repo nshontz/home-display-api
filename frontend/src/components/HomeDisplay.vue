@@ -163,7 +163,7 @@ export default {
 <style scoped>
 
 .home-display.darkmode{
-    background-color: #222;
+    background-color: #12151c;
     color: #eee;
 }
 
@@ -211,7 +211,7 @@ footer {
     margin-top: 25px;
     font-size: 70px;
     text-align: center;
-    color: #a0aec0;
+    color: #971c1e;
 }
 
 .refresh {
@@ -220,11 +220,11 @@ footer {
 }
 
 .today {
-    background-color: #999;
+    background-color: #263350;
 }
 
 .solar-benefits {
-    margin-left: 100px;
+    margin-left: 10px;
     text-align: left;
     font-size: 1.4rem
 }
