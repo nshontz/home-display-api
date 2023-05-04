@@ -2,40 +2,27 @@
     <div class="home-display darkmode">
         <header>
             <div class="previous-week" @click="this.previousWeek">
-                <font-awesome-icon :icon="['fas', 'angles-left']"/>
+                <font-awesome-icon :icon="['fas', 'angles-left']" />
             </div>
-            <date-time
-                @currentWeek="this.currentWeek">
+            <date-time @currentWeek="this.currentWeek">
             </date-time>
             <div class="next-week" @click="this.nextWeek">
-                <font-awesome-icon :icon="['fas', 'angles-right']"/>
+                <font-awesome-icon :icon="['fas', 'angles-right']" />
             </div>
         </header>
         <div class="week" v-if="this.data.days">
-            <div class="day" v-for="(day) in this.data.days" :key="day.date" :class="[( isToday(day) ? 'today' : '')]">
+            <div class="day" v-for="(day) in this.data.days" :key="day.date" :class="[(isToday(day) ? 'today' : '')]">
                 {{ day.date_display }}
                 <div class="dinner-item">
-                    <dinner-item
-                        :days="this.data.days"
-                        :day="day"
-                        :home-feed="homeFeed"
-                    ></dinner-item>
+                    <dinner-item :days="this.data.days" :day="day" :home-feed="homeFeed"></dinner-item>
                 </div>
                 <div class="weather-day">
-                    <weather-day
-                        v-if="day.weather"
-                        :icon="day.weather.icon_alt"
-                        :date="this.createDate(day.weather.startTime)"
-                        :high="day.weather.high"
-                        :low="day.weather.low"
-                        :description="day.weather.shortForecast"
-                    ></weather-day>
+                    <weather-day v-if="day.weather" :icon="day.weather.icon_alt"
+                        :date="this.createDate(day.weather.startTime)" :high="day.weather.high" :low="day.weather.low"
+                        :description="day.weather.shortForecast"></weather-day>
                 </div>
                 <div class="solar">
-                    <solar-daily
-                        :solar="day.solar"
-                        :solar-max="this.maxSolarValue"
-                        v-if="day.solar && day.solar.value">
+                    <solar-daily :solar="day.solar" :solar-max="this.maxSolarValue" v-if="day.solar && day.solar.value">
                     </solar-daily>
                 </div>
             </div>
@@ -44,7 +31,8 @@
             <div class="solar-benefits">
                 <div v-if="this.data.solar_benefits.benefits">
                     {{ Math.round(this.data.solar_benefits.benefits.treesPlanted) }} Trees Saved •
-                    {{ this.data.solar_benefits.benefits.gasEmissionSaved.co2 }} {{ this.data.solar_benefits.benefits.gasEmissionSaved.units }}
+                    {{ this.data.solar_benefits.benefits.gasEmissionSaved.co2 }} {{
+                        this.data.solar_benefits.benefits.gasEmissionSaved.units }}
                     Reduced CO<sub>2</sub> Emissions
                 </div>
             </div>
@@ -62,11 +50,11 @@ import WeatherDay from "@/components/WeatherDay.vue";
 import DateTime from "@/components/DateTime.vue";
 import DinnerItem from "@/components/DinnerItem.vue";
 import moment from 'moment-timezone';
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import SolarDaily from "@/components/SolarDaily.vue";
 
 export default {
-    components: {SolarDaily, FontAwesomeIcon, DinnerItem, DateTime, WeatherDay},
+    components: { SolarDaily, FontAwesomeIcon, DinnerItem, DateTime, WeatherDay },
     name: 'Home',
     props: {
         homeFeed: String
@@ -111,7 +99,7 @@ export default {
             let forceRefresh = 1;
             this.fetch(forceRefresh);
             setTimeout(function () {
-                location.href = window.location.href+"?t="+moment()
+                location.href = window.location.href + "?t=" + moment()
             }, 1000);
         },
         fetch(forceRefresh = 0) {
@@ -128,7 +116,7 @@ export default {
         },
         isToday(day) {
 
-            let date = moment.tz(moment(day.date), "America/Denver").add(1,'day');
+            let date = moment.tz(moment(day.date), "America/Denver").add(1, 'day');
             let today = moment.tz(moment(), "America/Denver");
 
             let isToday = date.isSame(today, "day");
@@ -161,8 +149,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.home-display.darkmode{
+.home-display.darkmode {
     background-color: #12151c;
     color: #eee;
 }

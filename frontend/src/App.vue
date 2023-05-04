@@ -1,5 +1,5 @@
 <template>
-  <HomeDisplay home-feed="/api"/>
+  <HomeDisplay home-feed="/api" />
 </template>
 
 <script>
@@ -20,8 +20,9 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+
 body {
-  margin: 0;    
+  margin: 0;
   background-color: #12151c;
 
 }
