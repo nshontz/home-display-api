@@ -41,7 +41,7 @@ export default {
     position: relative;
     height: 30px;
     width: 100%;
-    background-image: linear-gradient(to right, yellow, red);
+    background-image: linear-gradient(to right, yellow, #f0f);
 }
 
 .label {
