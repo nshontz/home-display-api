@@ -50,8 +50,8 @@ fi
 
 documentation "Checkout branch and pull code"
 
-git checkout master
-git pull origin master
+git checkout main
+git pull origin main
 
 
 documentation "Install Composer packages"
