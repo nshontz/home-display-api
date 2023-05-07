@@ -340,7 +340,7 @@ __webpack_require__.r(__webpack_exports__);
       let forceRefresh = 1;
       this.fetch(forceRefresh);
       setTimeout(function () {
-        location.href = window.location.href + "?t=" + moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()();
+        location.href = window.location.href + "/" + moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()();
       }, 1000);
     },
     fetch(forceRefresh = 0) {
