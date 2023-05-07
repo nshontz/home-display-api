@@ -297,21 +297,27 @@ __webpack_require__.r(__webpack_exports__);
   data() {
     return {
       data: {
+        updated: null,
         currentTemp: null,
         days: [],
-        solar_benefits: {}
+        solarBenefits: {}
       },
-      dataRefresh: 5,
+      dataRefresh: 30000,
       secondsUntilRefresh: 0,
-      startDate: null
+      startDate: null,
+      updatedTimeAgo: null
     };
   },
   mounted() {
     this.startDate = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(), "America/Denver").startOf('week').add(-1, 'day');
     this.fetch();
     this.scheduleFetch(this.dataRefresh);
+    setInterval(() => this.updateUpdatedTime(), 1000);
   },
   methods: {
+    updateUpdatedTime() {
+      this.updatedTimeAgo = this.timeAgo(this.data.updated);
+    },
     previousWeek() {
       this.startDate = this.startDate.subtract(1, 'week');
       this.fetch();
@@ -328,7 +334,7 @@ __webpack_require__.r(__webpack_exports__);
       return new Date(dateString);
     },
     scheduleFetch(timeout) {
-      setTimeout(() => this.fetch(), timeout);
+      setInterval(() => this.fetch(), timeout);
     },
     refresh() {
       let forceRefresh = 1;
@@ -344,17 +350,51 @@ __webpack_require__.r(__webpack_exports__);
     updateData(response) {
       this.data.currentTemp = response.data.current_weather.current_temp;
       this.data.days = response.data.days;
-      this.data.solar_benefits = response.data.solar_benefits;
-      console.log(this.data.days);
+      this.data.updated = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(response.data.updated);
+      this.data.solarBenefits = response.data.solar_benefits;
     },
     isToday(day) {
       let date = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(day.date), "America/Denver").add(1, 'day');
       let today = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.tz(moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(), "America/Denver");
       let isToday = date.isSame(today, "day");
       if (isToday) {
-        console.log('tody', [day, date.format('MMMM Do YYYY, h:mm:ss a')]);
+        // console.log('tody',
+        //     [
+        //         day,
+        //         date.format('MMMM Do YYYY, h:mm:ss a')
+        //     ]
+        // );
       }
       return isToday;
+    },
+    timeAgo(time) {
+      moment_timezone__WEBPACK_IMPORTED_MODULE_5___default.a.updateLocale('en', {
+        relativeTime: {
+          future: "in %s",
+          past: "%s ago",
+          s: number => number + "s ago",
+          ss: '%ds ago',
+          m: "1m ago",
+          mm: "%dm ago",
+          h: "1h ago",
+          hh: "%dh ago",
+          d: "1d ago",
+          dd: "%dd ago",
+          M: "a month ago",
+          MM: "%d months ago",
+          y: "a year ago",
+          yy: "%d years ago"
+        }
+      });
+      let secondsElapsed = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()().diff(time, 'seconds');
+      let dayStart = moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()("2018-01-01").startOf('day').seconds(secondsElapsed);
+      if (secondsElapsed > 300) {
+        return moment_timezone__WEBPACK_IMPORTED_MODULE_5___default()(time).fromNow(true);
+      } else if (secondsElapsed < 60) {
+        return dayStart.format('s') + 's ago';
+      } else {
+        return dayStart.format('m:ss') + 'm ago';
+      }
     }
   },
   computed: {
@@ -587,10 +627,10 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       solar: day.solar,
       "solar-max": this.maxSolarValue
     }, null, 8 /* PROPS */, ["solar", "solar-max"])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)])], 2 /* CLASS */);
-  }), 128 /* KEYED_FRAGMENT */))])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("footer", null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_6, [this.data.solar_benefits.benefits ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_7, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round(this.data.solar_benefits.benefits.treesPlanted)) + " Trees Saved • " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.data.solar_benefits.benefits.gasEmissionSaved.co2) + " " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.data.solar_benefits.benefits.gasEmissionSaved.units) + " Reduced CO", 1 /* TEXT */), _hoisted_8, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(" Emissions ")])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
+  }), 128 /* KEYED_FRAGMENT */))])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("footer", null, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", _hoisted_6, [this.data.solarBenefits.benefits ? (Object(vue__WEBPACK_IMPORTED_MODULE_0__["openBlock"])(), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementBlock"])("div", _hoisted_7, [Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(Math.round(this.data.solarBenefits.benefits.treesPlanted)) + " Trees Saved • " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.data.solarBenefits.benefits.gasEmissionSaved.co2) + " " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.data.solarBenefits.benefits.gasEmissionSaved.units) + " Reduced CO", 1 /* TEXT */), _hoisted_8, Object(vue__WEBPACK_IMPORTED_MODULE_0__["createTextVNode"])(" Emissions ")])) : Object(vue__WEBPACK_IMPORTED_MODULE_0__["createCommentVNode"])("v-if", true)]), Object(vue__WEBPACK_IMPORTED_MODULE_0__["createElementVNode"])("div", {
     class: "refresh",
     onClick: _cache[2] || (_cache[2] = $event => $options.refresh())
-  }, " refresh ")])]);
+  }, " updated at " + Object(vue__WEBPACK_IMPORTED_MODULE_0__["toDisplayString"])(this.updatedTimeAgo), 1 /* TEXT */)])]);
 }
 
 /***/ }),

@@ -127,6 +127,9 @@ class Weather
             ) {
                 $path = 'rain-heavy';
             }
+            if (is_numeric(stripos($path, 'tsra'))) {
+                $path = 'tsra';
+            }
         }
 
         $iconName = $path . '.png';

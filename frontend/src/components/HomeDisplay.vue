@@ -2,12 +2,12 @@
     <div class="home-display darkmode">
         <header>
             <div class="previous-week" @click="this.previousWeek">
-                <font-awesome-icon :icon="['fas', 'angles-left']" />
+                <font-awesome-icon :icon="['fas', 'angles-left']"/>
             </div>
             <date-time @currentWeek="this.currentWeek">
             </date-time>
             <div class="next-week" @click="this.nextWeek">
-                <font-awesome-icon :icon="['fas', 'angles-right']" />
+                <font-awesome-icon :icon="['fas', 'angles-right']"/>
             </div>
         </header>
         <div class="week" v-if="this.data.days">
@@ -18,8 +18,8 @@
                 </div>
                 <div class="weather-day">
                     <weather-day v-if="day.weather" :icon="day.weather.icon_alt"
-                        :date="this.createDate(day.weather.startTime)" :high="day.weather.high" :low="day.weather.low"
-                        :description="day.weather.shortForecast"></weather-day>
+                                 :date="this.createDate(day.weather.startTime)" :high="day.weather.high" :low="day.weather.low"
+                                 :description="day.weather.shortForecast"></weather-day>
                 </div>
                 <div class="solar">
                     <solar-daily :solar="day.solar" :solar-max="this.maxSolarValue" v-if="day.solar && day.solar.value">
@@ -29,15 +29,16 @@
         </div>
         <footer>
             <div class="solar-benefits">
-                <div v-if="this.data.solar_benefits.benefits">
-                    {{ Math.round(this.data.solar_benefits.benefits.treesPlanted) }} Trees Saved •
-                    {{ this.data.solar_benefits.benefits.gasEmissionSaved.co2 }} {{
-                        this.data.solar_benefits.benefits.gasEmissionSaved.units }}
+                <div v-if="this.data.solarBenefits.benefits">
+                    {{ Math.round(this.data.solarBenefits.benefits.treesPlanted) }} Trees Saved •
+                    {{ this.data.solarBenefits.benefits.gasEmissionSaved.co2 }} {{
+                        this.data.solarBenefits.benefits.gasEmissionSaved.units
+                    }}
                     Reduced CO<sub>2</sub> Emissions
                 </div>
             </div>
             <div class="refresh" @click="refresh()">
-                refresh
+                updated at {{ this.updatedTimeAgo }}
             </div>
         </footer>
     </div>
@@ -50,11 +51,11 @@ import WeatherDay from "@/components/WeatherDay.vue";
 import DateTime from "@/components/DateTime.vue";
 import DinnerItem from "@/components/DinnerItem.vue";
 import moment from 'moment-timezone';
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import SolarDaily from "@/components/SolarDaily.vue";
 
 export default {
-    components: { SolarDaily, FontAwesomeIcon, DinnerItem, DateTime, WeatherDay },
+    components: {SolarDaily, FontAwesomeIcon, DinnerItem, DateTime, WeatherDay},
     name: 'Home',
     props: {
         homeFeed: String
@@ -62,21 +63,28 @@ export default {
     data() {
         return {
             data: {
+                updated: null,
                 currentTemp: null,
                 days: [],
-                solar_benefits: {},
+                solarBenefits: {},
             },
-            dataRefresh: 5,
+            dataRefresh: 30000,
             secondsUntilRefresh: 0,
             startDate: null,
+            updatedTimeAgo: null,
         }
     },
     mounted() {
         this.startDate = moment.tz(moment(), "America/Denver").startOf('week').add(-1, 'day');
         this.fetch();
         this.scheduleFetch(this.dataRefresh);
+        setInterval(() => this.updateUpdatedTime(), 1000)
+
     },
     methods: {
+        updateUpdatedTime (){
+            this.updatedTimeAgo = this.timeAgo(this.data.updated);
+        },
         previousWeek() {
             this.startDate = this.startDate.subtract(1, 'week');
             this.fetch();
@@ -93,7 +101,7 @@ export default {
             return new Date(dateString);
         },
         scheduleFetch(timeout) {
-            setTimeout(() => this.fetch(), timeout);
+            setInterval(() => this.fetch(), timeout);
         },
         refresh() {
             let forceRefresh = 1;
@@ -111,8 +119,8 @@ export default {
         updateData(response) {
             this.data.currentTemp = response.data.current_weather.current_temp;
             this.data.days = response.data.days;
-            this.data.solar_benefits = response.data.solar_benefits;
-            console.log(this.data.days);
+            this.data.updated = moment(response.data.updated);
+            this.data.solarBenefits = response.data.solar_benefits;
         },
         isToday(day) {
 
@@ -122,16 +130,47 @@ export default {
             let isToday = date.isSame(today, "day");
 
             if (isToday) {
-                console.log('tody',
-                    [
-                        day,
-                        date.format('MMMM Do YYYY, h:mm:ss a')
-                    ]
-                );
+                // console.log('tody',
+                //     [
+                //         day,
+                //         date.format('MMMM Do YYYY, h:mm:ss a')
+                //     ]
+                // );
             }
 
             return isToday;
-        }
+        },
+        timeAgo(time) {
+            moment.updateLocale('en', {
+                relativeTime: {
+                    future: "in %s",
+                    past: "%s ago",
+                    s: number => number + "s ago",
+                    ss: '%ds ago',
+                    m: "1m ago",
+                    mm: "%dm ago",
+                    h: "1h ago",
+                    hh: "%dh ago",
+                    d: "1d ago",
+                    dd: "%dd ago",
+                    M: "a month ago",
+                    MM: "%d months ago",
+                    y: "a year ago",
+                    yy: "%d years ago"
+                }
+            });
+
+            let secondsElapsed = moment().diff(time, 'seconds');
+            let dayStart = moment("2018-01-01").startOf('day').seconds(secondsElapsed);
+
+            if (secondsElapsed > 300) {
+                return moment(time).fromNow(true);
+            } else if (secondsElapsed < 60) {
+                return dayStart.format('s') + 's ago';
+            } else {
+                return dayStart.format('m:ss') + 'm ago';
+            }
+        },
     },
     computed: {
         maxSolarValue() {

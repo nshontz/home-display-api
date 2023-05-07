@@ -83,6 +83,7 @@ class Controller extends BaseController
         }
 
         return response()->json([
+            'updated' => Carbon::now(),
             'days' => $days,
             'current_weather' => $this->weather->current($this->forceRefresh),
             'solar_benefits' => $this->solarEdge->benefits(),
