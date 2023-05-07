@@ -84,15 +84,17 @@ documentation "Restarting queuing service"
 
 php artisan queue:restart
 
+
+documentation "Building Frontend"
+cd frontend
+npm run build
+cd ../
+
 documentation "Updating permissions"
 
 chmod -R 775 storage/
 chown -R www-data:www-data storage/
 
-cd frontend
-npm run build
-
-cd ../
 
 documentation "Taking Laravel out of maintenance mode."
 php artisan up
