@@ -1,12 +1,1 @@
-<!DOCTYPE html>
-<html lang="">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Vue App</title>
-  <link href="/js/app.js" rel="preload" as="script"><link href="/js/chunk-vendors.js" rel="preload" as="script"></head>
-  <body>
-    <div id="app"></div>
-  <script type="text/javascript" src="/js/chunk-vendors.js"></script><script type="text/javascript" src="/js/app.js"></script></body>
-</html>
+<!DOCTYPE html><html lang=""><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Vue App</title><link href="/css/app.4f5e655e.css" rel="preload" as="style"><link href="/css/chunk-vendors.ab49ec4e.css" rel="preload" as="style"><link href="/js/app.f739c88e.js" rel="preload" as="script"><link href="/js/chunk-vendors.5303f058.js" rel="preload" as="script"><link href="/css/chunk-vendors.ab49ec4e.css" rel="stylesheet"><link href="/css/app.4f5e655e.css" rel="stylesheet"></head><body><div id="app"></div><script src="/js/chunk-vendors.5303f058.js"></script><script src="/js/app.f739c88e.js"></script></body></html>

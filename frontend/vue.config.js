@@ -8,6 +8,8 @@ module.exports = {
     // make sure to do this only in production.
     indexPath: '../resources/views/spa.blade.php',
 
+    filenameHashing: true,
+
     // modifications to the CSS config
     css: {
         loaderOptions: {
