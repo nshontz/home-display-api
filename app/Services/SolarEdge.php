@@ -12,7 +12,7 @@ class SolarEdge
     private $apiKey = null;
 
 
-    public function __construct($siteId, $apiKey, $baseUrl = null)
+    public function __construct(string $siteId, string $apiKey, $baseUrl = null)
     {
         $this->siteId = $siteId;
         $this->apiKey = $apiKey;

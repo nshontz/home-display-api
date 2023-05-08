@@ -21,10 +21,10 @@ class Controller extends BaseController
 
     public function __construct()
     {
-        $this->solarEdge = new SolarEdge(env('SOLAR_EDGE_SITE_ID'), env('SOLAR_EDGE_API_KEY'));
-        $this->anyList = new AnyList(env('ANYLIST_CODE'));
-        $location = explode(',', env('WEATHER_LOCATION'));
-        $this->weather = new Weather($location[0], $location[1]);
+        $this->solarEdge = new SolarEdge(config('dashboard.solaredge.site_id'), config('dashboard.solaredge.api_key'));
+        $this->anyList = new AnyList(config('dashboard.anylist_code'));
+        $location = collect(explode(',', config('dashboard.location')));
+        $this->weather = new Weather($location->first(), $location->last());
         if (Carbon::now()->isSaturday()) {
             $this->startDate = Carbon::now('America/Denver')->endOfWeek()->subDays(1)->startOfDay();
         } else {

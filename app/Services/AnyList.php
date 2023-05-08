@@ -11,7 +11,7 @@ class AnyList
 {
     private $anyListIcalKey = null;
 
-    public function __construct($anyListIcalKey)
+    public function __construct(string $anyListIcalKey)
     {
         $this->anyListIcalKey = $anyListIcalKey;
     }
