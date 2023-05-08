@@ -49,7 +49,7 @@ then
 fi
 
 documentation "Checkout branch and pull code"
-
+git stash
 git checkout main
 git pull origin main
 
