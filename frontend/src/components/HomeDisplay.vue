@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="refresh" @click="refresh()">
-                updated at {{ this.updatedTimeAgo }}
+                Updated {{ this.updatedTimeAgo }}
             </div>
         </footer>
     </div>
@@ -82,7 +82,7 @@ export default {
 
     },
     methods: {
-        updateUpdatedTime (){
+        updateUpdatedTime() {
             this.updatedTimeAgo = this.timeAgo(this.data.updated);
         },
         previousWeek() {
@@ -107,7 +107,7 @@ export default {
             let forceRefresh = 1;
             this.fetch(forceRefresh);
             setTimeout(function () {
-                location.href = window.location.href + "/" + moment()
+                location.href = window.location.href
             }, 1000);
         },
         fetch(forceRefresh = 0) {
