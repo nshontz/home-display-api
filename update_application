@@ -96,7 +96,7 @@ documentation "Updating permissions"
 chmod -R 775 .
 chown -R www-data:www-data .
 
-chmod -R 775 storage/ bootstrap/cache
+chmod -R 777 storage/ bootstrap/cache
 chown -R www-data:www-data storage/ bootstrap/cache
 
 documentation "Taking Laravel out of maintenance mode."
