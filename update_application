@@ -86,6 +86,7 @@ php artisan queue:restart
 
 
 documentation "Building Frontend"
+export NODE_OPTIONS=--openssl-legacy-provider
 cd frontend
 npm install
 npm run build
