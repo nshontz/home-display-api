@@ -39,7 +39,7 @@ export default {
 <style scoped>
 .solar-bar {
     position: relative;
-    height: 30px;
+    height: 22px;
     width: 100%;
     background-image: linear-gradient(to right, #12151c, #FF272A);
 }
@@ -48,7 +48,7 @@ export default {
     top: 0;
     width: 100%;
     position: absolute;
-    padding: 5px 0px;
+    padding: 0px 0px;
     text-align: right;
     color: white;
     text-shadow: 0px 0px 2px #12151c;
@@ -59,7 +59,10 @@ export default {
     top: 0;
     right: 0;
     position: absolute;
-    height: 30px;
+    height: 22px;
     background-color: #12151c;
+}
+.today .gradient {
+    background-color: #263350;
 }
 </style>

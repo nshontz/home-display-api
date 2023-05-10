@@ -174,13 +174,7 @@ export default {
     },
     computed: {
         maxSolarValue() {
-            let max = 0;
-            this.data.days.forEach(function (day) {
-                if (day.solar.value > max) {
-                    max = day.solar.value
-                }
-            })
-            return max
+            return this.data.solar_daily_max;
         },
     }
 }
@@ -192,7 +186,6 @@ export default {
     background-color: #12151c;
     color: #eee;
 }
-
 
 .weather-day {
     height: 170px;

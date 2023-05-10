@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Models\Dinner;
+use App\Models\SolarProductionDay;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 
@@ -39,15 +41,32 @@ class SolarEdge
         })->body;
     }
 
-    public function energy(Carbon $startDate, $clearCache = false)
+    public function energy(Carbon $startDate, $clearCache = false, $days = 7)
     {
         $solarData = $this->httpRequest($this->buildUrl('energy', [
             'timeUnit' => 'DAY',
             'startDate' => $startDate->format('Y-m-d'),
-            'endDate' => $startDate->clone()->addDays(7)->format('Y-m-d'),
+            'endDate' => $startDate->clone()->addDays($days)->format('Y-m-d'),
         ]), $clearCache);
 
-        return $solarData?->energy;
+        $unit = $solarData?->energy->unit;
+        $measuredBy = $solarData?->energy->measuredBy;
+
+        return collect($solarData?->energy->values)->map(function ($energy) use ($unit, $measuredBy) {
+            $production = null;
+            $day = Carbon::parse($energy->date);
+            if ($energy->value) {
+                $production = SolarProductionDay::firstOrNew(['date' => $day->format('Y-m-d')]);
+                $production->value = $energy->value;
+                $production->unit = $unit;
+                $production->measured_by = $measuredBy;
+
+                if (!$day->isToday()) {
+                    $production->save();
+                }
+            }
+            return $production;
+        })->filter();
     }
 
 
@@ -74,6 +93,10 @@ class SolarEdge
         return $solarData?->energyDetails;
     }
 
+    public function getMaxDailyGeneration()
+    {
+        return SolarProductionDay::orderBy('value', 'desc')->get()->first()->value;
+    }
 
     public function benefits($clearCache = false)
     {
@@ -84,6 +107,5 @@ class SolarEdge
         return [
             'benefits' => $benefits?->envBenefits
         ];
-
     }
 }

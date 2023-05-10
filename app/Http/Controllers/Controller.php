@@ -16,7 +16,7 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
 
-    protected $anyList, $solarEdge, $weather, $startDate;
+    protected $anyList, $solarEdge, $weather, $startDate, $days;
     private bool $forceRefresh = false;
 
     public function __construct()
@@ -30,10 +30,14 @@ class Controller extends BaseController
         } else {
             $this->startDate = Carbon::now('America/Denver')->startOfWeek()->subDays(2)->startOfDay();
         }
+        $this->days = 7;
     }
 
     public function home(Request $request)
     {
+        if ($request->filled('days')) {
+            $this->days = $request->days;
+        }
         if ($request->filled('start_date')) {
             $this->startDate = Carbon::parse($request->start_date);
         }
@@ -43,16 +47,12 @@ class Controller extends BaseController
         }
 
         $dinnerList = $this->anyList->fetchDinnerList($this->forceRefresh);
-        $solar = $this->solarEdge->energy($this->startDate, $this->forceRefresh);
+        $solar = $this->solarEdge->energy($this->startDate, $this->forceRefresh, $this->days);
         $weatherData = $this->weather->forecast($this->forceRefresh);
 
         $days = collect();
-        $solar->values = collect($solar->values)->map(function ($day) use ($solar) {
-            $day->unit = $solar->unit;
-            return $day;
-        });
 
-        for ($i = 0; $i < 7; $i++) {
+        for ($i = 0; $i < $this->days; $i++) {
 
             $day = clone($this->startDate);
             $day = $day->addDays($i);
@@ -73,7 +73,7 @@ class Controller extends BaseController
                     $day->format('Y-m-d');
             })->first();
 
-            $dayData->solar = collect($solar->values)->filter(function ($solarData) use ($day) {
+            $dayData->solar = $solar->filter(function ($solarData) use ($day) {
                 return
                     Carbon::parse($solarData->date)->format('Y-m-d') ==
                     $day->format('Y-m-d');
@@ -84,9 +84,10 @@ class Controller extends BaseController
 
         return response()->json([
             'updated' => Carbon::now(),
-            'days' => $days,
             'current_weather' => $this->weather->current($this->forceRefresh),
             'solar_benefits' => $this->solarEdge->benefits(),
+            'solar_daily_max' => $this->solarEdge->getMaxDailyGeneration(),
+            'days' => $days,
         ]);
     }
 

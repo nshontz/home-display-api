@@ -1,17 +1,15 @@
 <template>
-    <div class="weather">
+    <div class="vitals">
         <div class="temperature">
-            <p>{{ description }}</p>
-            <p v-if="current">{{ current }}</p>
             <p v-if="high || low">
-                <span v-if="high">{{ high }} </span>
+                <span v-if="high" class="high">{{ high }} </span>
                 <span v-if="high && low"> / </span>
-                <span v-if="low">{{ low }} </span>
+                <span v-if="low" class="low">{{ low }} </span>
             </p>
         </div>
         <div class="icon" v-bind:style="{ 'background-image': 'url(' + icon + ')' }"></div>
-
     </div>
+    <p>{{ description }}</p>
 </template>
 
 <script>
@@ -20,7 +18,6 @@ export default {
     props: {
         high: Number,
         low: Number,
-        current: Number,
         description: String,
         date: Date,
         icon: String
@@ -30,19 +27,22 @@ export default {
 
 <style scoped>
 .icon {
-    height: 75px;
+    height: 60px;
     background-size: contain;
     background-position: center center;
     background-repeat: no-repeat;
 }
 
-.weather {
+.vitals {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
 
-.weather p {
+.vitals p {
     margin-top: 0;
     margin-left: 20px;
+}
+.high {
+    font-size: 2rem;
 }
 </style>

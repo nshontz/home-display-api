@@ -46,6 +46,7 @@ export default {
 h2 {
     margin: 0;
     width: 100%;
+    font-size: 2rem;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
