@@ -58,7 +58,7 @@ class Weather
                 'windDirection' => $day->windDirection,
                 'icon' => $day->icon,
                 'icon_alt' => $this->locateAlternativeIcon($day->icon),
-                'short_forecast' => $day->shortForecast,
+                'shortForecast' => $day->shortForecast,
                 'detailedForecast' => $day->detailedForecast,
                 'object' => $day
             ];

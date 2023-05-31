@@ -69,7 +69,7 @@ class Controller extends BaseController
 
             $dayData->weather = $weatherData->filter(function ($weatherDay) use ($day) {
                 return
-                    Carbon::parse($weatherDay->startTime)->format('Y-m-d') ==
+                    Carbon::parse($weatherDay->day)->format('Y-m-d') ==
                     $day->format('Y-m-d');
             })->first();
 
