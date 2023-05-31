@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\DialyWeather;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
@@ -57,22 +58,22 @@ class Weather
                 'windDirection' => $day->windDirection,
                 'icon' => $day->icon,
                 'icon_alt' => $this->locateAlternativeIcon($day->icon),
-                'shortForecast' => $day->shortForecast,
+                'short_forecast' => $day->shortForecast,
                 'detailedForecast' => $day->detailedForecast,
                 'object' => $day
             ];
         })->groupBy('day')->map(function ($weatherPeriods, $day) {
-            $day = (object)[
-                'startTime' => $day,
-            ];
+            $day = DialyWeather::firstOrNew([
+                'day' => $day,
+            ]);
             $temps = $weatherPeriods->pluck('temperature')->sort();
             $day->high = $temps->pop();
             $day->low = $temps->pop();
             $day->icon = $weatherPeriods->first()->icon;
             $day->icon_alt = $this->locateAlternativeIcon($weatherPeriods->first()->icon);
-            $day->shortForecast = $weatherPeriods->first()->shortForecast;
-
+            $day->short_forecast = $weatherPeriods->first()->shortForecast;
             $day->periods = $weatherPeriods;
+            $day->save();
             return $day;
         });
 
