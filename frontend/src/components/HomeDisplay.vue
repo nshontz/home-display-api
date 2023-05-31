@@ -30,7 +30,7 @@
         <footer>
             <div class="solar-benefits">
                 <div v-if="this.data.solarBenefits.benefits">
-                    {{ Math.round(this.data.solarThisMonth / 1000) }}kWh in {{ this.currentMonth}} •
+                    {{ Math.round(this.data.solarThisMonth / 1000).toLocaleString("en-US") }}kWh in {{ this.currentMonth}} •
                     {{ Math.round(this.data.solarBenefits.benefits.treesPlanted) }} Trees Saved •
                     {{ Math.round(this.data.solarBenefits.benefits.gasEmissionSaved.co2) }} {{
                         this.data.solarBenefits.benefits.gasEmissionSaved.units

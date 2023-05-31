@@ -2,9 +2,9 @@
     <div class="vitals">
         <div class="temperature">
             <p v-if="high || low">
-                <span v-if="high" class="high">{{ high }} </span>
+                <span v-if="high" class="high">{{ Math.round(high) }} </span>
                 <span v-if="high && low"> / </span>
-                <span v-if="low" class="low">{{ low }} </span>
+                <span v-if="low" class="low">{{ Math.round(low) }} </span>
             </p>
         </div>
         <div class="icon" v-bind:style="{ 'background-image': 'url(' + icon + ')' }"></div>
