@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dinner;
+use App\Models\SolarProductionDay;
 use App\Services\AnyList;
 use App\Services\SolarEdge;
 use App\Services\Weather;
@@ -48,7 +49,7 @@ class Controller extends BaseController
 
         $dinnerList = $this->anyList->fetchDinnerList($this->forceRefresh);
         $solar = $this->solarEdge->energy($this->startDate, $this->forceRefresh, $this->days);
-        $weatherData = $this->weather->forecast($this->forceRefresh);
+        $weatherData = $this->weather->forecast($this->startDate, $this->forceRefresh);
 
         $days = collect();
 
@@ -86,6 +87,7 @@ class Controller extends BaseController
             'updated' => Carbon::now(),
             'current_weather' => $this->weather->current($this->forceRefresh),
             'solar_benefits' => $this->solarEdge->benefits(),
+            'solar_this_month' => SolarProductionDay::orderBy('date')->where('date','>=', Carbon::now()->startOfMonth())->get()->pluck('value')->sum(),
             'solar_daily_max' => $this->solarEdge->getMaxDailyGeneration(),
             'days' => $days,
         ]);

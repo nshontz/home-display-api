@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Models\DialyWeather;
+use App\Models\DailyWeather;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
@@ -35,7 +35,7 @@ class Weather
 
     }
 
-    public function forecast($clearCache = false)
+    public function forecast($startDate, $clearCache = false)
     {
         $url = $this->locationData->properties->forecast;
         if ($clearCache) {
@@ -47,7 +47,7 @@ class Weather
                 ->send();
         });
 
-        return collect($forecast->body->properties->periods)->map(function ($day) {
+        collect($forecast->body->properties->periods)->map(function ($day) {
             return (object)[
                 'day' => Carbon::parse($day->startTime)->format('Y-m-d'),
                 'startTime' => $day->startTime,
@@ -63,7 +63,7 @@ class Weather
                 'object' => $day
             ];
         })->groupBy('day')->map(function ($weatherPeriods, $day) {
-            $day = DialyWeather::firstOrNew([
+            $day = DailyWeather::firstOrNew([
                 'day' => $day,
             ]);
             $temps = $weatherPeriods->pluck('temperature')->sort();
@@ -77,6 +77,8 @@ class Weather
             return $day;
         });
 
+
+        return DailyWeather::where('day', '>=', $startDate)->get();
     }
 
     public function current($clearCache = false)

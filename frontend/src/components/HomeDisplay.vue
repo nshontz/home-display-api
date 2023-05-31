@@ -30,8 +30,9 @@
         <footer>
             <div class="solar-benefits">
                 <div v-if="this.data.solarBenefits.benefits">
+                    {{ Math.round(this.data.solarThisMonth / 1000) }}kWh in {{ this.currentMonth}} •
                     {{ Math.round(this.data.solarBenefits.benefits.treesPlanted) }} Trees Saved •
-                    {{ this.data.solarBenefits.benefits.gasEmissionSaved.co2 }} {{
+                    {{ Math.round(this.data.solarBenefits.benefits.gasEmissionSaved.co2) }} {{
                         this.data.solarBenefits.benefits.gasEmissionSaved.units
                     }}
                     Reduced CO<sub>2</sub> Emissions
@@ -120,6 +121,7 @@ export default {
             this.data.currentTemp = response.data.current_weather.current_temp;
             this.data.days = response.data.days;
             this.data.updated = moment(response.data.updated);
+            this.data.solarThisMonth = response.data.solar_this_month;
             this.data.solarBenefits = response.data.solar_benefits;
         },
         isToday(day) {
@@ -173,6 +175,10 @@ export default {
         },
     },
     computed: {
+        currentMonth() {
+            return moment().format('MMMM');
+
+        },
         maxSolarValue() {
             return this.data.solar_daily_max;
         },
