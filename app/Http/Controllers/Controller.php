@@ -8,6 +8,7 @@ use App\Services\AnyList;
 use App\Services\SolarEdge;
 use App\Services\Weather;
 use Carbon\Carbon;
+use Google\Client;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
@@ -91,6 +92,23 @@ class Controller extends BaseController
             'solar_daily_max' => $this->solarEdge->getMaxDailyGeneration(),
             'days' => $days,
         ]);
+    }
+
+    public function indoorTemp(){
+        $projectId = "";
+        $deviceId = "";
+        $user = "nickshontz@gmail.com";
+
+        $url = "https://smartdevicemanagement.googleapis.com/v1";
+        $path = "/enterprises/".$projectId."/devices/".$deviceId;
+
+        $client = new Client();
+        $client->useApplicationDefaultCredentials();
+        $client->addScope(\Google\Service\SmartDeviceManagement::SDM_SERVICE);
+        $client->setSubject($user);
+
+
+
     }
 
     public function dinner(Request $request, $uid)
