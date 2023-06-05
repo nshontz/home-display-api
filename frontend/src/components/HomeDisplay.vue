@@ -107,14 +107,17 @@ export default {
             this.updatedTimeAgo = this.timeAgo(this.data.updated);
         },
         previousWeek() {
+            this.fetching = true;
             this.startDate = this.startDate.subtract(1, 'week');
             this.fetch();
         },
         nextWeek() {
+            this.fetching = true;
             this.startDate = this.startDate.add(1, 'week');
             this.fetch();
         },
         currentWeek() {
+            this.fetching = true;
             this.startDate = moment.tz(moment(), "America/Denver").startOf('week').add(-1, 'day');
             this.fetch();
         },
@@ -125,6 +128,7 @@ export default {
             setInterval(() => this.fetch(), timeout);
         },
         refresh() {
+            this.fetching = true;
             let forceRefresh = 1;
             this.fetch(forceRefresh);
             setTimeout(function () {
@@ -132,7 +136,6 @@ export default {
             }, 1000);
         },
         fetch(forceRefresh = 0) {
-            this.fetching = true;
             this.secondsUntilRefresh = this.dataRefresh;
             axios
                 .get(this.homeFeed + '/home?start_date=' + this.startDate.format('MMMM Do YYYY, h:mm:ss a') + '&force_refresh=' + forceRefresh)
