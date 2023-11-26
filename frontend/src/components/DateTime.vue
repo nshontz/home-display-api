@@ -79,6 +79,6 @@ export default {
 .date {
     text-align: right;
     margin-top: 30px;
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 </style>

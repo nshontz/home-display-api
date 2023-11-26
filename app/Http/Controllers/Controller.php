@@ -27,11 +27,7 @@ class Controller extends BaseController
         $this->anyList = new AnyList(config('dashboard.anylist_code'));
         $location = collect(explode(',', config('dashboard.location')));
         $this->weather = new Weather($location->first(), $location->last());
-        if (Carbon::now()->isSaturday()) {
-            $this->startDate = Carbon::now('America/Denver')->endOfWeek()->subDays(1)->startOfDay();
-        } else {
-            $this->startDate = Carbon::now('America/Denver')->startOfWeek()->subDays(2)->startOfDay();
-        }
+        $this->startDate = Carbon::now('America/Denver')->startOfWeek();
         $this->days = 7;
     }
 

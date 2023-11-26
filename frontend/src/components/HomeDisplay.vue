@@ -96,7 +96,7 @@ export default {
         }
     },
     mounted() {
-        this.startDate = moment.tz(moment(), "America/Denver").startOf('week').add(-1, 'day');
+        this.startDate = moment.tz(moment(), "America/Denver").startOf('week');
         this.fetch();
         this.scheduleFetch(this.dataRefresh);
         setInterval(() => this.updateUpdatedTime(), 1000)
@@ -151,19 +151,11 @@ export default {
         },
         isToday(day) {
 
-            let date = moment.tz(moment(day.date), "America/Denver").add(1, 'day');
+            let date = moment.tz(moment(day.date), "America/Denver");
             let today = moment.tz(moment(), "America/Denver");
 
             let isToday = date.isSame(today, "day");
 
-            if (isToday) {
-                // console.log('tody',
-                //     [
-                //         day,
-                //         date.format('MMMM Do YYYY, h:mm:ss a')
-                //     ]
-                // );
-            }
 
             return isToday;
         },

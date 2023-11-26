@@ -47,7 +47,7 @@ class Weather
                 ->send();
         });
 
-        collect($forecast->body->properties->periods)->map(function ($day) {
+        collect($forecast->body?->properties->periods)->map(function ($day) {
             return (object)[
                 'day' => Carbon::parse($day->startTime)->format('Y-m-d'),
                 'startTime' => $day->startTime,
