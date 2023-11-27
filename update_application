@@ -76,7 +76,6 @@ rm bootstrap/cache/config.php
 php artisan cache:clear
 php artisan config:clear
 php artisan route:clear
-
 php artisan config:cache
 php artisan route:cache
 
@@ -87,6 +86,8 @@ php artisan queue:restart
 
 documentation "Building Frontend"
 cd frontend
+nvm install 16
+nvm use 16
 npm install
 npm run build
 cd ../
