@@ -1,9 +1,5 @@
 <template>
-    <div class="solar-bar">
-        <div class="gradient" :style="{ 'width': this.intensityValue(solar.value) + '%' }"></div>
-        <div class="label" :style="{ 'padding-right': this.calculateLabelPadding(solar.value) + '%' }">
-            {{ Math.round(solar.value / 10) / 100 }}
-        </div>
+    <div class="solar-bar" :style="{ 'width': this.intensityValue(solar.value) + '%' }">
     </div>
 </template>
 
@@ -39,9 +35,14 @@ export default {
 <style scoped>
 .solar-bar {
     position: relative;
-    height: 22px;
+    border-radius: 20px;
+    height: 30px;
     width: 100%;
-    background-image: linear-gradient(to right, #12151c, #FF272A);
+    background-image: linear-gradient(to right, #1a1d2d, #FF272A);
+}
+.today .solar-bar {
+
+    background-image: linear-gradient(to right, #253350, #FF272A);
 }
 
 .label {
@@ -56,11 +57,13 @@ export default {
 }
 
 .gradient {
+    display: none;
     top: 0;
     right: 0;
     position: absolute;
-    height: 22px;
+    height: 30px;
     background-color: #12151c;
+    border-radius: 20px;
 }
 .today .gradient {
     background-color: #263350;

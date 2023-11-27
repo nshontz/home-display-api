@@ -233,7 +233,7 @@ export default {
 }
 
 .weather-day {
-    height: 170px;
+    height: 150px;
 }
 
 .dinner-item {
@@ -272,6 +272,9 @@ footer {
 
 .day {
     text-align: center;
+    border-radius: 15px;
+    background-color: rgb(26, 29, 45);
+    margin: 10px;
     padding: 10px;
     @media screen and (max-width: 1000px) {
         width: 200px;
@@ -293,7 +296,7 @@ footer {
 }
 
 .today {
-    background-color: #263350;
+    background-color: rgb(37, 51, 80);
 }
 
 .solar-benefits {

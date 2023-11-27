@@ -45,7 +45,7 @@ export default {
             return this.datetime.format('h:mm');
         },
         date() {
-            return this.datetime.format('MMM Do, YYYY');
+            return this.datetime.format('MMM Do');
         },
     }
 }
