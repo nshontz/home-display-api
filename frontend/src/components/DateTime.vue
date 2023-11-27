@@ -62,7 +62,7 @@ export default {
 
 .date-time {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr .5fr 1fr;
     height: 100px;
 }
 
@@ -78,7 +78,7 @@ export default {
 
 .date {
     text-align: right;
-    margin-top: 30px;
+    margin-top: 15px;
     font-size: 3.5rem;
 }
 </style>
