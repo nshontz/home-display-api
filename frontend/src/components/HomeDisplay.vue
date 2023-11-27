@@ -279,8 +279,7 @@ footer {
     @media screen and (max-width: 1000px) {
         width: 80%;
         min-width: 230px;
-        margin: 0 auto;
-        margin-bottom: 20px;
+        margin: 0 auto 20px;
     }
 }
 

@@ -14,4 +14,9 @@ class Dinner extends Model
     protected $casts = [
         'event' => 'array',
     ];
+
+    public function protein(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Protein::class);
+    }
 }

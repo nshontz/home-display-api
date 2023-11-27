@@ -13,6 +13,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Controller extends BaseController
 {
@@ -84,25 +85,25 @@ class Controller extends BaseController
             'updated' => Carbon::now(),
             'current_weather' => $this->weather->current($this->forceRefresh),
             'solar_benefits' => $this->solarEdge->benefits(),
-            'solar_this_month' => SolarProductionDay::orderBy('date')->where('date','>=', Carbon::now()->startOfMonth())->get()->pluck('value')->sum(),
+            'solar_this_month' => SolarProductionDay::orderBy('date')->where('date', '>=', Carbon::now()->startOfMonth())->get()->pluck('value')->sum(),
             'solar_daily_max' => $this->solarEdge->getMaxDailyGeneration(),
             'days' => $days,
         ]);
     }
 
-    public function indoorTemp(){
+    public function indoorTemp()
+    {
         $projectId = "";
         $deviceId = "";
         $user = "nickshontz@gmail.com";
 
         $url = "https://smartdevicemanagement.googleapis.com/v1";
-        $path = "/enterprises/".$projectId."/devices/".$deviceId;
+        $path = "/enterprises/" . $projectId . "/devices/" . $deviceId;
 
         $client = new Client();
         $client->useApplicationDefaultCredentials();
         $client->addScope(\Google\Service\SmartDeviceManagement::SDM_SERVICE);
         $client->setSubject($user);
-
 
 
     }
@@ -121,5 +122,24 @@ class Controller extends BaseController
         return $dinner;
     }
 
+    public function dinnerStats(Request $request)
+    {
+        $topDinners = Dinner::limit(5)
+            ->groupBy('title')
+            ->select([
+                'title',
+                DB::raw('count(*) as freq'),
+                DB::raw('min(created_at) as created_at_min'),
+                DB::raw('max(created_at) as created_at_max')
+            ])
+            ->orderBy('freq', 'desc')
+            ->get();
+
+        return response()->json([
+            'dates' => $topDinners->first()->only(['created_at_min','created_at_max']),
+            'top_dinners' => $topDinners->map->only(['title','freq']),
+            'top_dinners' => $topDinners->map->only(['title','freq'])
+        ]);
+    }
 
 }
