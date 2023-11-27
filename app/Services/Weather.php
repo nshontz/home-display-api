@@ -47,35 +47,37 @@ class Weather
                 ->send();
         });
 
-        collect($forecast->body?->properties->periods)->map(function ($day) {
-            return (object)[
-                'day' => Carbon::parse($day->startTime)->format('Y-m-d'),
-                'startTime' => $day->startTime,
-                'name' => $day->name,
-                'temperature' => $day->temperature,
-                'temperatureUnit' => $day->temperatureUnit,
-                'windSpeed' => $day->windSpeed,
-                'windDirection' => $day->windDirection,
-                'icon' => $day->icon,
-                'icon_alt' => $this->locateAlternativeIcon($day->icon),
-                'shortForecast' => $day->shortForecast,
-                'detailedForecast' => $day->detailedForecast,
-                'object' => $day
-            ];
-        })->groupBy('day')->map(function ($weatherPeriods, $day) {
-            $day = DailyWeather::firstOrNew([
-                'day' => $day,
-            ]);
-            $temps = $weatherPeriods->pluck('temperature')->sort();
-            $day->high = $temps->pop();
-            $day->low = $temps->pop();
-            $day->icon = $weatherPeriods->first()->icon;
-            $day->icon_alt = $this->locateAlternativeIcon($weatherPeriods->first()->icon);
-            $day->short_forecast = $weatherPeriods->first()->shortForecast;
-            $day->periods = $weatherPeriods;
-            $day->save();
-            return $day;
-        });
+        if($forecast->body?->properties) {
+            collect($forecast->body?->properties->periods)->map(function ($day) {
+                return (object)[
+                    'day' => Carbon::parse($day->startTime)->format('Y-m-d'),
+                    'startTime' => $day->startTime,
+                    'name' => $day->name,
+                    'temperature' => $day->temperature,
+                    'temperatureUnit' => $day->temperatureUnit,
+                    'windSpeed' => $day->windSpeed,
+                    'windDirection' => $day->windDirection,
+                    'icon' => $day->icon,
+                    'icon_alt' => $this->locateAlternativeIcon($day->icon),
+                    'shortForecast' => $day->shortForecast,
+                    'detailedForecast' => $day->detailedForecast,
+                    'object' => $day
+                ];
+            })->groupBy('day')->map(function ($weatherPeriods, $day) {
+                $day = DailyWeather::firstOrNew([
+                    'day' => $day,
+                ]);
+                $temps = $weatherPeriods->pluck('temperature')->sort();
+                $day->high = $temps->pop();
+                $day->low = $temps->pop();
+                $day->icon = $weatherPeriods->first()->icon;
+                $day->icon_alt = $this->locateAlternativeIcon($weatherPeriods->first()->icon);
+                $day->short_forecast = $weatherPeriods->first()->shortForecast;
+                $day->periods = $weatherPeriods;
+                $day->save();
+                return $day;
+            });
+        }
 
 
         return DailyWeather::where('day', '>=', $startDate)->get();

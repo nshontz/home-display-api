@@ -14,6 +14,8 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use SebastianBergmann\Diff\Exception;
 
 class Controller extends BaseController
 {
@@ -45,10 +47,21 @@ class Controller extends BaseController
             $this->forceRefresh = true;
         }
 
-        $dinnerList = $this->anyList->fetchDinnerList($this->forceRefresh);
-        $solar = $this->solarEdge->energy($this->startDate, $this->forceRefresh, $this->days);
-        $weatherData = $this->weather->forecast($this->startDate, $this->forceRefresh);
-
+        try {
+            $dinnerList = $this->anyList->fetchDinnerList($this->forceRefresh);
+        } catch (Exception $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        }
+        try {
+            $solar = $this->solarEdge->energy($this->startDate, $this->forceRefresh, $this->days);
+        } catch (Exception $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        }
+        try {
+            $weatherData = $this->weather->forecast($this->startDate, $this->forceRefresh);
+        } catch (Exception $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        }
         $days = collect();
 
         for ($i = 0; $i < $this->days; $i++) {
@@ -124,7 +137,7 @@ class Controller extends BaseController
 
     public function dinnerStats(Request $request)
     {
-        $topDinners = Dinner::limit(5)
+        $dinnerFrequency = Dinner::limit(5)
             ->groupBy('title')
             ->select([
                 'title',
@@ -135,10 +148,36 @@ class Controller extends BaseController
             ->orderBy('freq', 'desc')
             ->get();
 
+        $proteinFrequency = Dinner::select([
+            'proteins.name',
+            DB::raw('count(*) as freq')
+        ])
+            ->join('proteins', 'dinners.protein_id', 'proteins.id')
+            ->groupBy('proteins.id')
+            ->orderBy('freq', 'desc')
+            ->get();
+
+        $proteinFrequency = Dinner::select([
+            'proteins.name',
+            'proteins.vegetarian',
+            DB::raw('count(*) as freq')
+        ])
+            ->join('proteins', 'dinners.protein_id', 'proteins.id')
+            ->groupBy('proteins.id')
+            ->orderBy('freq', 'desc')
+            ->get();
+
+        $vegetarianFrequency = $proteinFrequency
+            ->groupBy('vegetarian')
+            ->mapWithKeys(function ($proteinGroups, $isVegetarian) {
+                return [$isVegetarian ? 'Vegetarian' : 'Omnivorian' => $proteinGroups->pluck('freq')->sum()];
+            });
+
         return response()->json([
-            'dates' => $topDinners->first()->only(['created_at_min','created_at_max']),
-            'top_dinners' => $topDinners->map->only(['title','freq']),
-            'top_dinners' => $topDinners->map->only(['title','freq'])
+            'dates' => $dinnerFrequency->first()->only(['created_at_min', 'created_at_max']),
+            'dinner_frequency' => $dinnerFrequency->map->only(['title', 'freq']),
+            'protein_frequency' => $proteinFrequency,
+            'vegetarian_frequency' => $vegetarianFrequency
         ]);
     }
 
