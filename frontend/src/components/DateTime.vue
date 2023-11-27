@@ -45,7 +45,7 @@ export default {
             return this.datetime.format('h:mm');
         },
         date() {
-            return this.datetime.format('MMMM Do, YYYY');
+            return this.datetime.format('MMM Do, YYYY');
         },
     }
 }
@@ -66,14 +66,20 @@ export default {
     height: 100px;
 }
 
+.time, .current, .date {
+    @media screen and (max-width: 1000px) {
+        display: none;
+    }
+}
+
 .time {
     font-size: 5.5rem;
 }
 
 .current {
     text-align: center;
-    font-size: 3rem;
-    padding-top: 3rem;
+    font-size: 3.5rem;
+    padding-top: 1rem;
 }
 
 .date {

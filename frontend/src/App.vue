@@ -15,6 +15,7 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Abel&family=IBM+Plex+Sans:wght@200&display=swap');
+
 #app {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -26,5 +27,9 @@ body {
     background-color: #12151c;
     cursor: none;
     overflow: hidden;
+
+    @media screen and (max-width: 1000px) {
+        overflow: auto;
+    }
 }
 </style>
