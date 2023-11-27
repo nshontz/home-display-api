@@ -58,7 +58,7 @@ function getChartData() {
     let values = [];
     let colors = [];
 
-    proteinFrequency.map((protein) => {
+    proteinFrequency.value.map((protein) => {
         colors.push(protein.color ?? null)
         labels.push(protein.name)
         values.push(protein.freq)
