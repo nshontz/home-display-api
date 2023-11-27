@@ -149,13 +149,13 @@ class Controller extends BaseController
             ->get();
 
         $proteinFrequency = Dinner::select([
-            'proteins.name',
-            'proteins.color',
+            DB::raw('ifnull(proteins.name, "Other") as name'),
+            DB::raw('ifnull(proteins.color, "#555555") as color'),
             'proteins.vegetarian',
             DB::raw('count(*) as freq')
         ])
-            ->join('proteins', 'dinners.protein_id', 'proteins.id')
-            ->groupBy('proteins.id')
+            ->leftJoin('proteins', 'dinners.protein_id', 'proteins.id')
+            ->groupBy('protein_id')
             ->orderBy('freq', 'desc')
             ->get();
 

@@ -19,4 +19,34 @@ class Dinner extends Model
     {
         return $this->belongsTo(Protein::class);
     }
+
+    public function guessProtien()
+    {
+        $protein = Dinner::whereNotNull('protein_id')->where('title', 'like', $this->title)->first()?->protein;
+        $proteins = Protein::get();
+        $dinner = $this;
+        if (!$protein) {
+            $protein = $proteins->filter(function ($protein) use ($dinner) {
+                return is_numeric(stripos($dinner->title, $protein->name));
+            })->first();
+        }
+        if (!$protein) {
+
+
+            $protein = $proteins->filter(function ($protein) use ($dinner) {
+                return $protein->aliases->filter(function ($alias) use ($dinner) {
+                        return !empty($alias) && is_numeric(stripos($dinner->title, $alias));
+                    })->count() > 0;
+
+            });
+
+            $protein = $protein->first();
+        }
+
+        if ($protein) {
+            $this->protein_id = $protein->id;
+            $this->save();
+        }
+    }
+
 }
