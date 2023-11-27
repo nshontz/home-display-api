@@ -277,8 +277,10 @@ footer {
     margin: 10px;
     padding: 10px;
     @media screen and (max-width: 1000px) {
-        width: 200px;
+        width: 80%;
+        min-width: 230px;
         margin: 0 auto;
+        margin-bottom: 20px;
     }
 }
 
