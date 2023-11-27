@@ -64,11 +64,19 @@
                         Reduced CO<sub>2</sub> Emissions
                     </div>
                 </div>
-                <div class="refresh" @click="refresh()">
-                    Updated {{ this.updatedTimeAgo }}
+                <div>
+                    <ul class="buttons">
+                        <li @click="statsVisible = true">Stats</li>
+                        <li @click="refresh()">
+                            Updated {{ this.updatedTimeAgo }}
+                        </li>
+                    </ul>
                 </div>
             </footer>
         </div>
+    </div>
+    <div v-if="statsVisible">
+        <stats-modal :home-feed="homeFeed" @closeModal="statsVisible = false"></stats-modal>
     </div>
 </template>
 
@@ -81,10 +89,11 @@ import DinnerItem from "@/components/DinnerItem.vue";
 import moment from 'moment-timezone';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import SolarDaily from "@/components/SolarDaily.vue";
+import StatsModal from "@/components/StatsModal.vue";
 
 export default {
-    components: {SolarDaily, FontAwesomeIcon, DinnerItem, DateTime, WeatherDay},
-    name: 'Home',
+    components: {StatsModal, SolarDaily, FontAwesomeIcon, DinnerItem, DateTime, WeatherDay},
+    name: 'HomeDisplay',
     props: {
         homeFeed: String
     },
@@ -96,6 +105,7 @@ export default {
                 days: [],
                 solarBenefits: {},
             },
+            statsVisible: false,
             fetching: true,
             dataRefresh: 30000,
             secondsUntilRefresh: 0,
@@ -147,7 +157,6 @@ export default {
         },
         reload() {
             location.reload();
-
         },
         fetch(forceRefresh = 0) {
             this.secondsUntilRefresh = this.dataRefresh;
@@ -233,11 +242,11 @@ export default {
 }
 
 .weather-day {
-    height: 150px;
+    height: 100px;
 }
 
 .dinner-item {
-    min-height: 120px;
+    min-height: 170px;
     position: relative;
     width: 100%;
 }
@@ -291,9 +300,16 @@ footer {
     color: #971c1e;
 }
 
-.refresh {
-    text-align: right;
-    margin-right: 100px;
+.buttons li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.buttons {
+    float: right;
+    margin-top: 0;
+    list-style: none;
+    margin-right: 20px;
 }
 
 .today {
@@ -303,6 +319,6 @@ footer {
 .solar-benefits {
     margin-left: 10px;
     text-align: left;
-    font-size: 1.4rem
+    font-size: 1.2rem
 }
 </style>

@@ -137,7 +137,7 @@ class Controller extends BaseController
 
     public function dinnerStats(Request $request)
     {
-        $dinnerFrequency = Dinner::limit(5)
+        $dinnerFrequency = Dinner::limit(10)
             ->groupBy('title')
             ->select([
                 'title',
@@ -150,15 +150,7 @@ class Controller extends BaseController
 
         $proteinFrequency = Dinner::select([
             'proteins.name',
-            DB::raw('count(*) as freq')
-        ])
-            ->join('proteins', 'dinners.protein_id', 'proteins.id')
-            ->groupBy('proteins.id')
-            ->orderBy('freq', 'desc')
-            ->get();
-
-        $proteinFrequency = Dinner::select([
-            'proteins.name',
+            'proteins.color',
             'proteins.vegetarian',
             DB::raw('count(*) as freq')
         ])

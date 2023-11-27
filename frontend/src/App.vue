@@ -11,6 +11,8 @@ export default {
         HomeDisplay
     }
 }
+
+document.title = "Menu"
 </script>
 
 <style>
