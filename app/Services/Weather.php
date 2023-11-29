@@ -64,16 +64,17 @@ class Weather
                     'object' => $day
                 ];
             })->groupBy('day')->map(function ($weatherPeriods, $day) {
+                $temps = $weatherPeriods->pluck('temperature')->sort();
+                $high = $temps->max();
+                $low = $temps->min();
+
                 $day = DailyWeather::firstOrNew([
                     'day' => $day,
                 ]);
-                $temps = $weatherPeriods->pluck('temperature')->sort();
-                $high = $temps->pop();
-                $low = $temps->pop();
-                if (empty($day->high) && $high > $day->high) {
+                if (empty($day->high) || $high > $day->high) {
                     $day->high = $high;
                 }
-                if (empty($day->low) && $low > $day->low) {
+                if (empty($day->low) || $low < $day->low) {
                     $day->low = $low;
                 }
                 $day->icon = $weatherPeriods->first()->icon;
@@ -108,7 +109,7 @@ class Weather
             'maxTemperatureLast24Hours' => $current->properties->maxTemperatureLast24Hours->value,
             'text_description' => $current->properties->textDescription,
             'current_temp' => ($current->properties->temperature->value * (9 / 5)) + 32
-        ];;
+        ];
     }
 
     private function locateAlternativeIcon($iconPath)
