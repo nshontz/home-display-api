@@ -70,10 +70,10 @@ class Weather
                 $temps = $weatherPeriods->pluck('temperature')->sort();
                 $high = $temps->pop();
                 $low = $temps->pop();
-                if (empty($day->high)) {
+                if (empty($day->high) && $high > $day->high) {
                     $day->high = $high;
                 }
-                if (empty($day->low)) {
+                if (empty($day->low) && $low > $day->low) {
                     $day->low = $low;
                 }
                 $day->icon = $weatherPeriods->first()->icon;
