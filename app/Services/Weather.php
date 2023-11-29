@@ -47,7 +47,7 @@ class Weather
                 ->send();
         });
 
-        if($forecast->body?->properties) {
+        if ($forecast->body?->properties) {
             collect($forecast->body?->properties->periods)->map(function ($day) {
                 return (object)[
                     'day' => Carbon::parse($day->startTime)->format('Y-m-d'),
@@ -68,8 +68,14 @@ class Weather
                     'day' => $day,
                 ]);
                 $temps = $weatherPeriods->pluck('temperature')->sort();
-                $day->high = $temps->pop();
-                $day->low = $temps->pop();
+                $high = $temps->pop();
+                $low = $temps->pop();
+                if (empty($day->high)) {
+                    $day->high = $high;
+                }
+                if (empty($day->low)) {
+                    $day->low = $low;
+                }
                 $day->icon = $weatherPeriods->first()->icon;
                 $day->icon_alt = $this->locateAlternativeIcon($weatherPeriods->first()->icon);
                 $day->short_forecast = $weatherPeriods->first()->shortForecast;
