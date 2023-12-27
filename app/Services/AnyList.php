@@ -36,8 +36,6 @@ class AnyList
             return $dinner;
         })->sortBy('date');
 
-
-
         return $upcomingWeek->values();
     }
 }

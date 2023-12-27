@@ -4,14 +4,18 @@ namespace App\Services;
 
 use App\Models\DailyWeather;
 use Carbon\Carbon;
+use Httpful\Exception\JsonParseException;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
+use PHPUnit\Exception;
 
 class Weather
 {
     private $latitude = null;
     private $longitude = null;
     private $locationData = null;
+    private $stations = null;
 
     public function __construct(float $latitude, float $longitude)
     {
@@ -27,27 +31,40 @@ class Weather
         })->body;
 
         $stationsUrl = $this->locationData->properties->observationStations;
-        $this->stations = Cache::remember($stationsUrl, Carbon::now()->addHours(5), function () use ($stationsUrl) {
-            return \Httpful\Request::get($stationsUrl)
-                ->expectsJson()
-                ->send();
-        })->body;
+        try {
+            $this->stations = Cache::remember($stationsUrl, Carbon::now()->addHours(5), function () use ($stationsUrl) {
+                return \Httpful\Request::get($stationsUrl)
+                    ->expectsJson()
+                    ->send();
+            })->body;
+        } catch (JsonParseException $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        } catch (Exception $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        }
 
     }
 
     public function forecast($startDate, $clearCache = false)
     {
         $url = $this->locationData->properties->forecast;
+        $forecast = null;
         if ($clearCache) {
             Cache::forget($url);
         }
-        $forecast = Cache::remember($url, Carbon::now()->addHours(5), function () use ($url) {
-            return \Httpful\Request::get($url)
-                ->expectsJson()
-                ->send();
-        });
+        try {
+            $forecast = Cache::remember($url, Carbon::now()->addHours(5), function () use ($url) {
+                return \Httpful\Request::get($url)
+                    ->expectsJson()
+                    ->send();
+            });
 
-        if ($forecast->body?->properties) {
+        } catch (JsonParseException $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        } catch (Exception $e) {
+            Log::error($e->getMessage(), $e->getTrace());
+        }
+        if ($forecast?->body?->properties) {
             collect($forecast->body?->properties->periods)->map(function ($day) {
                 return (object)[
                     'day' => Carbon::parse($day->startTime)->format('Y-m-d'),
@@ -92,24 +109,35 @@ class Weather
 
     public function current($clearCache = false)
     {
-        $url = collect($this->stations->observationStations)->first() . '/observations/latest';
-        if ($clearCache) {
-            Cache::forget($url);
+        if ($this->stations) {
+
+            $url = collect($this->stations?->observationStations)->first() . '/observations/latest';
+            if ($clearCache) {
+                Cache::forget($url);
+            }
+            try {
+                $current = Cache::remember($url, Carbon::now()->addHours(5), function () use ($url) {
+                    return \Httpful\Request::get($url)
+                        ->expectsJson()
+                        ->send();
+                })->body;
+
+            } catch (JsonParseException $e) {
+                Log::error($e->getMessage(), $e->getTrace());
+            } catch (Exception $e) {
+                Log::error($e->getMessage(), $e->getTrace());
+            }
+            return [
+                'icon_alt' => $this->locateAlternativeIcon($current->properties->icon),
+                'icon' => $current->properties->icon,
+                'maxTemperatureLast24Hours' => $current->properties->maxTemperatureLast24Hours->value,
+                'text_description' => $current->properties->textDescription,
+                'current_temp' => ($current->properties->temperature->value * (9 / 5)) + 32
+            ];
+
+        } else {
+            return null;
         }
-
-        $current = Cache::remember($url, Carbon::now()->addHours(5), function () use ($url) {
-            return \Httpful\Request::get($url)
-                ->expectsJson()
-                ->send();
-        })->body;
-
-        return [
-            'icon_alt' => $this->locateAlternativeIcon($current->properties->icon),
-            'icon' => $current->properties->icon,
-            'maxTemperatureLast24Hours' => $current->properties->maxTemperatureLast24Hours->value,
-            'text_description' => $current->properties->textDescription,
-            'current_temp' => ($current->properties->temperature->value * (9 / 5)) + 32
-        ];
     }
 
     private function locateAlternativeIcon($iconPath)

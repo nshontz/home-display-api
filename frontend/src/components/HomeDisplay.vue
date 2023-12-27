@@ -165,7 +165,7 @@ export default {
                 .then(response => (this.updateData(response)))
         },
         updateData(response) {
-            this.data.currentTemp = response.data.current_weather.current_temp;
+            this.data.currentTemp = response.data.current_weather?.current_temp;
             this.data.days = response.data.days;
             this.data.updated = moment(response.data.updated);
             this.data.solarThisMonth = response.data.solar_this_month;
