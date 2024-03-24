@@ -14,6 +14,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use SebastianBergmann\Diff\Exception;
@@ -37,6 +38,9 @@ class Controller extends BaseController
 
     public function home(Request $request)
     {
+
+        Artisan::call('dinner:protein-check');
+
         if ($request->filled('days')) {
             $this->days = $request->days;
         }
