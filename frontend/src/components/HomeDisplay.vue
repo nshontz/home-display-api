@@ -47,10 +47,8 @@
                                      :low="day.weather.low"
                                      :description="day.weather.shortForecast"></weather-day>
                     </div>
-                    <div class="solar">
-                        <solar-daily :solar="day.solar" :solar-max="this.maxSolarValue" v-if="day.solar && day.solar.value">
-                        </solar-daily>
-                    </div>
+                    <solar-daily :solar="day.solar" :solar-max="this.maxSolarValue" v-if="day.solar && day.solar.value">
+                    </solar-daily>
                 </div>
             </div>
             <footer>
