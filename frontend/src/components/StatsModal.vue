@@ -2,15 +2,16 @@
 
 import axios from "axios";
 import {ref, defineProps, defineEmits} from "vue";
-import {Pie} from 'vue-chartjs'
-import {Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale,Colors, ArcElement} from 'chart.js'
+import {Pie, Bar} from 'vue-chartjs'
+import {Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, Colors, ArcElement} from 'chart.js'
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement,Colors)
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, ArcElement, Colors)
 ChartJS.defaults.color = '#fff';
 
 let fetching = ref(false)
 let dinnerFrequency = ref([])
 let proteinFrequency = ref([])
+let energyData = ref([])
 let vegetarianFrequency = ref({})
 const props = defineProps(['homeFeed'])
 const emit = defineEmits(['closeModal'])
@@ -19,6 +20,7 @@ const emit = defineEmits(['closeModal'])
 fetch()
 
 function updateData(response) {
+    energyData.value = response.data.energy_report
     dinnerFrequency.value = response.data.dinner_frequency
     proteinFrequency.value = response.data.protein_frequency
     vegetarianFrequency.value = response.data.vegetarian_frequency
@@ -33,9 +35,7 @@ function getChartOptions() {
     return {
         responsive: true,
         maintainAspectRatio: false,
-        scales: {
-
-        },
+        scales: {},
         legend: {
             labels: {
                 fontColor: '#fffff'
@@ -63,7 +63,6 @@ function getChartData() {
         labels.push(protein.name)
         values.push(protein.freq)
     })
-    console.log(colors);
 
     return {
         labels: labels,
@@ -71,6 +70,50 @@ function getChartData() {
             {
                 data: values,
                 backgroundColor: colors,
+            }
+        ]
+    }
+}
+
+function getSolarChartOptions() {
+    return {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {},
+        legend: {
+            labels: {
+                fontColor: '#fffff'
+            }
+        },
+        plugins: {
+            colors: {
+                enabled: true
+            },
+            legend: {
+                display: false,
+                position: 'right',
+            }
+        }
+    }
+}
+
+function getSolarChartData() {
+    let labels = [];
+    let solarValues = [];
+    let consumptionValues = [];
+
+    energyData.value.map((month) => {
+        labels.push(month.month_label)
+        solarValues.push(month.generated_value)
+        consumptionValues.push(month.consumption_value)
+    })
+
+    return {
+        labels: labels,
+        datasets: [
+            {
+                data: solarValues,
+                backgroundColor: '#050',
             }
         ]
     }
@@ -111,9 +154,7 @@ function fetch() {
         <div v-else class="stats-content">
             <div class="popular-dinners">
                 <h2>Popular Dinners</h2>
-                <ul>
-                </ul>
-                <table>
+                <table class="">
                     <thead>
                     <tr>
                         <th class="text-left">Dinner</th>
@@ -128,7 +169,7 @@ function fetch() {
                     </tbody>
                 </table>
             </div>
-            <div class="popular-protein" v-if="proteinFrequency.length > 0">
+            <div class="popular-protein px-5" v-if="proteinFrequency.length > 0">
                 <h2>The Breakdown</h2>
                 <div class="h-50">
                     <Pie
@@ -138,8 +179,15 @@ function fetch() {
                     />
                 </div>
             </div>
-            <div class="popular-" v-if="proteinFrequency.length > 0">
-
+            <div class="solar-stats" v-if="proteinFrequency.length > 0">
+                <h2>Solar Generation</h2>
+                <div class="h-50">
+                    <Bar
+                        id="solar-chart"
+                        :options="getSolarChartOptions()"
+                        :data="getSolarChartData()"
+                    />
+                </div>
             </div>
         </div>
     </div>
@@ -154,9 +202,17 @@ function fetch() {
     height: 94%;
     background-color: #2d3748;
 }
-table {
 
-    font-size: 1.2rem;
+.solar-stats canvas {
+    height: 300px !important;
+}
+
+.px-5 {
+    padding: 0px 20px;
+}
+
+table {
+    font-size: 1rem;
 }
 
 .text-right {
