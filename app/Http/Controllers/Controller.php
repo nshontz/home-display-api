@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dinner;
-use App\Models\EnergyProductionMonth;
 use App\Models\SolarProductionDay;
 use App\Services\AnyList;
 use App\Services\SolarEdge;
@@ -12,8 +11,8 @@ use Carbon\Carbon;
 use Google\Client;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -175,22 +174,16 @@ class Controller extends BaseController
             DB::raw("concat(sum(value) / 1000000) as generated_value")
         ])
             ->groupBy(DB::raw("date_format(date, '%Y-%m')"))
-            ->orderBy(DB::raw("date_format(date, '%Y-%m')"))
+            ->orderBy(DB::raw("date_format(date, '%Y-%m')"), 'desc')
             ->limit(12)
             ->get();
 
-        $energyConsumption = EnergyProductionMonth::orderBy(DB::raw("month"))
-            ->limit(12)
-            ->get();
 
         return response()->json([
             'dates' => $dinnerFrequency->first()->only(['created_at_min', 'created_at_max']),
-            'energy_report' => $solarReport->map(function ($month) use ($energyConsumption) {
+            'energy_report' => $solarReport->map(function ($month) {
                 $monthData = $month->only(['month', 'generated_value']);
                 $monthData['month_label'] = Carbon::parse($monthData['month'] . '-01')->format('M');
-                $monthData['consumption_value'] = $energyConsumption->filter(function ($month) use ($monthData) {
-                    return $month['month'] == $monthData['month'];
-                })->first()?->value;
                 return $monthData;
             }),
             'dinner_frequency' => $dinnerFrequency->map->only(['title', 'freq']),
