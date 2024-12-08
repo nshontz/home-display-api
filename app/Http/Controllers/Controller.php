@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dinner;
 use App\Models\SolarProductionDay;
 use App\Services\AnyList;
+use App\Services\DinnerService;
 use App\Services\SolarEdge;
 use App\Services\Weather;
 use Carbon\Carbon;
@@ -141,33 +142,14 @@ class Controller extends BaseController
 
     public function dinnerStats(Request $request)
     {
-        $dinnerFrequency = Dinner::limit(10)
-            ->groupBy('title')
-            ->select([
-                'title',
-                DB::raw('count(title) as freq'),
-                DB::raw('min(created_at) as created_at_min'),
-                DB::raw('max(created_at) as created_at_max')
-            ])
-            ->orderBy('freq', 'desc')
-            ->get();
+        $dinnerFrequency = DinnerService::freqency();
 
-        $proteinFrequency = Dinner::select([
-            DB::raw('ifnull(proteins.name, "Other") as name'),
-            DB::raw('ifnull(proteins.color, "#555555") as color'),
-            'proteins.vegetarian',
-            DB::raw('count(*) as freq')
-        ])
-            ->leftJoin('proteins', 'dinners.protein_id', 'proteins.id')
-            ->groupBy('protein_id')
-            ->orderBy('freq', 'desc')
-            ->get();
+        $dinnerRecommendations = DinnerService::recommendations();
 
-        $vegetarianFrequency = $proteinFrequency
-            ->groupBy('vegetarian')
-            ->mapWithKeys(function ($proteinGroups, $isVegetarian) {
-                return [$isVegetarian ? 'Vegetarian' : 'Omnivorian' => $proteinGroups->pluck('freq')->sum()];
-            });
+        $proteinFrequency = DinnerService::proteinFrequency();
+
+        $vegetarianFrequency = DinnerService::vegetarianFrequency();
+
 
         $solarReport = SolarProductionDay::select([
             DB::raw("date_format(date, '%Y-%m') as month"),
@@ -188,6 +170,7 @@ class Controller extends BaseController
             }),
             'dinner_frequency' => $dinnerFrequency->map->only(['title', 'freq']),
             'protein_frequency' => $proteinFrequency,
+            'dinner_recommendations' => $dinnerRecommendations,
             'vegetarian_frequency' => $vegetarianFrequency
         ]);
     }
