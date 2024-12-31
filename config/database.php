@@ -71,7 +71,7 @@ return [
             'database' => env('DB_DATABASE', 'menu'),
             'username' => env('DB_USERNAME', 'menu'),
             'password' => env('DB_PASSWORD', ''),
-            'application_name' => env('DB_APPLICATION_NAME', 'Laravel'),
+            'application_name' => env('APP_NAME', 'Laravel'),
             'charset' => 'utf8',
             'prefix' => '',
             'prefix_indexes' => true,
