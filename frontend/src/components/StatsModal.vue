@@ -10,6 +10,7 @@ ChartJS.defaults.color = '#fff';
 
 let fetching = ref(false)
 let dinnerFrequency = ref([])
+let dinnerRecommendations = ref([])
 let proteinFrequency = ref([])
 let energyData = ref([])
 let vegetarianFrequency = ref({})
@@ -22,6 +23,7 @@ fetch()
 function updateData(response) {
     energyData.value = response.data.energy_report
     dinnerFrequency.value = response.data.dinner_frequency
+    dinnerRecommendations.value = response.data.dinner_recommendations
     proteinFrequency.value = response.data.protein_frequency
     vegetarianFrequency.value = response.data.vegetarian_frequency
     fetching.value = false;
@@ -169,8 +171,16 @@ function fetch() {
                     </tbody>
                 </table>
             </div>
+            <div class="recommended-dinners">
+                <h2>Dinner Suggestions</h2>
+                <ul>
+                    <li v-for="dinner in dinnerRecommendations" :key="dinner.title">
+                        {{ dinner.title }}
+                    </li>
+                </ul>
+            </div>
             <div class="popular-protein px-5" v-if="proteinFrequency.length > 0">
-                <h2>The Breakdown</h2>
+                <h2>Protein Breakdown</h2>
                 <div class="h-50">
                     <Pie
                         id="protein-chart"
@@ -204,7 +214,7 @@ function fetch() {
 }
 
 .solar-stats canvas {
-    height: 300px !important;
+    height: 250px !important;
 }
 
 .px-5 {
@@ -227,7 +237,7 @@ table {
     padding: 0px 20px;
     color: #ededed;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
 .close-button {
