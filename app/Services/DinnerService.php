@@ -31,8 +31,8 @@ class DinnerService
                        from (select title,
                                     date,
                                     case
-                                        when ((event ->> 'location') is null) then title
-                                        else event ->> 'location'
+                                        when ((event->>'location') is null) then title
+                                        else event->>'location'
                                         end as dinner
                              from dinners) as dinnerList
                        group by dinner
