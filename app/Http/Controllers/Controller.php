@@ -152,11 +152,11 @@ class Controller extends BaseController
 
 
         $solarReport = SolarProductionDay::select([
-            DB::raw("date_format(date, '%Y-%m') as month"),
+            DB::raw("to_char(date, 'yyyy-mm') as month"),
             DB::raw("concat(sum(value) / 1000000) as generated_value")
         ])
-            ->groupBy(DB::raw("date_format(date, '%Y-%m')"))
-            ->orderBy(DB::raw("date_format(date, '%Y-%m')"), 'desc')
+            ->groupBy(DB::raw("to_char(date, 'yyyy-mm')"))
+            ->orderBy(DB::raw("to_char(date, 'yyyy-mm')"), 'desc')
             ->limit(12)
             ->get();
 
