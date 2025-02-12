@@ -6,6 +6,7 @@ use App\Models\Dinner;
 use App\Models\SolarProductionDay;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SolarEdge
 {
@@ -49,8 +50,10 @@ class SolarEdge
             'endDate' => $startDate->clone()->addDays($days)->format('Y-m-d'),
         ]), $clearCache);
 
+        Log::debug('$solarData', ['solarData' => $solarData]);
+
         $unit = $solarData?->energy->unit;
-        $measuredBy = $solarData?->energy?->measuredBy;
+        $measuredBy = $solarData?->energy?->measuredBy ?? 'unknown';
 
         return collect($solarData?->energy->values)->map(function ($energy) use ($unit, $measuredBy) {
             $production = null;
