@@ -50,7 +50,7 @@ class SolarEdge
         ]), $clearCache);
 
         $unit = $solarData?->energy->unit;
-        $measuredBy = $solarData?->energy->measuredBy;
+        $measuredBy = $solarData?->energy?->measuredBy;
 
         return collect($solarData?->energy->values)->map(function ($energy) use ($unit, $measuredBy) {
             $production = null;
