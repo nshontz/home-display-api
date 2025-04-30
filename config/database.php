@@ -78,7 +78,8 @@ return [
             'search_path' => 'public',
             'sslmode' => env('SSL_MODE', 'require'),
             'sslrootcert' => env('PGSQL_SSL_CA', '/var/www/certs/ca-certificate.crt'),
-            'sslkey' => null
+            'sslkey' => null,
+            'sslcert' => null,
         ],
 
         'sqlsrv' => [
