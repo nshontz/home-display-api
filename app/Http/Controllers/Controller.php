@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dinner;
+use App\Models\GatheredData;
 use App\Models\SolarProductionDay;
 use App\Services\AnyList;
 use App\Services\DinnerService;
@@ -180,6 +181,11 @@ class Controller extends BaseController
         $platform = strtolower($platform);
 
         Log::debug($platform, $request->all());
+
+        $gatheredData = new GatheredData();
+        $gatheredData->platform = $platform;
+        $gatheredData->data = json_encode($request->all());
+        $gatheredData->save();
 
         return response()->json(['success' => true]);
     }
