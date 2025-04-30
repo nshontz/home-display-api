@@ -18,4 +18,5 @@ Route::get('/home', [\App\Http\Controllers\Controller::class, 'home']);
 Route::get('/dinner/stats', [\App\Http\Controllers\Controller::class, 'dinnerStats']);
 Route::post('/dinner/{uid}', [\App\Http\Controllers\Controller::class, 'dinner']);
 
-Route::post('/gather/{platform}', [\App\Http\Controllers\Controller::class, 'gather']);
+Route::post('/gather/{platform}', [\App\Http\Controllers\Controller::class, 'gather'])
+    ->middleware('api.basic');
