@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class ApiBasicAuth
@@ -20,7 +21,7 @@ class ApiBasicAuth
             config('api-auth.password') === $request->getPassword()) {
             return $next($request);
         }
-
+        Log::error($request->getUser() . ' tried to access ' . $request->getRequestUri() . ' with invalid credentials.');
         return response('You shall not pass!', 401, ['WWW-Authenticate' => 'Basic']);
     }
 }
