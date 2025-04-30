@@ -21,6 +21,6 @@ class ApiBasicAuth
             return $next($request);
         }
 
-        return response('You shall not pass!', 401, ['WWW-Authenticate' => 'Basic'])->json();
+        return response('You shall not pass!', 401, ['WWW-Authenticate' => 'Basic']);
     }
 }
