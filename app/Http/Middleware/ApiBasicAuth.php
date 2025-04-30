@@ -21,7 +21,9 @@ class ApiBasicAuth
             config('api-auth.password') === $request->getPassword()) {
             return $next($request);
         }
-        Log::error($request->getUser() . ' tried to access ' . $request->getRequestUri() . ' with invalid credentials.');
+        Log::error($request->getUser() . ' tried to access ' . $request->getRequestUri() . ' with invalid credentials.',[
+            config('api-auth.user'),
+        ]);
         return response('You shall not pass!', 401, ['WWW-Authenticate' => 'Basic']);
     }
 }
