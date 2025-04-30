@@ -50,8 +50,6 @@ class SolarEdge
             'endDate' => $startDate->clone()->addDays($days)->format('Y-m-d'),
         ]), $clearCache);
 
-        Log::debug('$solarData', ['solarData' => $solarData]);
-
         $unit = $solarData?->energy->unit;
         $measuredBy = $solarData?->energy?->measuredBy ?? 'unknown';
 

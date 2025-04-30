@@ -175,4 +175,13 @@ class Controller extends BaseController
         ]);
     }
 
+    public function gather(Request $request, $platform)
+    {
+        $platform = strtolower($platform);
+
+        Log::debug($platform, $request->all());
+
+        return response()->json(['success' => true]);
+    }
+
 }
