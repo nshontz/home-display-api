@@ -40,7 +40,6 @@ const props = defineProps({
 });
 
 const dinner = ref(props.day.dinner);
-console.log(dinner.value);
 
 const toggleMeal = () => {
     if (dinner.value) {
@@ -84,6 +83,9 @@ h2 {
     width: 30px;
 }
 
+.complete .recipe-link a {
+    filter: blur(3px);
+}
 .recipe-link a {
     color: #7c7f8c;
     text-decoration: none;
