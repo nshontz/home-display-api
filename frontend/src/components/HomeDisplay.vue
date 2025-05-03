@@ -18,14 +18,24 @@
         <div v-else>
             <header>
                 <div class="previous-week" @click="previousWeek">
-                    <font-awesome-icon :icon="['fas', 'angles-left']"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 32 32" x="0px" y="0px"><title>Artboard 22</title>
+                        <polygon points="30 16 21.906 30.018 14.542 30.018 22.626 16 14.542 1.982 21.906 1.982 30 16"/>
+                        <polygon points="17.458 16 9.364 30.018 2 30.018 10.084 16 2 1.982 9.364 1.982 17.458 16"/>
+                        <text x="0" y="47" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by icon trip</text>
+                        <text x="0" y="52" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text>
+                    </svg>
                 </div>
                 <date-time
                     :current-temp="data.currentTemp"
                     @currentWeek="currentWeek">
                 </date-time>
                 <div class="next-week" @click="nextWeek">
-                    <font-awesome-icon :icon="['fas', 'angles-right']"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 32 32" x="0px" y="0px"><title>Artboard 22</title>
+                        <polygon points="30 16 21.906 30.018 14.542 30.018 22.626 16 14.542 1.982 21.906 1.982 30 16"/>
+                        <polygon points="17.458 16 9.364 30.018 2 30.018 10.084 16 2 1.982 9.364 1.982 17.458 16"/>
+                        <text x="0" y="47" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">Created by icon trip</text>
+                        <text x="0" y="52" fill="#000000" font-size="5px" font-weight="bold" font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif">from the Noun Project</text>
+                    </svg>
                 </div>
             </header>
             <div class="week" v-if="data.days">
@@ -77,7 +87,6 @@ import moment from 'moment-timezone';
 import WeatherDay from "@/components/WeatherDay.vue";
 import DateTime from "@/components/DateTime.vue";
 import DinnerItem from "@/components/DinnerItem.vue";
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import SolarDaily from "@/components/SolarDaily.vue";
 import StatsModal from "@/components/StatsModal.vue";
 
@@ -264,6 +273,10 @@ footer {
         margin: 0 auto 20px;
     }
 }
+.next-week svg,
+.previous-week svg {
+    fill: #971c1e;
+}
 
 .next-week,
 .previous-week {
@@ -271,6 +284,9 @@ footer {
     font-size: 70px;
     text-align: center;
     color: #971c1e;
+}
+.previous-week svg {
+    transform: rotate(180deg);
 }
 
 .buttons li {
