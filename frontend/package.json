@@ -17,7 +17,7 @@
         "axios": "^1.4.0",
         "chart.js": "^4.4.0",
         "core-js": "^3.6.5",
-        "ical-js-parser": "^0.7",
+        "ical-js-parser": "^0.7.4",
         "moment": "^2.29.4",
         "moment-timezone": "^0.5.43",
         "vue": "^3.3",
@@ -27,9 +27,9 @@
     "devDependencies": {
         "@babel/core": "^7.23.3",
         "@babel/eslint-parser": "^7.23.3",
-        "@vue/cli-plugin-babel": "^5.0.8",
+        "@vue/cli-plugin-babel": "^3.12.1",
         "@vue/cli-plugin-eslint": "^5.0.8",
-        "@vue/cli-service": "^5.0.8",
+        "@vue/cli-service": "^3.12.1",
         "@vue/compiler-sfc": "^3.0.0",
         "eslint": "^8.54",
         "eslint-plugin-vue": "^9.18"

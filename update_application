@@ -86,8 +86,6 @@ php artisan queue:restart
 
 documentation "Building Frontend"
 cd frontend
-nvm install 16
-nvm use 16
 npm install
 npm run build
 cd ../
