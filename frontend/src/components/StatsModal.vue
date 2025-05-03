@@ -211,6 +211,12 @@ function fetch() {
     width: 98%;
     height: 94%;
     background-color: #2d3748;
+
+    @media screen and (max-width: 1000px) {
+        position: fixed;
+        height: auto;
+        width: 100%;
+    }
 }
 
 .solar-stats canvas {
@@ -238,6 +244,11 @@ table {
     color: #ededed;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    @media screen and (max-width: 1000px) {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
 }
 
 .close-button {

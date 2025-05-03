@@ -14,10 +14,16 @@ class Dinner extends Model
     protected $casts = [
         'event' => 'array',
     ];
+    protected $appends = ['recipe_url'];
 
     public function protein(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Protein::class);
+    }
+
+    public function getRecipeUrlAttribute()
+    {
+        return $this->event['location'] ?? null;
     }
 
     public function guessProtien()

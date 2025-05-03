@@ -12,52 +12,44 @@
                     <circle cx="0" cy="0" r="25" fill="none" stroke="#f8b26a" stroke-width="4" stroke-dasharray="78.53981633974483 78.53981633974483">
                         <animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.4" repeatCount="indefinite"></animateTransform>
                     </circle>
-                    <circle cx="0" cy="0" r="33.333333333333336" fill="none" stroke="#abbd81" stroke-width="4" stroke-dasharray="104.71975511965978 104.71975511965978">
-                        <animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.6" repeatCount="indefinite"></animateTransform>
-                    </circle>
-                    <circle cx="0" cy="0" r="41.666666666666664" fill="none" stroke="#849b87" stroke-width="4" stroke-dasharray="130.89969389957471 130.89969389957471">
-                        <animateTransform attributeName="transform" type="rotate" values="0 0 0;360 0 0" times="0;1" dur="1s" calcMode="spline" keySplines="0.2 0 0.8 1" begin="-0.8" repeatCount="indefinite"></animateTransform>
-                    </circle>
                 </g>
             </svg>
         </div>
         <div v-else>
             <header>
-                <div class="previous-week" @click="this.previousWeek">
+                <div class="previous-week" @click="previousWeek">
                     <font-awesome-icon :icon="['fas', 'angles-left']"/>
                 </div>
                 <date-time
-                    :current-temp="this.data.currentTemp"
-                    @currentWeek="this.currentWeek">
+                    :current-temp="data.currentTemp"
+                    @currentWeek="currentWeek">
                 </date-time>
-                <div class="next-week" @click="this.nextWeek">
+                <div class="next-week" @click="nextWeek">
                     <font-awesome-icon :icon="['fas', 'angles-right']"/>
                 </div>
             </header>
-            <div class="week" v-if="this.data.days">
-                <div class="day" v-for="(day) in this.data.days" :key="day.date" :class="[(isToday(day) ? 'today' : '')]">
+            <div class="week" v-if="data.days">
+                <div class="day" v-for="(day) in data.days" :key="day.date" :class="[(isToday(day) ? 'today' : '')]">
                     {{ day.date_display }}
-                    <div class="dinner-item">
-                        <dinner-item :days="this.data.days" :day="day" :home-feed="homeFeed"></dinner-item>
-                    </div>
+                    <dinner-item :days="data.days" :day="day" :home-feed="props.homeFeed"></dinner-item>
                     <div class="weather-day">
                         <weather-day v-if="day.weather" :icon="day.weather.icon_alt"
-                                     :date="this.createDate(day.weather.startTime)"
+                                     :date="createDate(day.weather.startTime)"
                                      :high="day.weather.high"
                                      :low="day.weather.low"
                                      :description="day.weather.shortForecast"></weather-day>
                     </div>
-                    <solar-daily :solar="day.solar" :solar-max="this.maxSolarValue" v-if="day.solar && day.solar.value">
+                    <solar-daily :solar="day.solar" :solar-max="maxSolarValue" v-if="day.solar && day.solar.value">
                     </solar-daily>
                 </div>
             </div>
             <footer>
                 <div class="solar-benefits">
-                    <div v-if="this.data.solarBenefits.benefits">
-                        {{ Math.round(this.data.solarThisMonth / 1000).toLocaleString("en-US") }}kWh in {{ this.currentMonth }} •
-                        {{ Math.round(this.data.solarBenefits.benefits.treesPlanted) }} Trees Saved •
-                        {{ Math.round(this.data.solarBenefits.benefits.gasEmissionSaved.co2) }} {{
-                            this.data.solarBenefits.benefits.gasEmissionSaved.units
+                    <div v-if="data.solarBenefits.benefits">
+                        {{ Math.round(data.solarThisMonth / 1000).toLocaleString("en-US") }}kWh in {{ currentMonth }} •
+                        {{ Math.round(data.solarBenefits.benefits.treesPlanted) }} Trees Saved •
+                        {{ Math.round(data.solarBenefits.benefits.gasEmissionSaved.co2) }} {{
+                            data.solarBenefits.benefits.gasEmissionSaved.units
                         }}
                         Reduced CO<sub>2</sub> Emissions
                     </div>
@@ -66,7 +58,7 @@
                     <ul class="buttons">
                         <li @click="statsVisible = true">Stats</li>
                         <li @click="refresh()">
-                            Updated {{ this.updatedTimeAgo }}
+                            Updated {{ updatedTimeAgo }}
                         </li>
                     </ul>
                 </div>
@@ -74,157 +66,146 @@
         </div>
     </div>
     <div v-if="statsVisible">
-        <stats-modal :home-feed="homeFeed" @closeModal="statsVisible = false"></stats-modal>
+        <stats-modal :home-feed="props.homeFeed" @closeModal="statsVisible = false"></stats-modal>
     </div>
 </template>
 
-<script>
-import axios from 'axios'
-import 'vue-cal/dist/vuecal.css'
+<script setup>
+import {computed, onMounted, reactive, ref} from 'vue';
+import axios from 'axios';
+import moment from 'moment-timezone';
 import WeatherDay from "@/components/WeatherDay.vue";
 import DateTime from "@/components/DateTime.vue";
 import DinnerItem from "@/components/DinnerItem.vue";
-import moment from 'moment-timezone';
 import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
 import SolarDaily from "@/components/SolarDaily.vue";
 import StatsModal from "@/components/StatsModal.vue";
 
-export default {
-    components: {StatsModal, SolarDaily, FontAwesomeIcon, DinnerItem, DateTime, WeatherDay},
-    name: 'HomeDisplay',
-    props: {
-        homeFeed: String
-    },
-    data() {
-        return {
-            data: {
-                updated: null,
-                currentTemp: null,
-                days: [],
-                solarBenefits: {},
-            },
-            statsVisible: false,
-            fetching: true,
-            dataRefresh: 30000,
-            secondsUntilRefresh: 0,
-            startDate: null,
-            updatedTimeAgo: null,
+const props = defineProps({
+    homeFeed: String
+});
+
+const data = reactive({
+    updated: null,
+    currentTemp: null,
+    days: [],
+    solarBenefits: {},
+});
+
+const statsVisible = ref(false);
+const fetching = ref(true);
+const dataRefresh = 30000;
+const secondsUntilRefresh = ref(0);
+const startDate = ref(moment.tz(moment(), "America/Denver").startOf('week'));
+const updatedTimeAgo = ref(null);
+
+const currentMonth = computed(() => moment().format('MMMM'));
+const maxSolarValue = computed(() => data.solar_daily_max);
+
+const updateUpdatedTime = () => {
+    updatedTimeAgo.value = timeAgo(data.updated);
+};
+
+const previousWeek = () => {
+    fetching.value = true;
+    startDate.value = startDate.value.subtract(1, 'week');
+    fetch();
+};
+
+const nextWeek = () => {
+    fetching.value = true;
+    startDate.value = startDate.value.add(1, 'week');
+    fetch();
+};
+
+const currentWeek = () => {
+    fetching.value = true;
+    startDate.value = moment.tz(moment(), "America/Denver").startOf('week').add(-1, 'day');
+    fetch();
+};
+
+const createDate = (dateString) => new Date(dateString);
+
+const scheduleFetch = (timeout) => {
+    setInterval(() => fetch(), timeout);
+    const reloadTimeout = 1000 * 60 * 60 * 24;
+    setInterval(() => reload(), reloadTimeout);
+};
+
+const refresh = () => {
+    fetching.value = true;
+    const forceRefresh = 1;
+    fetch(forceRefresh);
+    setTimeout(() => {
+        location.href = window.location.href;
+    }, 1000);
+};
+
+const reload = () => {
+    location.reload();
+};
+
+const fetch = (forceRefresh = 0) => {
+    secondsUntilRefresh.value = dataRefresh;
+    axios
+        .get(`${props.homeFeed}/home?start_date=${startDate.value.format('MMMM Do YYYY, h:mm:ss a')}&force_refresh=${forceRefresh}`)
+        .then(response => updateData(response));
+};
+
+const updateData = (response) => {
+    data.currentTemp = response.data.current_weather?.current_temp;
+    data.days = response.data.days;
+    data.updated = moment(response.data.updated);
+    data.solarThisMonth = response.data.solar_this_month;
+    data.solarBenefits = response.data.solar_benefits;
+    fetching.value = false;
+};
+
+const isToday = (day) => {
+    const date = moment.tz(moment(day.date), "America/Denver");
+    const today = moment.tz(moment(), "America/Denver");
+    return date.isSame(today, "day");
+};
+
+const timeAgo = (time) => {
+    moment.updateLocale('en', {
+        relativeTime: {
+            future: "in %s",
+            past: "%s ago",
+            s: number => number + "s ago",
+            ss: '%ds ago',
+            m: "1m ago",
+            mm: "%dm ago",
+            h: "1h ago",
+            hh: "%dh ago",
+            d: "1d ago",
+            dd: "%dd ago",
+            M: "a month ago",
+            MM: "%d months ago",
+            y: "a year ago",
+            yy: "%d years ago"
         }
-    },
-    mounted() {
-        this.startDate = moment.tz(moment(), "America/Denver").startOf('week');
-        this.fetch();
-        this.scheduleFetch(this.dataRefresh);
-        setInterval(() => this.updateUpdatedTime(), 1000)
+    });
 
-    },
-    methods: {
-        updateUpdatedTime() {
-            this.updatedTimeAgo = this.timeAgo(this.data.updated);
-        },
-        previousWeek() {
-            this.fetching = true;
-            this.startDate = this.startDate.subtract(1, 'week');
-            this.fetch();
-        },
-        nextWeek() {
-            this.fetching = true;
-            this.startDate = this.startDate.add(1, 'week');
-            this.fetch();
-        },
-        currentWeek() {
-            this.fetching = true;
-            this.startDate = moment.tz(moment(), "America/Denver").startOf('week').add(-1, 'day');
-            this.fetch();
-        },
-        createDate(dateString) {
-            return new Date(dateString);
-        },
-        scheduleFetch(timeout) {
-            setInterval(() => this.fetch(), timeout);
-            let reloadTimeout = 1000 * 60 * 60 * 24;
-            setInterval(() => this.reload(), reloadTimeout);
-        },
-        refresh() {
-            this.fetching = true;
-            let forceRefresh = 1;
-            this.fetch(forceRefresh);
-            setTimeout(function () {
-                location.href = window.location.href
-            }, 1000);
-        },
-        reload() {
-            location.reload();
-        },
-        fetch(forceRefresh = 0) {
-            this.secondsUntilRefresh = this.dataRefresh;
-            axios
-                .get(this.homeFeed + '/home?start_date=' + this.startDate.format('MMMM Do YYYY, h:mm:ss a') + '&force_refresh=' + forceRefresh)
-                .then(response => (this.updateData(response)))
-        },
-        updateData(response) {
-            this.data.currentTemp = response.data.current_weather?.current_temp;
-            this.data.days = response.data.days;
-            this.data.updated = moment(response.data.updated);
-            this.data.solarThisMonth = response.data.solar_this_month;
-            this.data.solarBenefits = response.data.solar_benefits;
-            this.fetching = false;
-        },
-        isToday(day) {
+    const secondsElapsed = moment().diff(time, 'seconds');
+    const dayStart = moment("2018-01-01").startOf('day').seconds(secondsElapsed);
 
-            let date = moment.tz(moment(day.date), "America/Denver");
-            let today = moment.tz(moment(), "America/Denver");
-
-            let isToday = date.isSame(today, "day");
-
-
-            return isToday;
-        },
-        timeAgo(time) {
-            moment.updateLocale('en', {
-                relativeTime: {
-                    future: "in %s",
-                    past: "%s ago",
-                    s: number => number + "s ago",
-                    ss: '%ds ago',
-                    m: "1m ago",
-                    mm: "%dm ago",
-                    h: "1h ago",
-                    hh: "%dh ago",
-                    d: "1d ago",
-                    dd: "%dd ago",
-                    M: "a month ago",
-                    MM: "%d months ago",
-                    y: "a year ago",
-                    yy: "%d years ago"
-                }
-            });
-
-            let secondsElapsed = moment().diff(time, 'seconds');
-            let dayStart = moment("2018-01-01").startOf('day').seconds(secondsElapsed);
-
-            if (secondsElapsed > 300) {
-                return moment(time).fromNow(true);
-            } else if (secondsElapsed < 60) {
-                return dayStart.format('s') + 's ago';
-            } else {
-                return dayStart.format('m:ss') + 'm ago';
-            }
-        },
-    },
-    computed: {
-        currentMonth() {
-            return moment().format('MMMM');
-
-        },
-        maxSolarValue() {
-            return this.data.solar_daily_max;
-        },
+    if (secondsElapsed > 300) {
+        return moment(time).fromNow(true);
+    } else if (secondsElapsed < 60) {
+        return dayStart.format('s') + 's ago';
+    } else {
+        return dayStart.format('m:ss') + 'm ago';
     }
-}
+};
+
+onMounted(() => {
+    fetch();
+    scheduleFetch(dataRefresh);
+    setInterval(() => updateUpdatedTime(), 1000);
+});
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .home-display.darkmode {
     background-color: #12151c;
@@ -243,11 +224,6 @@ export default {
     height: 100px;
 }
 
-.dinner-item {
-    min-height: 170px;
-    position: relative;
-    width: 100%;
-}
 
 .home-display {
     max-height: 545px;
@@ -264,7 +240,6 @@ footer {
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
-
 
 .week {
     display: grid;

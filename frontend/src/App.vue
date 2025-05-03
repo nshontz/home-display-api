@@ -27,7 +27,7 @@ body {
     font-family: 'IBM Plex Sans', sans-serif;
     margin: 0;
     background-color: #12151c;
-    cursor: none;
+    //cursor: none;
     overflow: hidden;
 
     @media screen and (max-width: 1000px) {
