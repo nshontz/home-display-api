@@ -276,12 +276,12 @@ footer {
 .next-week svg,
 .previous-week svg {
     fill: #971c1e;
+    height: 80px;
 }
 
 .next-week,
 .previous-week {
-    margin-top: 10px;
-    font-size: 70px;
+    margin-top: 15px;
     text-align: center;
     color: #971c1e;
 }
