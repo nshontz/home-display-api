@@ -230,7 +230,7 @@ onMounted(() => {
 }
 
 .weather-day {
-    height: 100px;
+    height: 90px;
 }
 
 

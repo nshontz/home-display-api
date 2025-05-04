@@ -1,12 +1,13 @@
 <template>
     <div class="dinner-item" :class="[
         (dinner && dinner.complete ? 'complete' : ''),
-        (dinner && dinner.recipe_url ? 'has-recipe' : '')
+        (dinner && dinner.recipe_url ? 'has-recipe' : ''),
+        dinnerTitleLengthClass
         ]">
         <template v-if="dinner">
             <h2 @click="toggleMeal()" class="dinner-name">{{ dinner.title }}</h2>
             <div v-if="dinner.recipe_url" class="recipe-link">
-                <a :href="dinner.recipe_url" target="_blank">
+                <a :href="dinner.recipe_url" target="recipe">
 
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 30" version="1.1" x="0px" y="0px"><title>Icon/Stroke/Share</title>
                         <desc>Created with Sketch.</desc>
@@ -30,7 +31,7 @@
     </div>
 </template>
 <script setup>
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import axios from "axios";
 
 const props = defineProps({
@@ -50,6 +51,21 @@ const toggleMeal = () => {
         });
     }
 };
+
+const dinnerTitleLengthClass = computed(() => {
+    let length = dinner.value?.title?.length;
+    let className = '';
+    if (length < 20) {
+        className = 'short-title';
+    } else if (length < 35) {
+        className = 'medium-title';
+    } else {
+        className = 'long-title length-'+length;
+    }
+
+    return className;
+});
+
 </script>
 
 <style scoped>
@@ -68,14 +84,19 @@ h2 {
     top: 50%;
     transform: translateY(-50%);
 }
+.short-title h2 {
+    font-size: 1.75rem;
+}
+.medium-title h2 {
+    font-size: 1.75rem;
+}
+.long-title h2 {
+    font-size: 1.5rem;
+}
 
 .complete h2 {
     filter: blur(3px);
     color: #7c7f8c;
-}
-
-.dinner-name {
-
 }
 
 .recipe-link a svg {
