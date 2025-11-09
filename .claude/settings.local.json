@@ -1,7 +1,17 @@
 {
   "permissions": {
     "allow": [
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(php artisan filament:install:*)",
+      "Bash(php artisan make:filament-resource:*)",
+      "Bash(php artisan migrate:*)",
+      "Bash(php artisan make:filament-user:*)",
+      "Bash(php artisan tinker:*)",
+      "Bash(php artisan make:command:*)",
+      "Bash(php artisan make:admin-user:*)",
+      "Bash(php artisan route:list:*)",
+      "Bash(php artisan:*)",
+      "Bash(curl:*)"
     ],
     "deny": []
   }

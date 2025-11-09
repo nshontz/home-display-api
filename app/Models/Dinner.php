@@ -10,7 +10,7 @@ class Dinner extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['uid'];
+    protected $fillable = ['uid', 'title', 'complete', 'date', 'event', 'protein_id'];
     protected $casts = [
         'event' => 'array',
     ];

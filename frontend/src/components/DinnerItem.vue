@@ -84,6 +84,7 @@ h2 {
     top: 50%;
     transform: translateY(-50%);
 }
+
 .short-title h2 {
     font-size: 1.75rem;
 }

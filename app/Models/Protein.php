@@ -10,7 +10,12 @@ class Protein extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $fillable = ['name', 'vegetarian', 'color', 'aka'];
+
     public function getAliasesAttribute(){
+        if (empty($this->aka)) {
+            return collect([]);
+        }
         return collect(explode(',',$this->aka))->map(function($alias){
             return trim($alias);
         });
