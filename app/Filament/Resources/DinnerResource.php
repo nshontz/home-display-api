@@ -11,12 +11,13 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\HtmlString;
 
 class DinnerResource extends Resource
 {
     protected static ?string $model = Dinner::class;
 
+    protected static ?string $navigationGroup = 'Dinners';
     protected static ?string $navigationIcon = 'heroicon-o-home';
 
     public static function form(Form $form): Form
@@ -25,6 +26,13 @@ class DinnerResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required()
+                    ->suffixAction(
+                        Forms\Components\Actions\Action::make('open_url')
+                            ->icon('heroicon-m-arrow-top-right-on-square')
+                            ->url(fn ($record) => $record?->recipe_url)
+                            ->openUrlInNewTab()
+                            ->visible(fn ($record) => !empty($record?->recipe_url))
+                    )
                     ->maxLength(255),
                 Forms\Components\Select::make('protein_id')
                     ->relationship('protein', 'name'),
@@ -44,14 +52,21 @@ class DinnerResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('protein.name')
                     ->sortable()
-                    ->searchable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('recipe_url')
+                    ->label('Recipe')
+                    ->url(fn ($record) => $record->recipe_url)
+                    ->openUrlInNewTab()
+                    ->icon('heroicon-m-arrow-top-right-on-square')
+                    ->placeholder('No recipe')
+                    ->toggleable()
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('protein')
                     ->relationship('protein', 'name'),
                 Tables\Filters\Filter::make('missing_protein')
                     ->label('Missing Protein')
-                    ->query(fn (Builder $query): Builder => $query->whereNull('protein_id'))
+                    ->query(fn(Builder $query): Builder => $query->whereNull('protein_id'))
                     ->toggle(),
                 Tables\Filters\TrashedFilter::make(),
             ])

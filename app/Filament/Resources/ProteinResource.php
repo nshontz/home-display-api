@@ -17,6 +17,7 @@ class ProteinResource extends Resource
 {
     protected static ?string $model = Protein::class;
 
+    protected static ?string $navigationGroup = 'Dinners';
     protected static ?string $navigationIcon = 'heroicon-o-beaker';
 
     public static function form(Form $form): Form
