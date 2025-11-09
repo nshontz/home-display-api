@@ -56,6 +56,10 @@ class DinnerResource extends Resource
             ->filters([
                 Tables\Filters\SelectFilter::make('protein')
                     ->relationship('protein', 'name'),
+                Tables\Filters\Filter::make('missing_protein')
+                    ->label('Missing Protein')
+                    ->query(fn (Builder $query): Builder => $query->whereNull('protein_id'))
+                    ->toggle(),
                 Tables\Filters\TrashedFilter::make(),
             ])
             ->actions([
