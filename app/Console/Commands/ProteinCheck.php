@@ -26,7 +26,7 @@ class ProteinCheck extends Command
      */
     public function handle()
     {
-        Dinner::whereNull('protein_id')->get()->map(function ($dinner) {
+        Dinner::whereNull('protein_id')->get()->map(function (Dinner $dinner) {
             $dinner->guessProtien();
         });
     }

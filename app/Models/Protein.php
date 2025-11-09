@@ -12,6 +12,11 @@ class Protein extends Model
 
     protected $fillable = ['name', 'vegetarian', 'color', 'aka'];
 
+    public function dinners(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Dinner::class);
+    }
+
     public function getAliasesAttribute(){
         if (empty($this->aka)) {
             return collect([]);
