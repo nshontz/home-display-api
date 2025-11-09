@@ -136,7 +136,7 @@ class Controller extends BaseController
 
 
         $solarReport = SolarProductionDay::select([
-            DB::raw("to_char(date, 'yyyy-mm') as month"),
+            DB::raw("concat(to_char(date, 'yyyy-mm'),'-01') as month"),
             DB::raw("concat(sum(value) / 1000000) as generated_value")
         ])
             ->groupBy(DB::raw("to_char(date, 'yyyy-mm')"))
@@ -149,7 +149,7 @@ class Controller extends BaseController
             'dates' => $dinnerFrequency->first()->only(['created_at_min', 'created_at_max']),
             'energy_report' => $solarReport->map(function ($month) {
                 $monthData = $month->only(['month', 'generated_value']);
-                $monthData['month_label'] = Carbon::parse($monthData['month'] . '-01')->format('M');
+                $monthData['month_label'] = Carbon::parse($monthData['month'])->format('M');
                 return $monthData;
             }),
             'dinner_frequency' => $dinnerFrequency->map->only(['title', 'freq']),
