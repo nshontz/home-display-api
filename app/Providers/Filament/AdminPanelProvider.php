@@ -56,6 +56,7 @@ class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->authGuard('web')
-            ->authPasswordBroker('users');
+            ->authPasswordBroker('users')
+            ->spa();
     }
 }
