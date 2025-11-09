@@ -31,10 +31,6 @@ class DinnerResource extends Resource
                     ->maxLength(255),
                 Forms\Components\DateTimePicker::make('complete'),
                 Forms\Components\DateTimePicker::make('date'),
-                Forms\Components\Textarea::make('event')
-                    ->label('Event Data (JSON)')
-                    ->rows(3)
-                    ->placeholder('Event JSON data'),
                 Forms\Components\Select::make('protein_id')
                     ->relationship('protein', 'name'),
             ]);
