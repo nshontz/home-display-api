@@ -23,16 +23,13 @@ class DinnerResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('uid')
-                    ->required()
-                    ->maxLength(255),
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
-                Forms\Components\DateTimePicker::make('complete'),
-                Forms\Components\DateTimePicker::make('date'),
                 Forms\Components\Select::make('protein_id')
                     ->relationship('protein', 'name'),
+                Forms\Components\DateTimePicker::make('complete'),
+                Forms\Components\DateTimePicker::make('date'),
             ]);
     }
 
