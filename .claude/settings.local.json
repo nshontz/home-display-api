@@ -11,7 +11,10 @@
       "Bash(php artisan make:admin-user:*)",
       "Bash(php artisan route:list:*)",
       "Bash(php artisan:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(npm install:*)",
+      "Bash(timeout 10 npm run dev:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": []
   }
