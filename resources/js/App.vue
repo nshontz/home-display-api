@@ -1,15 +1,10 @@
 <template>
-    <HomeDisplay home-feed="/api"/>
+    <router-view />
 </template>
 
 <script>
-import HomeDisplay from './components/HomeDisplay.vue'
-
 export default {
-    name: 'App',
-    components: {
-        HomeDisplay
-    }
+    name: 'App'
 }
 
 document.title = "Menu"
@@ -27,8 +22,8 @@ body {
     font-family: 'IBM Plex Sans', sans-serif;
     margin: 0;
     background-color: #12151c;
-    //cursor: none;
-    overflow: hidden;
+    /* cursor: none; */
+    /* overflow: hidden; */
 
     @media screen and (max-width: 1000px) {
         overflow: auto;

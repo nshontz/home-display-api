@@ -96,7 +96,7 @@ class SolarEdge
 
     public function getMaxDailyGeneration()
     {
-        return SolarProductionDay::orderBy('value', 'desc')->get()->first()->value;
+        return SolarProductionDay::orderBy('value', 'desc')->get()->first()?->value;
     }
 
     public function benefits($clearCache = false)

@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\DB;
 
 class DinnerService
 {
-    public static function freqency() {
-        return  Dinner::limit(10)
+    public static function freqency()
+    {
+        return Dinner::limit(10)
             ->groupBy('title')
             ->select([
                 'title',
@@ -58,7 +59,8 @@ class DinnerService
         return collect(DB::select($sql));
     }
 
-    public static function proteinFrequency() {
+    public static function proteinFrequency()
+    {
         return Dinner::select([
             DB::raw("coalesce(proteins.name, 'Other') as name"),
             DB::raw("coalesce(proteins.color, '#555555') as color"),
@@ -71,7 +73,8 @@ class DinnerService
             ->get();
     }
 
-    public static function vegetarianFrequency() {
+    public static function vegetarianFrequency()
+    {
         $proteinFrequency = self::proteinFrequency();
 
         return $proteinFrequency
@@ -79,5 +82,18 @@ class DinnerService
             ->mapWithKeys(function ($proteinGroups, $isVegetarian) {
                 return [$isVegetarian ? 'Vegetarian' : 'Omnivorian' => $proteinGroups->pluck('freq')->sum()];
             });
+    }
+
+    public static function allDinners()
+    {
+        return Dinner::select([
+            'title',
+            DB::raw('count(*) as frequency'),
+            DB::raw('max(date) as last_eaten'),
+            DB::raw('max(case when event::jsonb->\'location\' is not null then event::jsonb->>\'location\' else null end) as recipe_url')
+        ])
+            ->groupBy('title')
+            ->orderBy('frequency', 'desc')
+            ->get();
     }
 }
