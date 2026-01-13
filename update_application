@@ -85,10 +85,9 @@ php artisan queue:restart
 
 
 documentation "Building Frontend"
-cd frontend
+
 npm install
 npm run build
-cd ../
 
 documentation "Updating permissions"
 
