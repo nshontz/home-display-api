@@ -176,9 +176,11 @@ class Controller extends BaseController
     public function dinnerList(Request $request)
     {
         $dinners = DinnerService::allDinners();
+        $recommendations = DinnerService::recommendations();
 
         return response()->json([
-            'dinners' => $dinners
+            'dinners' => $dinners,
+            'recommendations' => $recommendations
         ]);
     }
 

@@ -13,49 +13,53 @@
             </svg>
         </div>
 
-        <div v-else class="table-container">
-            <table class="dinner-table">
-                <thead>
-                    <tr>
-                        <th @click="sortBy('title')" class="sortable">
-                            Dinner Name
-                            <span v-if="sortKey === 'title'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
-                        </th>
-                        <th @click="sortBy('frequency')" class="sortable">
-                            Frequency
-                            <span v-if="sortKey === 'frequency'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
-                        </th>
-                        <th @click="sortBy('last_eaten')" class="sortable">
-                            Last Eaten
-                            <span v-if="sortKey === 'last_eaten'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
-                        </th>
-                        <th>Recipe</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="dinner in sortedDinners" :key="dinner.title">
-                        <td class="dinner-name">{{ dinner.title }}</td>
-                        <td class="frequency">{{ dinner.frequency }}</td>
-                        <td class="last-eaten">{{ formatDate(dinner.last_eaten) }}</td>
-                        <td class="recipe">
-                            <a v-if="dinner.recipe_url" :href="dinner.recipe_url" target="_blank" class="recipe-link">
-                                🔗 View Recipe
-                            </a>
-                            <span v-else class="no-recipe">—</span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <!--
-            <div class="recommended-dinners">
+        <div v-else class="content-grid">
+            <div class="table-container">
+                <h2>All Dinners</h2>
+                <table class="dinner-table">
+                    <thead>
+                        <tr>
+                            <th @click="sortBy('title')" class="sortable">
+                                Dinner Name
+                                <span v-if="sortKey === 'title'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                            </th>
+                            <th @click="sortBy('frequency')" class="sortable">
+                                Frequency
+                                <span v-if="sortKey === 'frequency'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                            </th>
+                            <th @click="sortBy('last_eaten')" class="sortable">
+                                Last Eaten
+                                <span v-if="sortKey === 'last_eaten'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                            </th>
+                            <th>Recipe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="dinner in sortedDinners" :key="dinner.title">
+                            <td class="dinner-name">{{ dinner.title }}</td>
+                            <td class="frequency">{{ dinner.frequency }}</td>
+                            <td class="last-eaten">{{ formatDate(dinner.last_eaten) }}</td>
+                            <td class="recipe">
+                                <a v-if="dinner.recipe_url" :href="dinner.recipe_url" target="_blank" class="recipe-link">
+                                    🔗 View Recipe
+                                </a>
+                                <span v-else class="no-recipe">—</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="recommendations-container">
                 <h2>Dinner Suggestions</h2>
-                <ul>
-                    <li v-for="dinner in dinnerRecommendations" :key="dinner.title">
-                        {{ dinner.title }}
+                <p class="suggestions-description">Based on meals you haven't had recently and seasonal favorites</p>
+                <ul class="recommendations-list">
+                    <li v-for="recommendation in recommendations" :key="recommendation.title">
+                        {{ recommendation.title }}
+                        <span class="weight-badge" v-if="recommendation.weight > 1">★</span>
                     </li>
                 </ul>
             </div>
-            -->
         </div>
     </div>
 </template>
@@ -66,6 +70,7 @@ import axios from 'axios';
 import moment from 'moment-timezone';
 
 const dinners = ref([]);
+const recommendations = ref([]);
 const loading = ref(true);
 const sortKey = ref('frequency');
 const sortOrder = ref('desc');
@@ -75,6 +80,7 @@ const fetchDinners = async () => {
     try {
         const response = await axios.get('/api/dinner/list');
         dinners.value = response.data.dinners;
+        recommendations.value = response.data.recommendations;
     } catch (error) {
         console.error('Error fetching dinners:', error);
     } finally {
@@ -128,11 +134,37 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.table-container {
-    overflow-x: auto;
+.content-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+@media screen and (max-width: 1200px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.table-container,
+.recommendations-container {
     background-color: #1a1d2d;
     border-radius: 12px;
     padding: 20px;
+}
+
+.table-container h2,
+.recommendations-container h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+    color: #eee;
+    border-bottom: 2px solid #2d3548;
+    padding-bottom: 10px;
+}
+
+.table-container {
+    overflow-x: auto;
 }
 
 .dinner-table {
@@ -211,6 +243,41 @@ onMounted(() => {
     color: #666;
 }
 
+.suggestions-description {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin: 0 0 15px 0;
+    font-style: italic;
+}
+
+.recommendations-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.recommendations-list li {
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background-color: #252d3d;
+    border-radius: 6px;
+    color: #ddd;
+    transition: background-color 0.2s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.recommendations-list li:hover {
+    background-color: #2d3548;
+}
+
+.weight-badge {
+    color: #f8b26a;
+    font-size: 1.2rem;
+    margin-left: 10px;
+}
+
 @media screen and (max-width: 768px) {
     .dinner-table {
         font-size: 0.9rem;
@@ -222,6 +289,3 @@ onMounted(() => {
     }
 }
 </style>
-
-<script setup lang="ts">
-</script>

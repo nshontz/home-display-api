@@ -1,0 +1,49 @@
+/* Shared styles for full-page components (Stats, DinnerList) */
+
+.page-container {
+    /*min-height: 100vh;*/
+    background-color: #12151c;
+    color: #eee;
+    padding: 5px 20px;
+}
+
+.page-container header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 5px 0;
+    border-bottom: 2px solid #1a1d2d;
+}
+
+.page-container h1 {
+    font-size: 1.4rem;
+    margin: 0;
+    color: #eee;
+}
+
+.page-container .back-button {
+    padding: 5px 20px;
+    background-color: #971c1e;
+    color: #eee;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.page-container .back-button:hover {
+    background-color: #b52224;
+}
+
+.page-container .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+@media screen and (max-width: 768px) {
+    .page-container h1 {
+        font-size: 1.5rem;
+    }
+}

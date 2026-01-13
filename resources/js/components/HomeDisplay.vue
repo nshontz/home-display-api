@@ -292,7 +292,6 @@ footer {
 .buttons li a {
     color: inherit;
     text-decoration: none;
-    //margin-right: 20px;
     padding: 3px 10px;
 }
 

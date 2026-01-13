@@ -23,7 +23,7 @@ body {
     margin: 0;
     background-color: #12151c;
     /* cursor: none; */
-    overflow: hidden;
+    /* overflow: hidden; */
 
     @media screen and (max-width: 1000px) {
         overflow: auto;
