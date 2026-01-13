@@ -1,7 +1,7 @@
 <template>
-    <div class="dinner-list">
+    <div class="dinner-list page-container">
         <header>
-            <h1>Dinner Ideas</h1>
+            <h1>Dinners</h1>
             <router-link to="/" class="back-button">← Back to Home</router-link>
         </header>
 
@@ -46,6 +46,16 @@
                     </tr>
                 </tbody>
             </table>
+            <!--
+            <div class="recommended-dinners">
+                <h2>Dinner Suggestions</h2>
+                <ul>
+                    <li v-for="dinner in dinnerRecommendations" :key="dinner.title">
+                        {{ dinner.title }}
+                    </li>
+                </ul>
+            </div>
+            -->
         </div>
     </div>
 </template>
@@ -118,48 +128,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.dinner-list {
-    min-height: 100vh;
-    background-color: #12151c;
-    color: #eee;
-    padding: 20px;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 30px;
-    padding: 20px 0;
-    border-bottom: 2px solid #1a1d2d;
-}
-
-h1 {
-    font-size: 2rem;
-    margin: 0;
-    color: #eee;
-}
-
-.back-button {
-    padding: 10px 20px;
-    background-color: #971c1e;
-    color: #eee;
-    text-decoration: none;
-    border-radius: 8px;
-    transition: background-color 0.3s;
-}
-
-.back-button:hover {
-    background-color: #b52224;
-}
-
-.loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
-}
-
 .table-container {
     overflow-x: auto;
     background-color: #1a1d2d;
@@ -252,9 +220,8 @@ h1 {
     .dinner-table td {
         padding: 10px;
     }
-
-    h1 {
-        font-size: 1.5rem;
-    }
 }
 </style>
+
+<script setup lang="ts">
+</script>

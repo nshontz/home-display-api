@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeDisplay from './components/HomeDisplay.vue';
 import DinnerList from './components/DinnerList.vue';
+import Stats from './components/Stats.vue';
 
 const routes = [
     {
@@ -13,6 +14,11 @@ const routes = [
         path: '/dinner-list',
         name: 'dinner-list',
         component: DinnerList
+    },
+    {
+        path: '/stats',
+        name: 'stats',
+        component: Stats
     }
 ];
 

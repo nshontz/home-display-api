@@ -67,7 +67,7 @@
                 <div>
                     <ul class="buttons">
                         <li><router-link to="/dinner-list">Dinner List</router-link></li>
-                        <li @click="statsVisible = true">Stats</li>
+                        <li><router-link to="/stats">Stats</router-link></li>
                         <li @click="refresh()">
                             Updated {{ updatedTimeAgo }}
                         </li>
@@ -75,9 +75,6 @@
                 </div>
             </footer>
         </div>
-    </div>
-    <div v-if="statsVisible">
-        <stats-modal :home-feed="props.homeFeed" @closeModal="statsVisible = false"></stats-modal>
     </div>
 </template>
 
@@ -89,7 +86,6 @@ import WeatherDay from "@/components/WeatherDay.vue";
 import DateTime from "@/components/DateTime.vue";
 import DinnerItem from "@/components/DinnerItem.vue";
 import SolarDaily from "@/components/SolarDaily.vue";
-import StatsModal from "@/components/StatsModal.vue";
 
 const props = defineProps({
     homeFeed: String
@@ -102,7 +98,6 @@ const data = reactive({
     solarBenefits: {},
 });
 
-const statsVisible = ref(false);
 const fetching = ref(true);
 const dataRefresh = 30000;
 const secondsUntilRefresh = ref(0);
@@ -246,7 +241,7 @@ header {
 }
 
 footer {
-    margin-top: 20px;
+    margin-top: 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
@@ -292,12 +287,13 @@ footer {
 
 .buttons li {
     display: inline-block;
-    margin-right: 20px;
 }
 
 .buttons li a {
     color: inherit;
     text-decoration: none;
+    //margin-right: 20px;
+    padding: 3px 10px;
 }
 
 .buttons li a:hover {
