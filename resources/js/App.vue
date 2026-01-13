@@ -1,15 +1,10 @@
 <template>
-    <HomeDisplay home-feed="/api"/>
+    <router-view />
 </template>
 
 <script>
-import HomeDisplay from './components/HomeDisplay.vue'
-
 export default {
-    name: 'App',
-    components: {
-        HomeDisplay
-    }
+    name: 'App'
 }
 
 document.title = "Menu"

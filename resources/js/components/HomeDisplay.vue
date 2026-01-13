@@ -66,6 +66,7 @@
                 </div>
                 <div>
                     <ul class="buttons">
+                        <li><router-link to="/dinner-list">Dinner List</router-link></li>
                         <li @click="statsVisible = true">Stats</li>
                         <li @click="refresh()">
                             Updated {{ updatedTimeAgo }}
@@ -292,6 +293,15 @@ footer {
 .buttons li {
     display: inline-block;
     margin-right: 20px;
+}
+
+.buttons li a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.buttons li a:hover {
+    text-decoration: underline;
 }
 
 .buttons {
