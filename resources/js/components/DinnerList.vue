@@ -14,42 +14,6 @@
         </div>
 
         <div v-else class="content-grid">
-            <div class="table-container">
-                <h2>All Dinners</h2>
-                <table class="dinner-table">
-                    <thead>
-                        <tr>
-                            <th @click="sortBy('title')" class="sortable">
-                                Dinner Name
-                                <span v-if="sortKey === 'title'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
-                            </th>
-                            <th @click="sortBy('frequency')" class="sortable">
-                                Frequency
-                                <span v-if="sortKey === 'frequency'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
-                            </th>
-                            <th @click="sortBy('last_eaten')" class="sortable">
-                                Last Eaten
-                                <span v-if="sortKey === 'last_eaten'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
-                            </th>
-                            <th>Recipe</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="dinner in sortedDinners" :key="dinner.title">
-                            <td class="dinner-name">{{ dinner.title }}</td>
-                            <td class="frequency">{{ dinner.frequency }}</td>
-                            <td class="last-eaten">{{ formatDate(dinner.last_eaten) }}</td>
-                            <td class="recipe">
-                                <a v-if="dinner.recipe_url" :href="dinner.recipe_url" target="_blank" class="recipe-link">
-                                    🔗 View Recipe
-                                </a>
-                                <span v-else class="no-recipe">—</span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
             <div class="recommendations-container">
                 <h2>Dinner Suggestions</h2>
                 <p class="suggestions-description">Based on meals you haven't had recently and seasonal favorites</p>
@@ -60,12 +24,48 @@
                     </li>
                 </ul>
             </div>
+            <div class="table-container">
+                <h2>All Dinners</h2>
+                <table class="dinner-table">
+                    <thead>
+                    <tr>
+                        <th @click="sortBy('title')" class="sortable">
+                            Dinner Name
+                            <span v-if="sortKey === 'title'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                        </th>
+                        <th @click="sortBy('frequency')" class="sortable">
+                            Frequency
+                            <span v-if="sortKey === 'frequency'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                        </th>
+                        <th @click="sortBy('last_eaten')" class="sortable">
+                            Last Eaten
+                            <span v-if="sortKey === 'last_eaten'">{{ sortOrder === 'asc' ? '▲' : '▼' }}</span>
+                        </th>
+                        <th>Recipe</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="dinner in sortedDinners" :key="dinner.title">
+                        <td class="dinner-name">{{ dinner.title }}</td>
+                        <td class="frequency">{{ dinner.frequency }}</td>
+                        <td class="last-eaten">{{ formatDate(dinner.last_eaten) }}</td>
+                        <td class="recipe">
+                            <a v-if="dinner.recipe_url" :href="dinner.recipe_url" target="_blank" class="recipe-link">
+                                🔗 View Recipe
+                            </a>
+                            <span v-else class="no-recipe">—</span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import axios from 'axios';
 import moment from 'moment-timezone';
 
@@ -136,7 +136,7 @@ onMounted(() => {
 <style scoped>
 .content-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns:  1fr 2fr;
     gap: 20px;
 }
 
