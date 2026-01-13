@@ -76,8 +76,10 @@ return [
             'prefix' => '',
             'prefix_indexes' => true,
             'search_path' => 'public',
-            'sslmode' => env('SSL_MODE','require'),
-            'sslrootcert' => env('PGSQL_SSL_CA','/var/www/certs/ca-certificate.crt'),
+            'sslmode' =>  env('SSL_MODE','require'),
+            'sslrootcert' =>'/var/www/certs/ca-certificate.crt',
+            'sslkey' => env('PGSQL_SSL_KEY',''),
+            'sslcert' => '' //env('PGSQL_SSL_CA', '/var/www/certs/ca-certificate.crt'),
         ],
 
         'sqlsrv' => [

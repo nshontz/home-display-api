@@ -6,6 +6,7 @@ use App\Models\Dinner;
 use App\Models\SolarProductionDay;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class SolarEdge
 {
@@ -50,7 +51,7 @@ class SolarEdge
         ]), $clearCache);
 
         $unit = $solarData?->energy->unit;
-        $measuredBy = $solarData?->energy->measuredBy;
+        $measuredBy = $solarData?->energy?->measuredBy ?? 'unknown';
 
         return collect($solarData?->energy->values)->map(function ($energy) use ($unit, $measuredBy) {
             $production = null;
@@ -95,7 +96,7 @@ class SolarEdge
 
     public function getMaxDailyGeneration()
     {
-        return SolarProductionDay::orderBy('value', 'desc')->get()->first()->value;
+        return SolarProductionDay::orderBy('value', 'desc')->get()->first()?->value;
     }
 
     public function benefits($clearCache = false)

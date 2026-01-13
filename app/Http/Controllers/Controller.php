@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dinner;
+use App\Models\GatheredData;
 use App\Models\SolarProductionDay;
 use App\Services\AnyList;
 use App\Services\DinnerService;
@@ -109,23 +110,6 @@ class Controller extends BaseController
         ]);
     }
 
-    public function indoorTemp()
-    {
-        $projectId = "";
-        $deviceId = "";
-        $user = "nickshontz@gmail.com";
-
-        $url = "https://smartdevicemanagement.googleapis.com/v1";
-        $path = "/enterprises/" . $projectId . "/devices/" . $deviceId;
-
-        $client = new Client();
-        $client->useApplicationDefaultCredentials();
-        $client->addScope(\Google\Service\SmartDeviceManagement::SDM_SERVICE);
-        $client->setSubject($user);
-
-
-    }
-
     public function dinner(Request $request, $uid)
     {
         $validatedData = $request->validate([
@@ -152,11 +136,11 @@ class Controller extends BaseController
 
 
         $solarReport = SolarProductionDay::select([
-            DB::raw("date_format(date, '%Y-%m') as month"),
+            DB::raw("concat(to_char(date, 'yyyy-mm'),'-01') as month"),
             DB::raw("concat(sum(value) / 1000000) as generated_value")
         ])
-            ->groupBy(DB::raw("date_format(date, '%Y-%m')"))
-            ->orderBy(DB::raw("date_format(date, '%Y-%m')"), 'desc')
+            ->groupBy(DB::raw("to_char(date, 'yyyy-mm')"))
+            ->orderBy(DB::raw("to_char(date, 'yyyy-mm')"), 'desc')
             ->limit(12)
             ->get();
 
@@ -165,13 +149,38 @@ class Controller extends BaseController
             'dates' => $dinnerFrequency->first()->only(['created_at_min', 'created_at_max']),
             'energy_report' => $solarReport->map(function ($month) {
                 $monthData = $month->only(['month', 'generated_value']);
-                $monthData['month_label'] = Carbon::parse($monthData['month'] . '-01')->format('M');
+                $monthData['month_label'] = Carbon::parse($monthData['month'])->format('M');
                 return $monthData;
             }),
             'dinner_frequency' => $dinnerFrequency->map->only(['title', 'freq']),
             'protein_frequency' => $proteinFrequency,
             'dinner_recommendations' => $dinnerRecommendations,
             'vegetarian_frequency' => $vegetarianFrequency
+        ]);
+    }
+
+    public function gather(Request $request, $platform)
+    {
+        $platform = strtolower($platform);
+
+        Log::debug($platform, $request->all());
+
+        $gatheredData = new GatheredData();
+        $gatheredData->platform = $platform;
+        $gatheredData->data = json_encode($request->all());
+        $gatheredData->save();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function dinnerList(Request $request)
+    {
+        $dinners = DinnerService::allDinners();
+        $recommendations = DinnerService::recommendations();
+
+        return response()->json([
+            'dinners' => $dinners,
+            'recommendations' => $recommendations
         ]);
     }
 
