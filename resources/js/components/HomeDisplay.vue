@@ -68,7 +68,7 @@
                     <ul class="buttons">
                         <li><router-link to="/dinner-list">Dinner List</router-link></li>
                         <li><router-link to="/stats">Stats</router-link></li>
-                        <li @click="refresh()">
+                        <li @click="refresh()" style="width: 120px">
                             Updated {{ updatedTimeAgo }}
                         </li>
                     </ul>
