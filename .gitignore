@@ -9,7 +9,6 @@
 /public/js/
 /public/css/
 /storage/*.key
-/resources/views/spa.blade.php
 /vendor
 .env
 .env.backup
