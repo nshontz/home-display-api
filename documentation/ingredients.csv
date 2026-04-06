@@ -1,0 +1,935 @@
+id,name,plural_name,category,created_at,updated_at
+12,olive oil,olive oils,,2026-04-05 11:44:12,2026-04-05 11:44:12
+13,medium yellow onion,medium yellow onions,,2026-04-05 11:44:12,2026-04-05 11:44:12
+14,cloves,,,2026-04-05 11:44:12,2026-04-05 11:44:12
+15,fresh rosemary,fresh rosemaries,,2026-04-05 11:44:12,2026-04-05 11:44:12
+16,red-pepper flakes,,,2026-04-05 11:44:12,2026-04-05 11:44:12
+17,salt and black pepper,salt and black peppers,,2026-04-05 11:44:12,2026-04-05 11:44:12
+18,cup canned whole tomatoes,,,2026-04-05 11:44:12,2026-04-05 11:44:12
+19,can chickpeas,,,2026-04-05 11:44:12,2026-04-05 11:44:12
+20,ditalini,ditalinis,,2026-04-05 11:44:12,2026-04-05 11:44:12
+21,roughly escarole,roughly escaroles,,2026-04-05 11:44:12,2026-04-05 11:44:12
+22,pecorino,pecorinoes,,2026-04-05 11:44:12,2026-04-05 11:44:12
+23,coarse kosher salt,coarse kosher salts,,2026-04-05 11:46:34,2026-04-05 11:46:34
+24,ground black pepper,ground black peppers,,2026-04-05 11:46:34,2026-04-05 11:46:34
+25,onion powder,onion powders,,2026-04-05 11:46:34,2026-04-05 11:46:34
+26,garlic powder,garlic powders,,2026-04-05 11:46:34,2026-04-05 11:46:34
+27,cayenne pepper,cayenne peppers,,2026-04-05 11:46:34,2026-04-05 11:46:34
+28,paprika,paprikas,,2026-04-05 11:46:34,2026-04-05 11:46:34
+29,chicken,chickens,,2026-04-05 11:46:34,2026-04-05 11:46:34
+30,2 teaspoons smoked ghost-chile powder or smoked hot paprika,2 teaspoons smoked ghost-chile powder or smoked hot paprikas,,2026-04-05 11:46:34,2026-04-05 11:46:34
+31,granulated sugar,granulated sugars,,2026-04-05 11:46:34,2026-04-05 11:46:34
+32,all-purpose flour,all-purpose flours,,2026-04-05 11:46:34,2026-04-05 11:46:34
+33,granulated garlic,granulated garlics,,2026-04-05 11:46:34,2026-04-05 11:46:34
+34,granulated onion,granulated onions,,2026-04-05 11:46:34,2026-04-05 11:46:34
+35,kosher salt,kosher salts,,2026-04-05 11:46:34,2026-04-05 11:46:34
+36,Safflower,Safflowers,,2026-04-05 11:46:34,2026-04-05 11:46:34
+37,large eggs,,,2026-04-05 11:46:34,2026-04-05 11:46:34
+38,extra-virgin olive oil,extra-virgin olive oils,,2026-04-05 12:06:04,2026-04-05 12:06:04
+39,sweet Italian pork sausage,sweet Italian pork sausages,,2026-04-05 12:06:04,2026-04-05 12:06:04
+40,broccoli,broccolis,,2026-04-05 12:06:04,2026-04-05 12:06:04
+41,medium yellow bell peppers,,,2026-04-05 12:06:04,2026-04-05 12:06:04
+42,garlic,garlics,,2026-04-05 12:06:04,2026-04-05 12:06:04
+43,salt and pepper,salt and peppers,,2026-04-05 12:06:04,2026-04-05 12:06:04
+44,rigatoni,rigatonis,,2026-04-05 12:06:04,2026-04-05 12:06:04
+45,Parmesan,Parmesans,,2026-04-05 12:06:04,2026-04-05 12:06:04
+46,fresh lemon juice,fresh lemon juices,,2026-04-05 12:06:04,2026-04-05 12:06:04
+47,bone-in pork chops,,,2026-04-05 12:06:08,2026-04-05 12:06:08
+48,salt and freshly cracked black pepper,salt and freshly cracked black peppers,,2026-04-05 12:06:08,2026-04-05 12:06:08
+49,dried thyme leaves,,,2026-04-05 12:06:08,2026-04-05 12:06:08
+50,unsalted butter,unsalted butters,,2026-04-05 12:06:08,2026-04-05 12:06:08
+51,small shallot,small shallots,,2026-04-05 12:06:08,2026-04-05 12:06:08
+52,dry white wine,dry white wines,,2026-04-05 12:06:08,2026-04-05 12:06:08
+53,chicken stock,chicken stocks,,2026-04-05 12:06:08,2026-04-05 12:06:08
+54,drained capers,,,2026-04-05 12:06:08,2026-04-05 12:06:08
+55,fresh parsley,fresh parsleys,,2026-04-05 12:06:08,2026-04-05 12:06:08
+56,freshly lemon zest,freshly lemon zests,,2026-04-05 12:06:08,2026-04-05 12:06:08
+57,sauce,sauces,,2026-04-05 12:06:08,2026-04-05 12:06:08
+58,flank steak,flank steaks,,2026-04-05 12:06:12,2026-04-05 12:06:12
+59,soy sauce,soy sauces,,2026-04-05 12:06:12,2026-04-05 12:06:12
+60,sesame oil,sesame oils,,2026-04-05 12:06:12,2026-04-05 12:06:12
+61,light or dark brown sugar,light or dark brown sugars,,2026-04-05 12:06:12,2026-04-05 12:06:12
+62,mirin,mirins,,2026-04-05 12:06:12,2026-04-05 12:06:12
+63,ground white pepper,ground white peppers,,2026-04-05 12:06:12,2026-04-05 12:06:12
+64,cornstarch,cornstarchs,,2026-04-05 12:06:12,2026-04-05 12:06:12
+65,vegetable oil,vegetable oils,,2026-04-05 12:06:12,2026-04-05 12:06:12
+66,piece ginger,piece gingers,,2026-04-05 12:06:12,2026-04-05 12:06:12
+67,medium cloves garlic,medium cloves garlics,,2026-04-05 12:06:12,2026-04-05 12:06:12
+68,10 whole dried red chiles,,,2026-04-05 12:06:12,2026-04-05 12:06:12
+69,scallions,,,2026-04-05 12:06:12,2026-04-05 12:06:12
+70,Shaoxing wine or dry sherry,Shaoxing wine or dry sherries,,2026-04-05 12:06:12,2026-04-05 12:06:12
+71,steamed jasmine rice ,steamed jasmine rice s,,2026-04-05 12:06:12,2026-04-05 12:06:12
+72,oil,oils,,2026-04-05 12:06:13,2026-04-05 12:06:13
+73,of choice ),of choice )s,,2026-04-05 12:06:13,2026-04-05 12:06:13
+74,large onion (,large onion (s,,2026-04-05 12:06:13,2026-04-05 12:06:13
+75,cloves (,cloves (s,,2026-04-05 12:06:13,2026-04-05 12:06:13
+76,flour ),flour )s,,2026-04-05 12:06:13,2026-04-05 12:06:13
+77,beef stock/broth,beef stock/broths,,2026-04-05 12:06:13,2026-04-05 12:06:13
+78,salt,salts,,2026-04-05 12:06:13,2026-04-05 12:06:13
+79,black pepper,black peppers,,2026-04-05 12:06:13,2026-04-05 12:06:13
+80,potato,potatoes,,2026-04-05 12:06:13,2026-04-05 12:06:13
+81,Peas,,,2026-04-05 12:06:13,2026-04-05 12:06:13
+82,boneless,,,2026-04-05 12:06:18,2026-04-05 12:06:18
+83,hoisin sauce,hoisin sauces,,2026-04-05 12:06:18,2026-04-05 12:06:18
+84,large garlic cloves,,,2026-04-05 12:06:18,2026-04-05 12:06:18
+85,tomato paste,tomato pastes,,2026-04-05 12:06:18,2026-04-05 12:06:18
+86,balsamic vinegar,balsamic vinegars,,2026-04-05 12:06:18,2026-04-05 12:06:18
+87,red pepper,red peppers,,2026-04-05 12:06:18,2026-04-05 12:06:18
+88,block firm tofu,block firm tofus,,2026-04-05 12:06:21,2026-04-05 12:06:21
+89,asparagus,,,2026-04-05 12:06:21,2026-04-05 12:06:21
+90,neutral-flavored oil,neutral-flavored oils,,2026-04-05 12:06:21,2026-04-05 12:06:21
+91,white or light miso,white or light misoes,,2026-04-05 12:06:21,2026-04-05 12:06:21
+92,sake,sakes,,2026-04-05 12:06:21,2026-04-05 12:06:21
+93,rice vinegar,rice vinegars,,2026-04-05 12:06:21,2026-04-05 12:06:21
+94,15 ounces frozen French fries,,,2026-04-05 12:06:25,2026-04-05 12:06:25
+95,mayonnaise,mayonnaises,,2026-04-05 12:06:25,2026-04-05 12:06:25
+96,capers,,,2026-04-05 12:06:25,2026-04-05 12:06:25
+278,whole cloves,,,2026-04-05 12:07:46,2026-04-05 12:07:46
+97,distilled white vinegar,distilled white vinegars,,2026-04-05 12:06:25,2026-04-05 12:06:25
+98,fresh dill or parsley,fresh dill or parsleys,,2026-04-05 12:06:25,2026-04-05 12:06:25
+99,kosher salt and black pepper,kosher salt and black peppers,,2026-04-05 12:06:25,2026-04-05 12:06:25
+100,flaky white fish fillets,,,2026-04-05 12:06:25,2026-04-05 12:06:25
+101,panko bread crumbs,,,2026-04-05 12:06:25,2026-04-05 12:06:25
+102,leek,leeks,,2026-04-05 12:06:28,2026-04-05 12:06:28
+103,and black pepper,and black peppers,,2026-04-05 12:06:28,2026-04-05 12:06:28
+104,button mushrooms,,,2026-04-05 12:06:28,2026-04-05 12:06:28
+105,sprig,sprigs,,2026-04-05 12:06:28,2026-04-05 12:06:28
+106,medium carrots,,,2026-04-05 12:06:28,2026-04-05 12:06:28
+107,chicken thighs,,,2026-04-05 12:06:28,2026-04-05 12:06:28
+108,baking powder,baking powders,,2026-04-05 12:06:28,2026-04-05 12:06:28
+109,baking soda,baking sodas,,2026-04-05 12:06:28,2026-04-05 12:06:28
+110,3 tablespoons unsalted butter,3 tablespoons unsalted butters,,2026-04-05 12:06:28,2026-04-05 12:06:28
+111,buttermilk,buttermilks,,2026-04-05 12:06:29,2026-04-05 12:06:29
+112,egg,eggs,,2026-04-05 12:06:29,2026-04-05 12:06:29
+113,coconut oil,coconut oils,,2026-04-05 12:06:32,2026-04-05 12:06:32
+114,whole black peppercorns,,,2026-04-05 12:06:32,2026-04-05 12:06:32
+115,bone-in,bone-ins,,2026-04-05 12:06:32,2026-04-05 12:06:32
+116,unsweetened coconut milk,unsweetened coconut milks,,2026-04-05 12:06:32,2026-04-05 12:06:32
+117,coconut vinegar,coconut vinegars,,2026-04-05 12:06:32,2026-04-05 12:06:32
+118,bay leaves,,,2026-04-05 12:06:32,2026-04-05 12:06:32
+119,rice,rices,,2026-04-05 12:06:32,2026-04-05 12:06:32
+120,pasta shells,,,2026-04-05 12:06:34,2026-04-05 12:06:34
+121,ricotta cheese,ricotta cheeses,,2026-04-05 12:06:34,2026-04-05 12:06:34
+122,mozzarella cheese,mozzarella cheeses,,2026-04-05 12:06:34,2026-04-05 12:06:34
+123,Italian seasoning,Italian seasonings,,2026-04-05 12:06:34,2026-04-05 12:06:34
+124,and pepper to taste,and pepper to tastes,,2026-04-05 12:06:34,2026-04-05 12:06:34
+125,parmesan cheese,parmesan cheeses,,2026-04-05 12:06:34,2026-04-05 12:06:34
+126,marinara sauce,marinara sauces,,2026-04-05 12:06:34,2026-04-05 12:06:34
+127,parsley (),parsley ()s,,2026-04-05 12:06:34,2026-04-05 12:06:34
+128,spray,sprays,,2026-04-05 12:06:34,2026-04-05 12:06:34
+129,butter,butters,,2026-04-05 12:06:35,2026-04-05 12:06:35
+130,onion (),onion ()s,,2026-04-05 12:06:35,2026-04-05 12:06:35
+131,vegetable broth,vegetable broths,,2026-04-05 12:06:35,2026-04-05 12:06:35
+132,medium red potatoes (),medium red potatoes ()s,,2026-04-05 12:06:35,2026-04-05 12:06:35
+133,corn ((kernels removed from cob,corn ((kernels removed from cobs,,2026-04-05 12:06:35,2026-04-05 12:06:35
+134,corn starch (+ 2-3 tbsp water,corn starch (+ 2-3 tbsp waters,,2026-04-05 12:06:35,2026-04-05 12:06:35
+135,half and half,half and halfs,,2026-04-05 12:06:35,2026-04-05 12:06:35
+136,cheddar cheese,cheddar cheeses,,2026-04-05 12:06:35,2026-04-05 12:06:35
+137,pinch salt,pinch salts,,2026-04-05 12:06:35,2026-04-05 12:06:35
+138,2 tablespoons chile crisp,2 tablespoons chile crisps,,2026-04-05 12:06:39,2026-04-05 12:06:39
+139,heavy cream,heavy creams,,2026-04-05 12:06:39,2026-04-05 12:06:39
+140,dried fettuccine,dried fettuccines,,2026-04-05 12:06:39,2026-04-05 12:06:39
+141,package baby spinach,package baby spinachs,,2026-04-05 12:06:39,2026-04-05 12:06:39
+142,large sweet onions (),large sweet onions ()s,,2026-04-05 12:06:40,2026-04-05 12:06:40
+143,lb. pork shoulder roast,lb. pork shoulder roasts,,2026-04-05 12:06:40,2026-04-05 12:06:40
+144,McCormick Grill Mates Garlic &amp; Herb Seasoning Mix,McCormick Grill Mates Garlic &amp; Herb Seasoning Mixes,,2026-04-05 12:06:40,2026-04-05 12:06:40
+145,of chicken broth,of chicken broths,,2026-04-05 12:06:40,2026-04-05 12:06:40
+146,can tomato sauce,can tomato sauces,,2026-04-05 12:06:45,2026-04-05 12:06:45
+147,ketchup,ketchups,,2026-04-05 12:06:45,2026-04-05 12:06:45
+148,Worcestershire sauce,Worcestershire sauces,,2026-04-05 12:06:45,2026-04-05 12:06:45
+149,prepared yellow mustard,prepared yellow mustards,,2026-04-05 12:06:45,2026-04-05 12:06:45
+150,dry mustard,dry mustards,,2026-04-05 12:06:45,2026-04-05 12:06:45
+151,molasses,,,2026-04-05 12:06:45,2026-04-05 12:06:45
+152,orange zest,orange zests,,2026-04-05 12:06:45,2026-04-05 12:06:45
+153,Pinch of ground cloves,,,2026-04-05 12:06:45,2026-04-05 12:06:45
+154,sauce to taste,sauce to tastes,,2026-04-05 12:06:45,2026-04-05 12:06:45
+155,ground beef,ground beefs,,2026-04-05 12:06:46,2026-04-05 12:06:46
+156,small onion,small onions,,2026-04-05 12:06:46,2026-04-05 12:06:46
+157,whole-wheat hamburger buns,,,2026-04-05 12:06:46,2026-04-05 12:06:46
+158,large red or yellow onion,large red or yellow onions,,2026-04-05 12:06:49,2026-04-05 12:06:49
+159,can chipotle peppers in adobo sauce,can chipotle peppers in adobo sauces,,2026-04-05 12:06:49,2026-04-05 12:06:49
+160,ground cumin,ground cumins,,2026-04-05 12:06:49,2026-04-05 12:06:49
+161,dried oregano,dried oreganoes,,2026-04-05 12:06:49,2026-04-05 12:06:49
+162,chicken broth or stock,chicken broth or stocks,,2026-04-05 12:06:49,2026-04-05 12:06:49
+163,frozen corn,frozen corns,,2026-04-05 12:06:49,2026-04-05 12:06:49
+164,can pozole,can pozoles,,2026-04-05 12:06:49,2026-04-05 12:06:49
+165,of 1 lime,of 1 limes,,2026-04-05 12:06:49,2026-04-05 12:06:49
+166,tortilla chips,,,2026-04-05 12:06:49,2026-04-05 12:06:49
+167,peppers,,,2026-04-05 12:06:53,2026-04-05 12:06:53
+168,curry powder,curry powders,,2026-04-05 12:06:53,2026-04-05 12:06:53
+169,rice vermicelli,rice vermicellis,,2026-04-05 12:06:53,2026-04-05 12:06:53
+170,large onion,large onions,,2026-04-05 12:06:56,2026-04-05 12:06:56
+171,large carrot,large carrots,,2026-04-05 12:06:56,2026-04-05 12:06:56
+172,sturdy greens,,,2026-04-05 12:06:56,2026-04-05 12:06:56
+173,ground turkey,ground turkeys,,2026-04-05 12:06:56,2026-04-05 12:06:56
+174,fresh ginger,fresh gingers,,2026-04-05 12:06:56,2026-04-05 12:06:56
+175,cans white beans,,,2026-04-05 12:06:56,2026-04-05 12:06:56
+176,fresh,freshs,,2026-04-05 12:06:56,2026-04-05 12:06:56
+177,lemon juice,lemon juices,,2026-04-05 12:06:56,2026-04-05 12:06:56
+178,chicken broth,chicken broths,,2026-04-05 12:07:00,2026-04-05 12:07:00
+179,lean ground turkey,lean ground turkeys,,2026-04-05 12:07:00,2026-04-05 12:07:00
+180,cup fresh parsley leaves,,,2026-04-05 12:07:00,2026-04-05 12:07:00
+181,4 garlic cloves,,,2026-04-05 12:07:00,2026-04-05 12:07:00
+182,freshly Parmesan,freshly Parmesans,,2026-04-05 12:07:00,2026-04-05 12:07:00
+183,orzo,orzoes,,2026-04-05 12:07:00,2026-04-05 12:07:00
+184,cups baby spinach or kale,cups baby spinach or kales,,2026-04-05 12:07:00,2026-04-05 12:07:00
+185,lemon,lemons,,2026-04-05 12:07:00,2026-04-05 12:07:00
+186,fresh dill,fresh dills,,2026-04-05 12:07:00,2026-04-05 12:07:00
+187,thick-cut bacon,thick-cut bacons,,2026-04-05 12:07:03,2026-04-05 12:07:03
+188,1 cup vodka,1 cup vodkas,,2026-04-05 12:07:03,2026-04-05 12:07:03
+189,fusilli,fusillis,,2026-04-05 12:07:03,2026-04-05 12:07:03
+190,Pecorino Romano or Parmesan,Pecorino Romano or Parmesans,,2026-04-05 12:07:03,2026-04-05 12:07:03
+191,cup/8 ounces whole-milk ricotta,cup/8 ounces whole-milk ricottas,,2026-04-05 12:07:03,2026-04-05 12:07:03
+192,flat-leaf parsley or basil,flat-leaf parsley or basils,,2026-04-05 12:07:03,2026-04-05 12:07:03
+193,mayonnaise (preferably a sweeter one,mayonnaise (preferably a sweeter ones,,2026-04-05 12:07:07,2026-04-05 12:07:07
+194,plus 1 teaspoon smoked paprika,plus 1 teaspoon smoked paprikas,,2026-04-05 12:07:07,2026-04-05 12:07:07
+195,and freshly cracked black pepper,and freshly cracked black peppers,,2026-04-05 12:07:07,2026-04-05 12:07:07
+196,baby potatoes,,,2026-04-05 12:07:07,2026-04-05 12:07:07
+197,lime,limes,,2026-04-05 12:07:07,2026-04-05 12:07:07
+198,parsley leaves and tender stems,,,2026-04-05 12:07:07,2026-04-05 12:07:07
+199,fresh baby spinach,fresh baby spinachs,,2026-04-05 12:07:10,2026-04-05 12:07:10
+200,jar marinara sauce,jar marinara sauces,,2026-04-05 12:07:10,2026-04-05 12:07:10
+201,fresh basil leaves,,,2026-04-05 12:07:10,2026-04-05 12:07:10
+202,low-moisture mozzarella cheese,low-moisture mozzarella cheeses,,2026-04-05 12:07:10,2026-04-05 12:07:10
+203,ground chicken or turkey,ground chicken or turkeys,,2026-04-05 12:07:14,2026-04-05 12:07:14
+204,piece of fresh ginger,piece of fresh gingers,,2026-04-05 12:07:14,2026-04-05 12:07:14
+205,1 1/2 teaspoons red-pepper flakes,,,2026-04-05 12:07:14,2026-04-05 12:07:14
+206,neutral oil,neutral oils,,2026-04-05 12:07:14,2026-04-05 12:07:14
+207,cooked,cookeds,,2026-04-05 12:07:14,2026-04-05 12:07:14
+208,frozen peas,,,2026-04-05 12:07:14,2026-04-05 12:07:14
+209,combination of chile sauce,combination of chile sauces,,2026-04-05 12:07:14,2026-04-05 12:07:14
+210,large boneless and skinless chicken breast halves,,,2026-04-05 12:07:18,2026-04-05 12:07:18
+211,slices smoked ham,slices smoked hams,,2026-04-05 12:07:18,2026-04-05 12:07:18
+212,Swiss cheese,Swiss cheeses,,2026-04-05 12:07:18,2026-04-05 12:07:18
+213,table salt,table salts,,2026-04-05 12:07:18,2026-04-05 12:07:18
+214,fresh bread crumbs,,,2026-04-05 12:07:18,2026-04-05 12:07:18
+215,plus 2 tablespoons chicken stock,plus 2 tablespoons chicken stocks,,2026-04-05 12:07:18,2026-04-05 12:07:18
+216,white wine,white wines,,2026-04-05 12:07:18,2026-04-05 12:07:18
+217,cans whole peeled tomatoes ,cans whole peeled tomatoes s,,2026-04-05 12:07:21,2026-04-05 12:07:21
+218,packages shelf-stable or refrigerated potato gnocchi,packages shelf-stable or refrigerated potato gnocchis,,2026-04-05 12:07:21,2026-04-05 12:07:21
+219,cups/8 ounces low-moisture mozzarella,cups/8 ounces low-moisture mozzarellas,,2026-04-05 12:07:21,2026-04-05 12:07:21
+220,torn basil leaves,,,2026-04-05 12:07:21,2026-04-05 12:07:21
+221,3 cups panko bread crumbs,,,2026-04-05 12:07:25,2026-04-05 12:07:25
+222,Simple Tomato Sauce,Simple Tomato Sauces,,2026-04-05 12:07:25,2026-04-05 12:07:25
+223,fresh mozzarella,fresh mozzarellas,,2026-04-05 12:07:25,2026-04-05 12:07:25
+224,9 large garlic cloves,,,2026-04-05 12:07:30,2026-04-05 12:07:30
+225,fresh sour orange juice,fresh sour orange juices,,2026-04-05 12:07:30,2026-04-05 12:07:30
+226,9 teaspoons kosher salt,9 teaspoons kosher salts,,2026-04-05 12:07:30,2026-04-05 12:07:30
+227,peeled and deveined medium shrimp,peeled and deveined medium shrimps,,2026-04-05 12:07:33,2026-04-05 12:07:33
+228,medium onion,medium onions,,2026-04-05 12:07:33,2026-04-05 12:07:33
+229,frozen mixed vegetables (any mix of carrots,,,2026-04-05 12:07:33,2026-04-05 12:07:33
+230,cooked jasmine or other long-grain white rice,cooked jasmine or other long-grain white rices,,2026-04-05 12:07:33,2026-04-05 12:07:33
+231,Yum Sauce,Yum Sauces,,2026-04-05 12:07:33,2026-04-05 12:07:33
+232,jumbo shrimp (16-20 count,jumbo shrimp (16-20 counts,,2026-04-05 12:07:35,2026-04-05 12:07:35
+233,½ teaspoon black pepper,½ teaspoon black peppers,,2026-04-05 12:07:35,2026-04-05 12:07:35
+234,unsalted butter (),unsalted butter ()s,,2026-04-05 12:07:35,2026-04-05 12:07:35
+235,cloves (),cloves ()s,,2026-04-05 12:07:35,2026-04-05 12:07:35
+236,Dijon mustard,Dijon mustards,,2026-04-05 12:07:35,2026-04-05 12:07:35
+237,½ teaspoon lemon zest,½ teaspoon lemon zests,,2026-04-05 12:07:35,2026-04-05 12:07:35
+238,fresh parsley (),fresh parsley ()s,,2026-04-05 12:07:35,2026-04-05 12:07:35
+239,fresh chives (),fresh chives ()s,,2026-04-05 12:07:35,2026-04-05 12:07:35
+240,½ teaspoon smoked paprika,½ teaspoon smoked paprikas,,2026-04-05 12:07:35,2026-04-05 12:07:35
+241,¼ teaspoon cayenne pepper,¼ teaspoon cayenne peppers,,2026-04-05 12:07:35,2026-04-05 12:07:35
+242,½ teaspoon red pepper flakes,,,2026-04-05 12:07:35,2026-04-05 12:07:35
+243,½ teaspoon kosher salt,½ teaspoon kosher salts,,2026-04-05 12:07:35,2026-04-05 12:07:35
+244,¼ teaspoon black pepper,¼ teaspoon black peppers,,2026-04-05 12:07:35,2026-04-05 12:07:35
+245,wedges for serving,wedges for servings,,2026-04-05 12:07:35,2026-04-05 12:07:35
+246,squash,squashs,,2026-04-05 12:07:36,2026-04-05 12:07:36
+247,½ cup crumbled feta cheese,½ cup crumbled feta cheeses,,2026-04-05 12:07:36,2026-04-05 12:07:36
+248,cherry or grape tomatoes,,,2026-04-05 12:07:36,2026-04-05 12:07:36
+249,½ teaspoon dried oregano,½ teaspoon dried oreganoes,,2026-04-05 12:07:36,2026-04-05 12:07:36
+250,basil,basils,,2026-04-05 12:07:36,2026-04-05 12:07:36
+251,2½ Tbsp doubanjiang,2½ Tbsp doubanjiangs,,2026-04-05 12:07:38,2026-04-05 12:07:38
+252,oyster sauce,oyster sauces,,2026-04-05 12:07:38,2026-04-05 12:07:38
+253,miso,misoes,,2026-04-05 12:07:38,2026-04-05 12:07:38
+254,½ Tbsp soy sauce,½ Tbsp soy sauces,,2026-04-05 12:07:38,2026-04-05 12:07:38
+255,potato starch or cornstarch,potato starch or cornstarchs,,2026-04-05 12:07:38,2026-04-05 12:07:38
+256,water,waters,,2026-04-05 12:07:38,2026-04-05 12:07:38
+257,ginger ),ginger )s,,2026-04-05 12:07:38,2026-04-05 12:07:38
+258,onions/scallions,,,2026-04-05 12:07:38,2026-04-05 12:07:38
+259,soft/silken tofu ),soft/silken tofu )s,,2026-04-05 12:07:38,2026-04-05 12:07:38
+260,½ lb ground pork ),½ lb ground pork )s,,2026-04-05 12:07:38,2026-04-05 12:07:38
+261,sansho pepper ),sansho pepper )s,,2026-04-05 12:07:38,2026-04-05 12:07:38
+262,Yukon gold potatoes,,,2026-04-05 12:07:41,2026-04-05 12:07:41
+263,cauliflower,cauliflowers,,2026-04-05 12:07:41,2026-04-05 12:07:41
+264,cans cannellini beans,,,2026-04-05 12:07:41,2026-04-05 12:07:41
+265,onion,onions,,2026-04-05 12:07:41,2026-04-05 12:07:41
+266,vegetable stock ,vegetable stock s,,2026-04-05 12:07:41,2026-04-05 12:07:41
+267,fresh thyme or 1/2 teaspoon dried thyme,fresh thyme or 1/2 teaspoon dried thymes,,2026-04-05 12:07:41,2026-04-05 12:07:41
+268,sour cream,sour creams,,2026-04-05 12:07:41,2026-04-05 12:07:41
+269,chives,,,2026-04-05 12:07:41,2026-04-05 12:07:41
+270,chips,,,2026-04-05 12:07:41,2026-04-05 12:07:41
+271,Cheddar,Cheddars,,2026-04-05 12:07:41,2026-04-05 12:07:41
+272,Pork loin,Pork loins,,2026-04-05 12:07:43,2026-04-05 12:07:43
+273,Rub,Rubs,,2026-04-05 12:07:43,2026-04-05 12:07:43
+274,lean,leans,,2026-04-05 12:07:46,2026-04-05 12:07:46
+275,and freshly ground pepper to taste,and freshly ground pepper to tastes,,2026-04-05 12:07:46,2026-04-05 12:07:46
+276,flour,flours,,2026-04-05 12:07:46,2026-04-05 12:07:46
+277,dry red wine,dry red wines,,2026-04-05 12:07:46,2026-04-05 12:07:46
+279,leaf,leafs,,2026-04-05 12:07:46,2026-04-05 12:07:46
+280,thyme,thymes,,2026-04-05 12:07:46,2026-04-05 12:07:46
+281,parsley,parsleys,,2026-04-05 12:07:46,2026-04-05 12:07:46
+282,ground paprika,ground paprikas,,2026-04-05 12:07:50,2026-04-05 12:07:50
+283,ground turmeric,ground turmerics,,2026-04-05 12:07:50,2026-04-05 12:07:50
+284,canola oil,canola oils,,2026-04-05 12:07:50,2026-04-05 12:07:50
+285,can unsweetened coconut milk,can unsweetened coconut milks,,2026-04-05 12:07:50,2026-04-05 12:07:50
+286,fish sauce,fish sauces,,2026-04-05 12:07:50,2026-04-05 12:07:50
+287,Madras curry powder,Madras curry powders,,2026-04-05 12:07:50,2026-04-05 12:07:50
+288,ground cayenne,ground cayennes,,2026-04-05 12:07:50,2026-04-05 12:07:50
+289,rice or noodles,,,2026-04-05 12:07:50,2026-04-05 12:07:50
+290,cilantro sprigs,,,2026-04-05 12:07:50,2026-04-05 12:07:50
+291,or lemon,or lemons,,2026-04-05 12:07:50,2026-04-05 12:07:50
+292,bone-in chicken thighs or breasts,,,2026-04-05 12:07:54,2026-04-05 12:07:54
+293,small white onion,small white onions,,2026-04-05 12:07:54,2026-04-05 12:07:54
+294,of garlic,of garlics,,2026-04-05 12:07:54,2026-04-05 12:07:54
+295,fresh tomatillos,,,2026-04-05 12:07:54,2026-04-05 12:07:54
+296,chiles or more to taste,chiles or more to tastes,,2026-04-05 12:07:54,2026-04-05 12:07:54
+297,5 tender stems of fresh cilantro,5 tender stems of fresh cilantroes,,2026-04-05 12:07:54,2026-04-05 12:07:54
+298,to taste,to tastes,,2026-04-05 12:07:54,2026-04-05 12:07:54
+299,corn tortillas,,,2026-04-05 12:07:54,2026-04-05 12:07:54
+300,crumbled queso fresco or cotija cheese,crumbled queso fresco or cotija cheeses,,2026-04-05 12:07:54,2026-04-05 12:07:54
+301,Mexican crema,Mexican cremas,,2026-04-05 12:07:54,2026-04-05 12:07:54
+302,medium-size white onion,medium-size white onions,,2026-04-05 12:07:54,2026-04-05 12:07:54
+303,large yellow onion,large yellow onions,,2026-04-05 12:07:57,2026-04-05 12:07:57
+304,salt and freshly ground pepper,salt and freshly ground peppers,,2026-04-05 12:07:57,2026-04-05 12:07:57
+305,can whole peeled tomatoes,,,2026-04-05 12:07:57,2026-04-05 12:07:57
+306,can tomato purée or sauce,can tomato purée or sauces,,2026-04-05 12:07:57,2026-04-05 12:07:57
+307,red pepper flakes,,,2026-04-05 12:07:57,2026-04-05 12:07:57
+308,ounces/1 pound ricotta,ounces/1 pound ricottas,,2026-04-05 12:07:57,2026-04-05 12:07:57
+309,Parmesan or Pecorino,Parmesan or Pecorinoes,,2026-04-05 12:07:57,2026-04-05 12:07:57
+310,ziti,zitis,,2026-04-05 12:07:57,2026-04-05 12:07:57
+311,frozen presteamed yakisoba noodles,,,2026-04-05 12:08:01,2026-04-05 12:08:01
+312,small yellow onion,small yellow onions,,2026-04-05 12:08:01,2026-04-05 12:08:01
+313,large red bell pepper,large red bell peppers,,2026-04-05 12:08:01,2026-04-05 12:08:01
+314,shiitake mushrooms,,,2026-04-05 12:08:01,2026-04-05 12:08:01
+315,baby kale,baby kales,,2026-04-05 12:08:01,2026-04-05 12:08:01
+316,low-sodium soy sauce,low-sodium soy sauces,,2026-04-05 12:08:01,2026-04-05 12:08:01
+317,ketchup ,ketchup s,,2026-04-05 12:08:01,2026-04-05 12:08:01
+318,chicken or vegetable stock,chicken or vegetable stocks,,2026-04-05 12:08:05,2026-04-05 12:08:05
+319,extra virgin olive oil,extra virgin olive oils,,2026-04-05 12:08:05,2026-04-05 12:08:05
+320,arborio or carnaroli rice,arborio or carnaroli rices,,2026-04-05 12:08:05,2026-04-05 12:08:05
+321,2 garlic cloves,,,2026-04-05 12:08:05,2026-04-05 12:08:05
+322,fresh thyme leaves,,,2026-04-05 12:08:05,2026-04-05 12:08:05
+323,ground pepper to taste,ground pepper to tastes,,2026-04-05 12:08:05,2026-04-05 12:08:05
+324,red kale,red kales,,2026-04-05 12:08:05,2026-04-05 12:08:05
+325,can red beans,,,2026-04-05 12:08:05,2026-04-05 12:08:05
+326,freshly Parmesan cheese,freshly Parmesan cheeses,,2026-04-05 12:08:05,2026-04-05 12:08:05
+327,smoked paprika,smoked paprikas,,2026-04-05 12:08:08,2026-04-05 12:08:08
+328,cans black beans,,,2026-04-05 12:08:08,2026-04-05 12:08:08
+329,boiling water,boiling waters,,2026-04-05 12:08:08,2026-04-05 12:08:08
+330,Cheddar or Manchego cheese,Cheddar or Manchego cheeses,,2026-04-05 12:08:08,2026-04-05 12:08:08
+331,/ 1.4 lb small potatoes ),/ 1.4 lb small potatoes )s,,2026-04-05 12:08:10,2026-04-05 12:08:10
+332,/ 2 - 2.4lb medium potatoes,,,2026-04-05 12:08:10,2026-04-05 12:08:10
+333,salt ),salt )s,,2026-04-05 12:08:10,2026-04-05 12:08:10
+334,/ 2 tbsp unsalted butter (,/ 2 tbsp unsalted butter (s,,2026-04-05 12:08:10,2026-04-05 12:08:10
+335,parsley (,parsley (s,,2026-04-05 12:08:10,2026-04-05 12:08:10
+336,sea salt and freshly ground black pepper,sea salt and freshly ground black peppers,,2026-04-05 12:08:13,2026-04-05 12:08:13
+337,jalapeño,jalapeñoes,,2026-04-05 12:08:13,2026-04-05 12:08:13
+338,coconut palm sugar or dark brown sugar,coconut palm sugar or dark brown sugars,,2026-04-05 12:08:13,2026-04-05 12:08:13
+339,plum tomatoes,,,2026-04-05 12:08:13,2026-04-05 12:08:13
+340,of torn fresh basil,of torn fresh basils,,2026-04-05 12:08:13,2026-04-05 12:08:13
+341,fresh thyme,fresh thymes,,2026-04-05 12:08:13,2026-04-05 12:08:13
+342,zest of 1 lemon,zest of 1 lemons,,2026-04-05 12:08:13,2026-04-05 12:08:13
+343,fine sea salt,fine sea salts,,2026-04-05 12:08:13,2026-04-05 12:08:13
+344,freshly ground black pepper,freshly ground black peppers,,2026-04-05 12:08:13,2026-04-05 12:08:13
+345,venison roast (shoulder or neck is best,venison roast (shoulder or neck is bests,,2026-04-05 12:08:15,2026-04-05 12:08:15
+346,1/2 tsp. salt,1/2 tsp. salts,,2026-04-05 12:08:15,2026-04-05 12:08:15
+347,Tbsp. high heat tolerant cooking fat (duck fat,Tbsp. high heat tolerant cooking fat (duck fats,,2026-04-05 12:08:15,2026-04-05 12:08:15
+348,1/2 cups venison stock or beef stock*,1/2 cups venison stock or beef stock*s,,2026-04-05 12:08:15,2026-04-05 12:08:15
+349,Tbsp. tomato paste,Tbsp. tomato pastes,,2026-04-05 12:08:15,2026-04-05 12:08:15
+350,Tbsp. balsamic vinegar,Tbsp. balsamic vinegars,,2026-04-05 12:08:15,2026-04-05 12:08:15
+351,1/2 tsp. Worchestershire sauce,1/2 tsp. Worchestershire sauces,,2026-04-05 12:08:15,2026-04-05 12:08:15
+352,tsp. dried thyme,tsp. dried thymes,,2026-04-05 12:08:15,2026-04-05 12:08:15
+353,tsp. dried parsley,tsp. dried parsleys,,2026-04-05 12:08:15,2026-04-05 12:08:15
+354,tsp. pepper,tsp. peppers,,2026-04-05 12:08:15,2026-04-05 12:08:15
+355,large,larges,,2026-04-05 12:08:15,2026-04-05 12:08:15
+356,lb. baby yellow potatoes,,,2026-04-05 12:08:15,2026-04-05 12:08:15
+357,carrots,,,2026-04-05 12:08:15,2026-04-05 12:08:15
+358,Tbsp. tapioca starch,Tbsp. tapioca starchs,,2026-04-05 12:08:15,2026-04-05 12:08:15
+359,1/2-inch cubed pumpkin,1/2-inch cubed pumpkins,,2026-04-05 12:08:22,2026-04-05 12:08:22
+360,ground mace,ground maces,,2026-04-05 12:08:22,2026-04-05 12:08:22
+361,hot homemade or canned vegetable stock,hot homemade or canned vegetable stocks,,2026-04-05 12:08:22,2026-04-05 12:08:22
+362,Jarlsberg cheese,Jarlsberg cheeses,,2026-04-05 12:08:22,2026-04-05 12:08:22
+363,sea salt and black pepper,sea salt and black peppers,,2026-04-05 12:08:25,2026-04-05 12:08:25
+364,extra-virgin olive oil or peanut oil,extra-virgin olive oil or peanut oils,,2026-04-05 12:08:25,2026-04-05 12:08:25
+365,large yellow or white onion,large yellow or white onions,,2026-04-05 12:08:25,2026-04-05 12:08:25
+366,or red bell peppers,,,2026-04-05 12:08:25,2026-04-05 12:08:25
+367,Fresno chiles or jalapeños,,,2026-04-05 12:08:25,2026-04-05 12:08:25
+368,cinnamon stick,cinnamon sticks,,2026-04-05 12:08:25,2026-04-05 12:08:25
+369,can black beans,,,2026-04-05 12:08:25,2026-04-05 12:08:25
+370,cherry tomatoes,,,2026-04-05 12:08:25,2026-04-05 12:08:25
+371,basmati rice,basmati rices,,2026-04-05 12:08:25,2026-04-05 12:08:25
+372,cilantro leaves,,,2026-04-05 12:08:25,2026-04-05 12:08:25
+373,wedges,,,2026-04-05 12:08:25,2026-04-05 12:08:25
+374,lean ground beef (OR chorizo,lean ground beef (OR chorizoes,,2026-04-05 12:08:27,2026-04-05 12:08:27
+375,each ground cumin,each ground cumins,,2026-04-05 12:08:27,2026-04-05 12:08:27
+376,cooked long grain white rice,cooked long grain white rices,,2026-04-05 12:08:27,2026-04-05 12:08:27
+377,½ cup canned black beans,,,2026-04-05 12:08:27,2026-04-05 12:08:27
+378,½ cup frozen or canned corn,½ cup frozen or canned corns,,2026-04-05 12:08:27,2026-04-05 12:08:27
+379,can fire tomatoes,,,2026-04-05 12:08:27,2026-04-05 12:08:27
+380,can green chiles,,,2026-04-05 12:08:27,2026-04-05 12:08:27
+381,½-1 cup mozzarella OR Mexican-blend cheese,½-1 cup mozzarella OR Mexican-blend cheeses,,2026-04-05 12:08:27,2026-04-05 12:08:27
+382,large egg yolks,,,2026-04-05 12:08:30,2026-04-05 12:08:30
+383,jar red bell peppers,,,2026-04-05 12:08:34,2026-04-05 12:08:34
+384,mixed fresh mushrooms,,,2026-04-05 12:08:34,2026-04-05 12:08:34
+385,piece fresh ginger,piece fresh gingers,,2026-04-05 12:08:34,2026-04-05 12:08:34
+386,makrut lime leaves,,,2026-04-05 12:08:34,2026-04-05 12:08:34
+387,shallots,,,2026-04-05 12:08:34,2026-04-05 12:08:34
+388,can coconut milk,can coconut milks,,2026-04-05 12:08:34,2026-04-05 12:08:34
+389,habanero chile,habanero chiles,,2026-04-05 12:08:34,2026-04-05 12:08:34
+390,large shrimp,large shrimps,,2026-04-05 12:08:34,2026-04-05 12:08:34
+391,white or brown rice,white or brown rices,,2026-04-05 12:08:34,2026-04-05 12:08:34
+392,mixed fresh herbs,,,2026-04-05 12:08:34,2026-04-05 12:08:34
+393,medium white onion (half cut into quarters,,,2026-04-05 12:08:38,2026-04-05 12:08:38
+394,chiles,,,2026-04-05 12:08:38,2026-04-05 12:08:38
+395,or pasilla chiles,,,2026-04-05 12:08:38,2026-04-05 12:08:38
+396,chiles de árbol,chiles de árbols,,2026-04-05 12:08:38,2026-04-05 12:08:38
+397,cumin seeds,,,2026-04-05 12:08:38,2026-04-05 12:08:38
+398,turkey broth,turkey broths,,2026-04-05 12:08:38,2026-04-05 12:08:38
+399,can hominy,can hominies,,2026-04-05 12:08:38,2026-04-05 12:08:38
+400,turkey meat,turkey meats,,2026-04-05 12:08:38,2026-04-05 12:08:38
+401,garam masala,garam masalas,,2026-04-05 12:08:41,2026-04-05 12:08:41
+402,ground coriander,ground corianders,,2026-04-05 12:08:41,2026-04-05 12:08:41
+403,whole-milk yogurt,whole-milk yogurts,,2026-04-05 12:08:41,2026-04-05 12:08:41
+404,cups cooked turkey,cups cooked turkeys,,2026-04-05 12:08:41,2026-04-05 12:08:41
+405,ghee or neutral-tasting oil,ghee or neutral-tasting oils,,2026-04-05 12:08:41,2026-04-05 12:08:41
+406,pods,,,2026-04-05 12:08:41,2026-04-05 12:08:41
+407,fresh cilantro,fresh cilantroes,,2026-04-05 12:08:41,2026-04-05 12:08:41
+408,of 1 small lemon,of 1 small lemons,,2026-04-05 12:08:41,2026-04-05 12:08:41
+409,fillets,,,2026-04-05 12:08:45,2026-04-05 12:08:45
+410,garlic clove,garlic cloves,,2026-04-05 12:08:45,2026-04-05 12:08:45
+411,skin-on salmon fillets,,,2026-04-05 12:08:45,2026-04-05 12:08:45
+412,medium yellow onion (),medium yellow onion ()s,,2026-04-05 12:08:46,2026-04-05 12:08:46
+413,bell pepper (),bell pepper ()s,,2026-04-05 12:08:46,2026-04-05 12:08:46
+414,skinless chicken breasts ),skinless chicken breasts )s,,2026-04-05 12:08:46,2026-04-05 12:08:46
+415,½ teaspoons garam masala,½ teaspoons garam masalas,,2026-04-05 12:08:46,2026-04-05 12:08:46
+416,salt and ground black pepper,salt and ground black peppers,,2026-04-05 12:08:46,2026-04-05 12:08:46
+417,can full-fat coconut milk,can full-fat coconut milks,,2026-04-05 12:08:46,2026-04-05 12:08:46
+418,),)s,,2026-04-05 12:08:46,2026-04-05 12:08:46
+419,cooked rice,cooked rices,,2026-04-05 12:08:46,2026-04-05 12:08:46
+420,¼ cup roughly fresh cilantro,¼ cup roughly fresh cilantroes,,2026-04-05 12:08:46,2026-04-05 12:08:46
+421,lb. chicken breasts,,,2026-04-05 12:08:49,2026-04-05 12:08:49
+422,seasoning of choice,seasoning of choices,,2026-04-05 12:08:49,2026-04-05 12:08:49
+423,large shallot,large shallots,,2026-04-05 12:08:49,2026-04-05 12:08:49
+424,sun-dried tomatoes packed in oil,sun-dried tomatoes packed in oils,,2026-04-05 12:08:49,2026-04-05 12:08:49
+425,store-bought gnocchi,store-bought gnocchis,,2026-04-05 12:08:49,2026-04-05 12:08:49
+426,cream,creams,,2026-04-05 12:08:49,2026-04-05 12:08:49
+427,packed spinach leaves,,,2026-04-05 12:08:49,2026-04-05 12:08:49
+428,and pepper,and peppers,,2026-04-05 12:08:49,2026-04-05 12:08:49
+429,butter ,butter s,,2026-04-05 12:08:53,2026-04-05 12:08:53
+430,celery,celeries,,2026-04-05 12:08:53,2026-04-05 12:08:53
+431,sweet paprika,sweet paprikas,,2026-04-05 12:08:53,2026-04-05 12:08:53
+432,all-purpose flour ,all-purpose flour s,,2026-04-05 12:08:53,2026-04-05 12:08:53
+433,apple cider vinegar,apple cider vinegars,,2026-04-05 12:08:53,2026-04-05 12:08:53
+434,1½ pounds boneless,,,2026-04-05 12:08:53,2026-04-05 12:08:53
+435,green beans,,,2026-04-05 12:08:53,2026-04-05 12:08:53
+436,heavy cream ,heavy cream s,,2026-04-05 12:08:53,2026-04-05 12:08:53
+437,1/2 teaspoon dried sage ,1/2 teaspoon dried sage s,,2026-04-05 12:08:53,2026-04-05 12:08:53
+438,1/2 teaspoon dried thyme,1/2 teaspoon dried thymes,,2026-04-05 12:08:53,2026-04-05 12:08:53
+439,16 dried or fresh lasagna noodles,,,2026-04-05 12:08:56,2026-04-05 12:08:56
+440,4 cups good tomato sauce,4 cups good tomato sauces,,2026-04-05 12:08:56,2026-04-05 12:08:56
+441,cooked spinach,cooked spinachs,,2026-04-05 12:08:56,2026-04-05 12:08:56
+442,ricotta,ricottas,,2026-04-05 12:08:56,2026-04-05 12:08:56
+443,mozzarella,mozzarellas,,2026-04-05 12:08:56,2026-04-05 12:08:56
+444,and freshly ground black pepper,and freshly ground black peppers,,2026-04-05 12:08:56,2026-04-05 12:08:56
+445,coconut milk,coconut milks,,2026-04-05 12:09:00,2026-04-05 12:09:00
+446,¼ cup soy sauce,¼ cup soy sauces,,2026-04-05 12:09:00,2026-04-05 12:09:00
+447,1½ cup rice vinegar,1½ cup rice vinegars,,2026-04-05 12:09:00,2026-04-05 12:09:00
+448,whole bird’s-eye chilies or other fiery chili,whole bird’s-eye chilies or other fiery chilis,,2026-04-05 12:09:00,2026-04-05 12:09:00
+449,leaves,,,2026-04-05 12:09:00,2026-04-05 12:09:00
+450,1½ teaspoons freshly ground black pepper,1½ teaspoons freshly ground black peppers,,2026-04-05 12:09:00,2026-04-05 12:09:00
+451,4 pounds chicken thighs,,,2026-04-05 12:09:00,2026-04-05 12:09:00
+452,seasoned birria fat plus&nbsp;1 cup leftover birria meat,seasoned birria fat plus&nbsp;1 cup leftover birria meats,,2026-04-05 12:09:03,2026-04-05 12:09:03
+453,tortillas,,,2026-04-05 12:09:03,2026-04-05 12:09:03
+454,low-moisture cheese,low-moisture cheeses,,2026-04-05 12:09:03,2026-04-05 12:09:03
+455,fresh cilantro leaves,,,2026-04-05 12:09:03,2026-04-05 12:09:03
+456,bone-in beef shoulder,bone-in beef shoulders,,2026-04-05 12:09:07,2026-04-05 12:09:07
+457,medium white onion,medium white onions,,2026-04-05 12:09:07,2026-04-05 12:09:07
+458,can tomatoes,,,2026-04-05 12:09:07,2026-04-05 12:09:07
+459,plus 2 tablespoons distilled white vinegar,plus 2 tablespoons distilled white vinegars,,2026-04-05 12:09:07,2026-04-05 12:09:07
+460,dried Mexican oregano,dried Mexican oreganoes,,2026-04-05 12:09:07,2026-04-05 12:09:07
+461,white sesame seeds,,,2026-04-05 12:09:07,2026-04-05 12:09:07
+462,stick,sticks,,2026-04-05 12:09:07,2026-04-05 12:09:07
+463,or dried bay leaves,,,2026-04-05 12:09:07,2026-04-05 12:09:07
+464,large shrimp (I use 16-20 count size,large shrimp (I use 16-20 count sizes,,2026-04-05 12:09:09,2026-04-05 12:09:09
+465,juice of one lemon,juice of one lemons,,2026-04-05 12:09:09,2026-04-05 12:09:09
+466,sweet or spicy Italian sausage,sweet or spicy Italian sausages,,2026-04-05 12:09:12,2026-04-05 12:09:12
+467,Pinch of red pepper,Pinch of red peppers,,2026-04-05 12:09:12,2026-04-05 12:09:12
+468,fresh basil,fresh basils,,2026-04-05 12:09:13,2026-04-05 12:09:13
+469,mostaccioli pasta,mostaccioli pastas,,2026-04-05 12:09:13,2026-04-05 12:09:13
+470,container whole-milk ricotta ,container whole-milk ricotta s,,2026-04-05 12:09:13,2026-04-05 12:09:13
+471,freshly mozzarella,freshly mozzarellas,,2026-04-05 12:09:13,2026-04-05 12:09:13
+472,4 pounds potatoes,,,2026-04-05 12:09:16,2026-04-05 12:09:16
+473,3 cups half-and-half or heavy cream,3 cups half-and-half or heavy creams,,2026-04-05 12:09:16,2026-04-05 12:09:16
+474,Parmesan or Gruyère,Parmesan or Gruyères,,2026-04-05 12:09:16,2026-04-05 12:09:16
+475,Pinch of nutmeg,Pinch of nutmegs,,2026-04-05 12:09:16,2026-04-05 12:09:16
+476,cooked bone-in ham,cooked bone-in hams,,2026-04-05 12:09:17,2026-04-05 12:09:17
+477,packed brown sugar,packed brown sugars,,2026-04-05 12:09:17,2026-04-05 12:09:17
+478,prepared mustard,prepared mustards,,2026-04-05 12:09:17,2026-04-05 12:09:17
+479,2 tablespoons cider vinegar,2 tablespoons cider vinegars,,2026-04-05 12:09:17,2026-04-05 12:09:17
+480,and zest of 2 limes,,,2026-04-05 12:09:21,2026-04-05 12:09:21
+481,basil leaves,,,2026-04-05 12:09:21,2026-04-05 12:09:21
+482,of corn,of corns,,2026-04-05 12:09:21,2026-04-05 12:09:21
+483,sea salt,sea salts,,2026-04-05 12:09:21,2026-04-05 12:09:21
+484,lemon zest plus 3 tablespoons lemon juice,lemon zest plus 3 tablespoons lemon juices,,2026-04-05 12:09:24,2026-04-05 12:09:24
+485,panko or homemade bread crumbs,,,2026-04-05 12:09:24,2026-04-05 12:09:24
+486,small garlic clove,small garlic cloves,,2026-04-05 12:09:24,2026-04-05 12:09:24
+487,or metal skewers,,,2026-04-05 12:09:28,2026-04-05 12:09:28
+488,plain Greek yogurt,plain Greek yogurts,,2026-04-05 12:09:28,2026-04-05 12:09:28
+489,ground ginger,ground gingers,,2026-04-05 12:09:28,2026-04-05 12:09:28
+490,pitted green olives,,,2026-04-05 12:09:28,2026-04-05 12:09:28
+491,cilantro or parsley,cilantro or parsleys,,2026-04-05 12:09:28,2026-04-05 12:09:28
+492,1 tablespoon lemon juice,1 tablespoon lemon juices,,2026-04-05 12:09:28,2026-04-05 12:09:28
+493,canola or vegetable oil,canola or vegetable oils,,2026-04-05 12:09:31,2026-04-05 12:09:31
+494,yellow onion,yellow onions,,2026-04-05 12:09:31,2026-04-05 12:09:31
+495,ancho chile powder,ancho chile powders,,2026-04-05 12:09:31,2026-04-05 12:09:31
+496,adobo sauce,adobo sauces,,2026-04-05 12:09:31,2026-04-05 12:09:31
+497,extra-large,extra-larges,,2026-04-05 12:09:31,2026-04-05 12:09:31
+498,jarred or homemade queso,jarred or homemade quesoes,,2026-04-05 12:09:31,2026-04-05 12:09:31
+499,cup very iceberg lettuce (cut into short,cup very iceberg lettuce (cut into shorts,,2026-04-05 12:09:31,2026-04-05 12:09:31
+500,homemade or storebought pico de gallo,homemade or storebought pico de galloes,,2026-04-05 12:09:31,2026-04-05 12:09:31
+501,shells,,,2026-04-05 12:09:31,2026-04-05 12:09:31
+502,or vegetable oil,or vegetable oils,,2026-04-05 12:09:31,2026-04-05 12:09:31
+503,steak,steaks,,2026-04-05 12:09:34,2026-04-05 12:09:34
+504,sriracha ,sriracha s,,2026-04-05 12:09:34,2026-04-05 12:09:34
+505,sugar ,sugar s,,2026-04-05 12:09:34,2026-04-05 12:09:34
+506,salt ,salt s,,2026-04-05 12:09:34,2026-04-05 12:09:34
+507,jasmine rice,jasmine rices,,2026-04-05 12:09:34,2026-04-05 12:09:34
+508,New Zealand baby lamb,New Zealand baby lambs,,2026-04-05 12:09:38,2026-04-05 12:09:38
+509,from 2 sprigs rosemary,from 2 sprigs rosemaries,,2026-04-05 12:09:38,2026-04-05 12:09:38
+510,medium chicken breasts (),medium chicken breasts ()s,,2026-04-05 12:09:39,2026-04-05 12:09:39
+511,bell pepper ),bell pepper )s,,2026-04-05 12:09:39,2026-04-05 12:09:39
+512,(),()s,,2026-04-05 12:09:39,2026-04-05 12:09:39
+513,broccoli florets,,,2026-04-05 12:09:39,2026-04-05 12:09:39
+514,tomatoes,,,2026-04-05 12:09:39,2026-04-05 12:09:39
+515,spaghetti,spaghettis,,2026-04-05 12:09:42,2026-04-05 12:09:42
+516,smoked turkey sausage,smoked turkey sausages,,2026-04-05 12:09:42,2026-04-05 12:09:42
+517,grape tomatoes,,,2026-04-05 12:09:42,2026-04-05 12:09:42
+518,of French or Italian bread submerged in cold water,of French or Italian bread submerged in cold waters,,2026-04-05 12:09:46,2026-04-05 12:09:46
+519,small peeled and small yellow onion,small peeled and small yellow onions,,2026-04-05 12:09:46,2026-04-05 12:09:46
+520,cloves of garlic,cloves of garlics,,2026-04-05 12:09:46,2026-04-05 12:09:46
+521,½ pounds 90/10 ground sirloin,½ pounds 90/10 ground sirloins,,2026-04-05 12:09:46,2026-04-05 12:09:46
+522,½ pounds ground pork,½ pounds ground porks,,2026-04-05 12:09:46,2026-04-05 12:09:46
+523,¼ cup fresh parsley,¼ cup fresh parsleys,,2026-04-05 12:09:46,2026-04-05 12:09:46
+524,½ tablespoons fresh rosemary,½ tablespoons fresh rosemaries,,2026-04-05 12:09:46,2026-04-05 12:09:46
+525,cup of Parmigiano Reggiano cheese,cup of Parmigiano Reggiano cheeses,,2026-04-05 12:09:46,2026-04-05 12:09:46
+526,½ tablespoons coarse salt and ½ teaspoon pepper,½ tablespoons coarse salt and ½ teaspoon peppers,,2026-04-05 12:09:46,2026-04-05 12:09:46
+527,uncooked spaghetti noodles,,,2026-04-05 12:09:46,2026-04-05 12:09:46
+528,½ batch of Pomodoro sauce,½ batch of Pomodoro sauces,,2026-04-05 12:09:46,2026-04-05 12:09:46
+529,pork fennel sausages,,,2026-04-05 12:09:49,2026-04-05 12:09:49
+530,4 medium bell peppers,,,2026-04-05 12:09:49,2026-04-05 12:09:49
+531,medium red onions,,,2026-04-05 12:09:49,2026-04-05 12:09:49
+532,red wine vinegar,red wine vinegars,,2026-04-05 12:09:49,2026-04-05 12:09:49
+533,Pinch of dried oregano,Pinch of dried oreganoes,,2026-04-05 12:09:49,2026-04-05 12:09:49
+534,or ginger,or gingers,,2026-04-05 12:09:53,2026-04-05 12:09:53
+535,cups baby spinach,cups baby spinachs,,2026-04-05 12:09:53,2026-04-05 12:09:53
+536,fresno,fresnoes,,2026-04-05 12:09:53,2026-04-05 12:09:53
+537,cup cilantro leaves and tender stems,,,2026-04-05 12:09:53,2026-04-05 12:09:53
+538,garlic powder ,garlic powder s,,2026-04-05 12:09:56,2026-04-05 12:09:56
+539,hot sauce,hot sauces,,2026-04-05 12:09:56,2026-04-05 12:09:56
+540,mild honey,mild honeys,,2026-04-05 12:09:56,2026-04-05 12:09:56
+541,salted butter,salted butters,,2026-04-05 12:10:00,2026-04-05 12:10:00
+542,lard,lards,,2026-04-05 12:10:00,2026-04-05 12:10:00
+543,yellow mustard,yellow mustards,,2026-04-05 12:10:00,2026-04-05 12:10:00
+544,bone-in pork-shoulder steaks,,,2026-04-05 12:10:00,2026-04-05 12:10:00
+545,rockfish,rockfishs,,2026-04-05 12:10:01,2026-04-05 12:10:01
+546,¼ cup flour,¼ cup flours,,2026-04-05 12:10:01,2026-04-05 12:10:01
+547,½ tsp black pepper,½ tsp black peppers,,2026-04-05 12:10:01,2026-04-05 12:10:01
+548,white wine or chicken stock,white wine or chicken stocks,,2026-04-05 12:10:01,2026-04-05 12:10:01
+549,Italian parsley,Italian parsleys,,2026-04-05 12:10:01,2026-04-05 12:10:01
+550,large leeks,,,2026-04-05 12:10:05,2026-04-05 12:10:05
+551,extra virgin olive oil or 1 tablespoon each olive oil and butter,extra virgin olive oil or 1 tablespoon each olive oil and butters,,2026-04-05 12:10:05,2026-04-05 12:10:05
+552,yolks,,,2026-04-05 12:10:05,2026-04-05 12:10:05
+553,whole egg,whole eggs,,2026-04-05 12:10:05,2026-04-05 12:10:05
+554,pie crust or whole wheat yeasted olive oil crust,pie crust or whole wheat yeasted olive oil crusts,,2026-04-05 12:10:05,2026-04-05 12:10:05
+555,milk,milks,,2026-04-05 12:10:05,2026-04-05 12:10:05
+556,Gruyère,Gruyères,,2026-04-05 12:10:05,2026-04-05 12:10:05
+557,honey,honeys,,2026-04-05 12:10:08,2026-04-05 12:10:08
+558,coconut or canola oil,coconut or canola oils,,2026-04-05 12:10:08,2026-04-05 12:10:08
+559,unseasoned rice vinegar or soy sauce,unseasoned rice vinegar or soy sauces,,2026-04-05 12:10:08,2026-04-05 12:10:08
+560,ginger,gingers,,2026-04-05 12:10:12,2026-04-05 12:10:12
+561,can tomato paste,can tomato pastes,,2026-04-05 12:10:12,2026-04-05 12:10:12
+562,lime zest,lime zests,,2026-04-05 12:10:12,2026-04-05 12:10:12
+563,lime juice,lime juices,,2026-04-05 12:10:12,2026-04-05 12:10:12
+564,coconut milk (if necessary,coconut milk (if necessaries,,2026-04-05 12:10:12,2026-04-05 12:10:12
+565,basmati or jasmine rice,basmati or jasmine rices,,2026-04-05 12:10:12,2026-04-05 12:10:12
+566,Naan,Naans,,2026-04-05 12:10:12,2026-04-05 12:10:12
+567,2 pounds small bone-in,2 pounds small bone-ins,,2026-04-05 12:10:15,2026-04-05 12:10:15
+568,small Yukon gold potatoes,,,2026-04-05 12:10:15,2026-04-05 12:10:15
+569,feta cheese,feta cheeses,,2026-04-05 12:10:15,2026-04-05 12:10:15
+570,uncooked Japanese short-grain rice,uncooked Japanese short-grain rices,,2026-04-05 12:10:19,2026-04-05 12:10:19
+571,salmon fillet,salmon fillets,,2026-04-05 12:10:19,2026-04-05 12:10:19
+572,nori,noris,,2026-04-05 12:10:19,2026-04-05 12:10:19
+573,white and black sesame seeds,,,2026-04-05 12:10:19,2026-04-05 12:10:19
+574,light brown sugar,light brown sugars,,2026-04-05 12:10:22,2026-04-05 12:10:22
+575,2 teaspoons neutral oil,2 teaspoons neutral oils,,2026-04-05 12:10:22,2026-04-05 12:10:22
+576,can Spam,can Spams,,2026-04-05 12:10:22,2026-04-05 12:10:22
+577,sushi nori,sushi noris,,2026-04-05 12:10:22,2026-04-05 12:10:22
+578,furikake,furikakes,,2026-04-05 12:10:22,2026-04-05 12:10:22
+579,6 cups cooked short-grain white rice,6 cups cooked short-grain white rices,,2026-04-05 12:10:23,2026-04-05 12:10:23
+580,package shelf-stable potato gnocchi,package shelf-stable potato gnocchis,,2026-04-05 12:10:26,2026-04-05 12:10:26
+581,large head broccoli,large head broccolis,,2026-04-05 12:10:26,2026-04-05 12:10:26
+582,¼ cup extra-virgin olive oil,¼ cup extra-virgin olive oils,,2026-04-05 12:10:26,2026-04-05 12:10:26
+583,hot or sweet Italian sausage,hot or sweet Italian sausages,,2026-04-05 12:10:26,2026-04-05 12:10:26
+584,½ lemon,½ lemons,,2026-04-05 12:10:26,2026-04-05 12:10:26
+585,dried thin egg noodles,,,2026-04-05 12:10:30,2026-04-05 12:10:30
+586,small green cabbage,small green cabbages,,2026-04-05 12:10:30,2026-04-05 12:10:30
+587,soy sauce ,soy sauce s,,2026-04-05 12:10:30,2026-04-05 12:10:30
+588,dark soy sauce,dark soy sauces,,2026-04-05 12:10:30,2026-04-05 12:10:30
+589,prepared horseradish,prepared horseradishs,,2026-04-05 12:10:33,2026-04-05 12:10:33
+590,dill,dills,,2026-04-05 12:10:33,2026-04-05 12:10:33
+591,lemon zest,lemon zests,,2026-04-05 12:10:33,2026-04-05 12:10:33
+592,Pinch fine sea salt,Pinch fine sea salts,,2026-04-05 12:10:33,2026-04-05 12:10:33
+593,skinless hake,skinless hakes,,2026-04-05 12:10:33,2026-04-05 12:10:33
+594,russet potatoes,,,2026-04-05 12:10:33,2026-04-05 12:10:33
+595,freshly squeezed lemon juice,freshly squeezed lemon juices,,2026-04-05 12:10:37,2026-04-05 12:10:37
+596,roughly fresh parsley,roughly fresh parsleys,,2026-04-05 12:10:37,2026-04-05 12:10:37
+597,venison loin or leg,venison loin or legs,,2026-04-05 12:10:37,2026-04-05 12:10:37
+598,medium green or savoy cabbage,medium green or savoy cabbages,,2026-04-05 12:10:40,2026-04-05 12:10:40
+599,unsalted butter ,unsalted butter s,,2026-04-05 12:10:40,2026-04-05 12:10:40
+600,salt and freshly ground black pepper,salt and freshly ground black peppers,,2026-04-05 12:10:40,2026-04-05 12:10:40
+601,white miso paste,white miso pastes,,2026-04-05 12:10:40,2026-04-05 12:10:40
+602,fresh lemon juice ,fresh lemon juice s,,2026-04-05 12:10:40,2026-04-05 12:10:40
+603,oregano,oreganoes,,2026-04-05 12:10:43,2026-04-05 12:10:43
+604,medium Yukon gold potato,medium Yukon gold potatoes,,2026-04-05 12:10:43,2026-04-05 12:10:43
+605,bouquet garni made with a bay leaf,bouquet garni made with a bay leafs,,2026-04-05 12:10:43,2026-04-05 12:10:43
+606,kale,kales,,2026-04-05 12:10:43,2026-04-05 12:10:43
+607,white beans,,,2026-04-05 12:10:43,2026-04-05 12:10:43
+608,ground pepper,ground peppers,,2026-04-05 12:10:43,2026-04-05 12:10:43
+609,Parmesan for serving,Parmesan for servings,,2026-04-05 12:10:43,2026-04-05 12:10:43
+610,vegetable stock or water,vegetable stock or waters,,2026-04-05 12:10:47,2026-04-05 12:10:47
+611,cilantro,cilantroes,,2026-04-05 12:10:47,2026-04-05 12:10:47
+612,pearl couscous,,,2026-04-05 12:10:47,2026-04-05 12:10:47
+613,feta,fetas,,2026-04-05 12:10:47,2026-04-05 12:10:47
+614,Foil,Foils,,2026-04-05 12:10:48,2026-04-05 12:10:48
+615,pan,pans,,2026-04-05 12:10:48,2026-04-05 12:10:48
+616,basting brush,basting brushs,,2026-04-05 12:10:48,2026-04-05 12:10:48
+617,Country-style pork ribs*,Country-style pork ribs*s,,2026-04-05 12:10:48,2026-04-05 12:10:48
+618,favorite BBQ sauce,favorite BBQ sauces,,2026-04-05 12:10:48,2026-04-05 12:10:48
+619,16 ounces fully cooked chicken sausage,16 ounces fully cooked chicken sausages,,2026-04-05 12:10:51,2026-04-05 12:10:51
+620,large fennel,large fennels,,2026-04-05 12:10:51,2026-04-05 12:10:51
+621,10 ounces fresh or frozen cheese,10 ounces fresh or frozen cheeses,,2026-04-05 12:10:51,2026-04-05 12:10:51
+622,vegetables (such as snap or snow peas,,,2026-04-05 12:10:51,2026-04-05 12:10:51
+623,medium to large raw shrimp,medium to large raw shrimps,,2026-04-05 12:10:54,2026-04-05 12:10:54
+624,green bell pepper,green bell peppers,,2026-04-05 12:10:54,2026-04-05 12:10:54
+625,ripe tomatoes with a little of their juice,ripe tomatoes with a little of their juices,,2026-04-05 12:10:54,2026-04-05 12:10:54
+626,dried thyme,dried thymes,,2026-04-05 12:10:54,2026-04-05 12:10:54
+627,Tabasco,Tabascoes,,2026-04-05 12:10:54,2026-04-05 12:10:54
+628,grits,,,2026-04-05 12:10:54,2026-04-05 12:10:54
+629,to 2 tablespoons chile crisp or chile paste,to 2 tablespoons chile crisp or chile pastes,,2026-04-05 12:10:58,2026-04-05 12:10:58
+630,sharp white Cheddar,sharp white Cheddars,,2026-04-05 12:10:58,2026-04-05 12:10:58
+631,orecchiette,orecchiettes,,2026-04-05 12:11:03,2026-04-05 12:11:03
+632,hot Italian sausage,hot Italian sausages,,2026-04-05 12:11:03,2026-04-05 12:11:03
+633,fresh orange juice,fresh orange juices,,2026-04-05 12:11:06,2026-04-05 12:11:06
+634,5 large guajillo chiles,,,2026-04-05 12:11:06,2026-04-05 12:11:06
+635,chiles in adobo,chiles in adoboes,,2026-04-05 12:11:06,2026-04-05 12:11:06
+636,¼ teaspoon ground cinnamon,¼ teaspoon ground cinnamons,,2026-04-05 12:11:06,2026-04-05 12:11:06
+637,1½ pounds boneless,,,2026-04-05 12:11:06,2026-04-05 12:11:06
+638,vegetable oil ,vegetable oil s,,2026-04-05 12:11:06,2026-04-05 12:11:06
+639,2½ cups fresh pineapple or 1 can of pineapple rings,,,2026-04-05 12:11:06,2026-04-05 12:11:06
+640,½ large onion,½ large onions,,2026-04-05 12:11:06,2026-04-05 12:11:06
+641,white fish fillets,,,2026-04-05 12:11:09,2026-04-05 12:11:09
+642,bread,breads,,2026-04-05 12:11:09,2026-04-05 12:11:09
+643,small fennel bulb,small fennel bulbs,,2026-04-05 12:11:13,2026-04-05 12:11:13
+644,fresh rosemary or thyme,fresh rosemary or thymes,,2026-04-05 12:11:13,2026-04-05 12:11:13
+645,large or 2 small bunches escarole,large or 2 small bunches escaroles,,2026-04-05 12:11:13,2026-04-05 12:11:13
+646,low-sodium vegetable or chicken broth,low-sodium vegetable or chicken broths,,2026-04-05 12:11:13,2026-04-05 12:11:13
+647,Parmesan or Pecorino Romano,Parmesan or Pecorino Romanoes,,2026-04-05 12:11:13,2026-04-05 12:11:13
+648,country bread,country breads,,2026-04-05 12:11:13,2026-04-05 12:11:13
+649,cooked chicken,cooked chickens,,2026-04-05 12:11:14,2026-04-05 12:11:14
+650,cream cheese,cream cheeses,,2026-04-05 12:11:14,2026-04-05 12:11:14
+651,FRANKS RedHot Original Cayenne Pepper Sauce,FRANKS RedHot Original Cayenne Pepper Sauces,,2026-04-05 12:11:14,2026-04-05 12:11:14
+652,ranch dressing,ranch dressings,,2026-04-05 12:11:14,2026-04-05 12:11:14
+653,blue cheese crumbles,,,2026-04-05 12:11:14,2026-04-05 12:11:14
+654,baking potatoes,,,2026-04-05 12:11:18,2026-04-05 12:11:18
+655,Pineapple,Pineapples,,2026-04-05 12:11:20,2026-04-05 12:11:20
+656,large celery stalks,,,2026-04-05 12:11:23,2026-04-05 12:11:23
+657,dry navy or great Northern beans,,,2026-04-05 12:11:23,2026-04-05 12:11:23
+658,sprigs or ½ teaspoon dried thyme,sprigs or ½ teaspoon dried thymes,,2026-04-05 12:11:23,2026-04-05 12:11:23
+659,hock or smoked ham shank,hock or smoked ham shanks,,2026-04-05 12:11:23,2026-04-05 12:11:23
+660,cooked ham,cooked hams,,2026-04-05 12:11:23,2026-04-05 12:11:23
+661,of 8 manicotti shells,,,2026-04-05 12:11:26,2026-04-05 12:11:26
+662,ricotta cheese stuffing,ricotta cheese stuffings,,2026-04-05 12:11:26,2026-04-05 12:11:26
+663,Bolognese sauce,Bolognese sauces,,2026-04-05 12:11:26,2026-04-05 12:11:26
+664,each salt and white vinegar,each salt and white vinegars,,2026-04-05 12:11:28,2026-04-05 12:11:28
+665,honey (corn syrup,honey (corn syrups,,2026-04-05 12:11:28,2026-04-05 12:11:28
+666,medium onion (),medium onion ()s,,2026-04-05 12:11:28,2026-04-05 12:11:28
+667,garlic (),garlic ()s,,2026-04-05 12:11:28,2026-04-05 12:11:28
+668,pepper (),pepper ()s,,2026-04-05 12:11:28,2026-04-05 12:11:28
+669,sesame seeds,,,2026-04-05 12:11:28,2026-04-05 12:11:28
+670,potatoes (medium to large,potatoes (medium to larges,,2026-04-05 12:11:30,2026-04-05 12:11:30
+671,gold potatoes (medium to large,gold potatoes (medium to larges,,2026-04-05 12:11:30,2026-04-05 12:11:30
+672,extra virgin olive oil or vegan butter,extra virgin olive oil or vegan butters,,2026-04-05 12:11:30,2026-04-05 12:11:30
+673,dried parsley,dried parsleys,,2026-04-05 12:11:30,2026-04-05 12:11:30
+674,thyme leaves (,thyme leaves (s,,2026-04-05 12:11:30,2026-04-05 12:11:30
+675,nutritional yeast,nutritional yeasts,,2026-04-05 12:11:30,2026-04-05 12:11:30
+676,pre- rib eye beef ),pre- rib eye beef )s,,2026-04-05 12:11:31,2026-04-05 12:11:31
+677,Asian Pear ),Asian Pear )s,,2026-04-05 12:11:31,2026-04-05 12:11:31
+678,regular soy sauce,regular soy sauces,,2026-04-05 12:11:31,2026-04-05 12:11:31
+679,brown sugar,brown sugars,,2026-04-05 12:11:31,2026-04-05 12:11:31
+680,olive or vegetable oil,olive or vegetable oils,,2026-04-05 12:11:36,2026-04-05 12:11:36
+681,low-sodium beef stock or broth,low-sodium beef stock or broths,,2026-04-05 12:11:36,2026-04-05 12:11:36
+682,russet or Yukon gold potatoes,,,2026-04-05 12:11:36,2026-04-05 12:11:36
+683,mixed vegetables,,,2026-04-05 12:11:36,2026-04-05 12:11:36
+684,2 tablespoons extra-virgin olive oil,2 tablespoons extra-virgin olive oils,,2026-04-05 12:11:39,2026-04-05 12:11:39
+685,good-size scallions or 3 bunches thin scallions,,,2026-04-05 12:11:39,2026-04-05 12:11:39
+686,flat-leaf parsley,flat-leaf parsleys,,2026-04-05 12:11:39,2026-04-05 12:11:39
+687,whole wheat pâte brisée pie crust,whole wheat pâte brisée pie crusts,,2026-04-05 12:11:39,2026-04-05 12:11:39
+688,matchstick carrots,,,2026-04-05 12:11:40,2026-04-05 12:11:40
+689,can evaporated milk,can evaporated milks,,2026-04-05 12:11:40,2026-04-05 12:11:40
+690,quart chicken stock,quart chicken stocks,,2026-04-05 12:11:40,2026-04-05 12:11:40
+691,cooked chicken (or 1.5 lbs raw,cooked chicken (or 1.5 lbs raws,,2026-04-05 12:11:40,2026-04-05 12:11:40
+692,fresh thyme (or 1 teaspoon dried thyme,fresh thyme (or 1 teaspoon dried thymes,,2026-04-05 12:11:40,2026-04-05 12:11:40
+693,freshly cracked black pepper,freshly cracked black peppers,,2026-04-05 12:11:40,2026-04-05 12:11:40
+694,tablespoon,tablespoons,,2026-04-05 12:11:40,2026-04-05 12:11:40
+695,whole milk,whole milks,,2026-04-05 12:11:40,2026-04-05 12:11:40
+696,butter (),butter ()s,,2026-04-05 12:11:40,2026-04-05 12:11:40
+697,aged white Cheddar,aged white Cheddars,,2026-04-05 12:11:44,2026-04-05 12:11:44
+698,sprigs fresh rosemary,sprigs fresh rosemaries,,2026-04-05 12:11:44,2026-04-05 12:11:44
+699,lean ground beef,lean ground beefs,,2026-04-05 12:11:44,2026-04-05 12:11:44
+700,ground lamb,ground lambs,,2026-04-05 12:11:44,2026-04-05 12:11:44
+701,beef stock,beef stocks,,2026-04-05 12:11:44,2026-04-05 12:11:44
+702,loose sweet Italian sausage or sausage links,,,2026-04-05 12:11:53,2026-04-05 12:11:53
+703,medium white or yellow onion,medium white or yellow onions,,2026-04-05 12:11:53,2026-04-05 12:11:53
+704,dried fennel seeds,,,2026-04-05 12:11:53,2026-04-05 12:11:53
+705,and black pepper ,and black pepper s,,2026-04-05 12:11:53,2026-04-05 12:11:53
+706,tomato paste ,tomato paste s,,2026-04-05 12:11:53,2026-04-05 12:11:53
+707,can tomato purée,can tomato purées,,2026-04-05 12:11:53,2026-04-05 12:11:53
+708,vegetable or chicken stock ,vegetable or chicken stock s,,2026-04-05 12:11:53,2026-04-05 12:11:53
+709,package refrigerated or frozen cheese tortellini ,package refrigerated or frozen cheese tortellini s,,2026-04-05 12:11:53,2026-04-05 12:11:53
+710,Tuscan kale,Tuscan kales,,2026-04-05 12:11:53,2026-04-05 12:11:53
+711,roughly fresh basil ,roughly fresh basil s,,2026-04-05 12:11:53,2026-04-05 12:11:53
+712,or yellow onion,or yellow onions,,2026-04-05 12:11:58,2026-04-05 12:11:58
+713,black or brown mustard seeds,,,2026-04-05 12:11:58,2026-04-05 12:11:58
+714,stalks,,,2026-04-05 12:11:58,2026-04-05 12:11:58
+715,large apple,large apples,,2026-04-05 12:11:58,2026-04-05 12:11:58
+716,masoor dal,masoor dals,,2026-04-05 12:11:58,2026-04-05 12:11:58
+717,can coconut milk ,can coconut milk s,,2026-04-05 12:11:58,2026-04-05 12:11:58
+718,brussels sprouts (or cruciferous vegetables like broccoli,brussels sprouts (or cruciferous vegetables like broccolis,,2026-04-05 12:12:01,2026-04-05 12:12:01
+719,package shelf-stable or refrigerated potato gnocchi,package shelf-stable or refrigerated potato gnocchis,,2026-04-05 12:12:01,2026-04-05 12:12:01
+720,Crystal hot sauce,Crystal hot sauces,,2026-04-05 12:12:05,2026-04-05 12:12:05
+721,anchovy,anchovies,,2026-04-05 12:12:05,2026-04-05 12:12:05
+722,oysters,,,2026-04-05 12:12:05,2026-04-05 12:12:05
+723, fresh parsley, fresh parsleys,,2026-04-05 12:12:09,2026-04-05 12:12:09
+724,small-to-medium lamb shanks,,,2026-04-05 12:12:13,2026-04-05 12:12:13
+725,and ground black pepper,and ground black peppers,,2026-04-05 12:12:13,2026-04-05 12:12:13
+726,large green bell pepper,large green bell peppers,,2026-04-05 12:12:13,2026-04-05 12:12:13
+727,dill seed,dill seeds,,2026-04-05 12:12:13,2026-04-05 12:12:13
+728,ground cinnamon,ground cinnamons,,2026-04-05 12:12:13,2026-04-05 12:12:13
+729,Masa Harina,Masa Harinas,,2026-04-05 12:12:14,2026-04-05 12:12:14
+730,broth ((beef,broth ((beefs,,2026-04-05 12:12:14,2026-04-05 12:12:14
+731,cumin,cumins,,2026-04-05 12:12:14,2026-04-05 12:12:14
+732,package dried corn husks,,,2026-04-05 12:12:14,2026-04-05 12:12:14
+733,chili pork,chili porks,,2026-04-05 12:12:14,2026-04-05 12:12:14
+734,verde chicken,verde chickens,,2026-04-05 12:12:14,2026-04-05 12:12:14
+735,and cheese,and cheeses,,2026-04-05 12:12:14,2026-04-05 12:12:14
+736,Mexican Rice (,Mexican Rice (s,,2026-04-05 12:12:14,2026-04-05 12:12:14
+737,skinless,,,2026-04-05 12:12:17,2026-04-05 12:12:17
+738,light agave syrup or honey,light agave syrup or honeys,,2026-04-05 12:12:17,2026-04-05 12:12:17
+739,Tajín Clásico,Tajín Clásicoes,,2026-04-05 12:12:17,2026-04-05 12:12:17
+740,cilantro leaves and tender stems,,,2026-04-05 12:12:17,2026-04-05 12:12:17
+741,jerk seasoning,jerk seasonings,,2026-04-05 12:12:21,2026-04-05 12:12:21
+742,penne pasta,penne pastas,,2026-04-05 12:12:21,2026-04-05 12:12:21
+743,thyme sprigs,,,2026-04-05 12:12:21,2026-04-05 12:12:21
+744,bonnet pepper,bonnet peppers,,2026-04-05 12:12:21,2026-04-05 12:12:21
+745,vegetable or chicken stock,vegetable or chicken stocks,,2026-04-05 12:12:21,2026-04-05 12:12:21
+746,loosely packed dill,loosely packed dills,,2026-04-05 12:12:25,2026-04-05 12:12:25
+747,full-fat Greek yogurt,full-fat Greek yogurts,,2026-04-05 12:12:25,2026-04-05 12:12:25
+748,ground turkey or chicken,ground turkey or chickens,,2026-04-05 12:12:25,2026-04-05 12:12:25
+749,fennel seeds  ,fennel seeds  s,,2026-04-05 12:12:25,2026-04-05 12:12:25
+750,escarole,escaroles,,2026-04-05 12:12:25,2026-04-05 12:12:25
+751,4 chipotles from a can of chipotles in adobo,4 chipotles from a can of chipotles in adoboes,,2026-04-05 12:12:28,2026-04-05 12:12:28
+752,or cubed avocado,or cubed avocadoes,,2026-04-05 12:12:28,2026-04-05 12:12:28
+753,sirloin or flank steak,sirloin or flank steaks,,2026-04-05 12:12:31,2026-04-05 12:12:31
+754,fresh parsley leaves and tender stems,,,2026-04-05 12:12:31,2026-04-05 12:12:31
+755,/ 500g White Onions,,,2026-04-05 12:12:33,2026-04-05 12:12:33
+756,/ 60ml Olive Oil,/ 60ml Olive Oils,,2026-04-05 12:12:33,2026-04-05 12:12:33
+757,Balsamic Glaze,Balsamic Glazes,,2026-04-05 12:12:33,2026-04-05 12:12:33
+758,EACH: Salt,EACH: Salts,,2026-04-05 12:12:33,2026-04-05 12:12:33
+759,/ 350g Shortcut Pasta ),/ 350g Shortcut Pasta )s,,2026-04-05 12:12:33,2026-04-05 12:12:33
+760,/ 4.4oz Sun Dried Tomatoes,,,2026-04-05 12:12:33,2026-04-05 12:12:33
+761,small bunch of Fresh Basil,small bunch of Fresh Basils,,2026-04-05 12:12:33,2026-04-05 12:12:33
+762,/ 5.3oz Mascarpone,/ 5.3oz Mascarpones,,2026-04-05 12:12:33,2026-04-05 12:12:33
+763,/ 1/3 cup freshly Parmesan,/ 1/3 cup freshly Parmesans,,2026-04-05 12:12:33,2026-04-05 12:12:33
+764,small tomatoes,,,2026-04-05 12:12:36,2026-04-05 12:12:36
+765,or torn basil leaves,,,2026-04-05 12:12:36,2026-04-05 12:12:36
+766,beef stew meat,beef stew meats,,2026-04-05 12:12:40,2026-04-05 12:12:40
+767,small or 2 large leeks,,,2026-04-05 12:12:40,2026-04-05 12:12:40
+768,bulb,bulbs,,2026-04-05 12:12:40,2026-04-05 12:12:40
+769,Large pinch of cayenne,Large pinch of cayennes,,2026-04-05 12:12:40,2026-04-05 12:12:40
+770,beef or chicken stock,beef or chicken stocks,,2026-04-05 12:12:40,2026-04-05 12:12:40
+771,parsnips,,,2026-04-05 12:12:40,2026-04-05 12:12:40
+772,large turnips,,,2026-04-05 12:12:40,2026-04-05 12:12:40
+773,pearled barley,pearled barleys,,2026-04-05 12:12:40,2026-04-05 12:12:40
+774,baby spinach or baby kale,baby spinach or baby kales,,2026-04-05 12:12:40,2026-04-05 12:12:40
+775,zest of 1 small lemon,zest of 1 small lemons,,2026-04-05 12:12:40,2026-04-05 12:12:40
+776,jalapeños or other chiles,,,2026-04-05 12:12:40,2026-04-05 12:12:40
+777,plain whole-milk yogurt,plain whole-milk yogurts,,2026-04-05 12:12:43,2026-04-05 12:12:43
+778,za’atar,za’atars,,2026-04-05 12:12:43,2026-04-05 12:12:43
+779,fresh oregano or marjoram,fresh oregano or marjorams,,2026-04-05 12:12:43,2026-04-05 12:12:43
+780,fresh parsley leaves,,,2026-04-05 12:12:47,2026-04-05 12:12:47
+781,fresh lemon zest plus up to 1/2 cup lemon juice,fresh lemon zest plus up to 1/2 cup lemon juices,,2026-04-05 12:12:47,2026-04-05 12:12:47
+782,ground chicken,ground chickens,,2026-04-05 12:12:50,2026-04-05 12:12:50
+783,uncooked long-grain rice,uncooked long-grain rices,,2026-04-05 12:12:50,2026-04-05 12:12:50
+784,nutmeg,nutmegs,,2026-04-05 12:12:50,2026-04-05 12:12:50
+785,ghee or unsalted butter,ghee or unsalted butters,,2026-04-05 12:12:54,2026-04-05 12:12:54
+786,trimmed radishes,,,2026-04-05 12:12:54,2026-04-05 12:12:54
+787,or white sesame seeds,,,2026-04-05 12:12:54,2026-04-05 12:12:54
+788,bacon,bacons,,2026-04-05 12:12:57,2026-04-05 12:12:57
+789,bone 1 1/4 pounds,,,2026-04-05 12:12:58,2026-04-05 12:12:58
+790,green cabbage,green cabbages,,2026-04-05 12:12:58,2026-04-05 12:12:58
+791,cooked beans rinsed and drained if canned,cooked beans rinsed and drained if canneds,,2026-04-05 12:12:58,2026-04-05 12:12:58
+792,small bunch kale,small bunch kales,,2026-04-05 12:12:58,2026-04-05 12:12:58
+793,sauce or apple cider vinegar,sauce or apple cider vinegars,,2026-04-05 12:12:58,2026-04-05 12:12:58
+794,maple syrup,maple syrups,,2026-04-05 12:13:01,2026-04-05 12:13:01
+795,grapeseed or vegetable oil,grapeseed or vegetable oils,,2026-04-05 12:13:01,2026-04-05 12:13:01
+796,brussels sprouts,,,2026-04-05 12:13:01,2026-04-05 12:13:01
+797,and ground black or Sichuan pepper,and ground black or Sichuan peppers,,2026-04-05 12:13:04,2026-04-05 12:13:04
+798,Chinkiang vinegar or balsamic vinegar,Chinkiang vinegar or balsamic vinegars,,2026-04-05 12:13:04,2026-04-05 12:13:04
+799,sugar,sugars,,2026-04-05 12:13:04,2026-04-05 12:13:04
+800,small dried red chiles,,,2026-04-05 12:13:04,2026-04-05 12:13:04
+801,large yellow onion (),large yellow onion ()s,,2026-04-05 12:13:07,2026-04-05 12:13:07
+802,beef broth (or water,beef broth (or waters,,2026-04-05 12:13:07,2026-04-05 12:13:07
+803,bell pepper (,bell pepper (s,,2026-04-05 12:13:07,2026-04-05 12:13:07
+804,1½ teaspoons Italian seasoning,1½ teaspoons Italian seasonings,,2026-04-05 12:13:07,2026-04-05 12:13:07
+805,½ teaspoon salt,½ teaspoon salts,,2026-04-05 12:13:07,2026-04-05 12:13:07
+806,elbow macaroni,elbow macaronis,,2026-04-05 12:13:07,2026-04-05 12:13:07
+807,½ cup cheddar cheese (or mozzarella cheese,½ cup cheddar cheese (or mozzarella cheeses,,2026-04-05 12:13:07,2026-04-05 12:13:07
+808,short-grain white rice,short-grain white rices,,2026-04-05 12:13:11,2026-04-05 12:13:11
+809,low-sodium chicken broth ,low-sodium chicken broth s,,2026-04-05 12:13:11,2026-04-05 12:13:11
+810,bell pepper,bell peppers,,2026-04-05 12:13:11,2026-04-05 12:13:11
+811,cashews,,,2026-04-05 12:13:11,2026-04-05 12:13:11
+812,plus 1 tablespoon low-sodium soy sauce,plus 1 tablespoon low-sodium soy sauces,,2026-04-05 12:13:14,2026-04-05 12:13:14
+813,five-spice powder,five-spice powders,,2026-04-05 12:13:14,2026-04-05 12:13:14
+814,dried rice vermicelli noodles,,,2026-04-05 12:13:14,2026-04-05 12:13:14
+815,chicken broth or water,chicken broth or waters,,2026-04-05 12:13:14,2026-04-05 12:13:14
+816,cabbage,cabbages,,2026-04-05 12:13:14,2026-04-05 12:13:14
+817,medium red bell pepper,medium red bell peppers,,2026-04-05 12:13:14,2026-04-05 12:13:14
+818,medium scallions,,,2026-04-05 12:13:14,2026-04-05 12:13:14
+819,ground round,ground rounds,,2026-04-05 12:13:18,2026-04-05 12:13:18
+820,margarine,margarines,,2026-04-05 12:13:18,2026-04-05 12:13:18
+821,pinch cayenne pepper,pinch cayenne peppers,,2026-04-05 12:13:18,2026-04-05 12:13:18
+822,cooked mashed potatoes,,,2026-04-05 12:13:18,2026-04-05 12:13:18
+823,large white onion,large white onions,,2026-04-05 12:13:22,2026-04-05 12:13:22
+824,hot or sweet smoked paprika,hot or sweet smoked paprikas,,2026-04-05 12:13:26,2026-04-05 12:13:26
+825,4 pound boneless pork shoulder or pork butt,4 pound boneless pork shoulder or pork butts,,2026-04-05 12:13:26,2026-04-05 12:13:26
+826,can dark soda,can dark sodas,,2026-04-05 12:13:26,2026-04-05 12:13:26
+827,1 1/2 cups homemade or store-bought barbecue sauce,1 1/2 cups homemade or store-bought barbecue sauces,,2026-04-05 12:13:26,2026-04-05 12:13:26
+828,loin roast,loin roasts,,2026-04-05 12:13:27,2026-04-05 12:13:27
+829,kosher salt*,kosher salt*s,,2026-04-05 12:13:27,2026-04-05 12:13:27
+830,rosemary,rosemaries,,2026-04-05 12:13:27,2026-04-05 12:13:27
+831,1  tsp black pepper,1  tsp black peppers,,2026-04-05 12:13:27,2026-04-05 12:13:27
+832,linguiça or uncured Spanish chorizo,linguiça or uncured Spanish chorizoes,,2026-04-05 12:13:31,2026-04-05 12:13:31
+833,large baking potatoes,,,2026-04-05 12:13:31,2026-04-05 12:13:31
+834,quick-cooking polenta,quick-cooking polentas,,2026-04-05 12:13:35,2026-04-05 12:13:35
+835,cup/2 ounces fontina or mozzarella,cup/2 ounces fontina or mozzarellas,,2026-04-05 12:13:35,2026-04-05 12:13:35
+836,cured meat,cured meats,,2026-04-05 12:13:35,2026-04-05 12:13:35
+837,cup spinach,cup spinachs,,2026-04-05 12:13:35,2026-04-05 12:13:35
+838,cup/2 ounces Parmesan,cup/2 ounces Parmesans,,2026-04-05 12:13:35,2026-04-05 12:13:35
+839,packed basil leaves,,,2026-04-05 12:13:35,2026-04-05 12:13:35
+840,chipotle or ancho chile powder,chipotle or ancho chile powders,,2026-04-05 12:13:38,2026-04-05 12:13:38
+841,flank or skirt steak,flank or skirt steaks,,2026-04-05 12:13:38,2026-04-05 12:13:38
+842,fresh lime juice,fresh lime juices,,2026-04-05 12:13:38,2026-04-05 12:13:38
+843,plus 2 tablespoons extra-virgin olive oil,plus 2 tablespoons extra-virgin olive oils,,2026-04-05 12:13:38,2026-04-05 12:13:38
+844,jalapeño or 2 serrano chiles,,,2026-04-05 12:13:38,2026-04-05 12:13:38
+845,large flour or 8 corn tortillas,,,2026-04-05 12:13:38,2026-04-05 12:13:38
+846,grapeseed or canola oil,grapeseed or canola oils,,2026-04-05 12:13:38,2026-04-05 12:13:38
+847,heart,hearts,,2026-04-05 12:13:38,2026-04-05 12:13:38
+848,fresca,frescas,,2026-04-05 12:13:38,2026-04-05 12:13:38
+849,fresco,frescoes,,2026-04-05 12:13:38,2026-04-05 12:13:38
+850,canola,canolas,,2026-04-05 12:13:45,2026-04-05 12:13:45
+851,and freshly ground black pepper to taste,and freshly ground black pepper to tastes,,2026-04-05 12:13:45,2026-04-05 12:13:45
+852,peeled shrimp or boneless chicken,peeled shrimp or boneless chickens,,2026-04-05 12:13:45,2026-04-05 12:13:45
+853,peeled,peeleds,,2026-04-05 12:13:45,2026-04-05 12:13:45
+854,basil or mint for garnish,basil or mint for garnishs,,2026-04-05 12:13:45,2026-04-05 12:13:45
+855,1 and 1/3 cups  warm water (between 100-110°F,1 and 1/3 cups  warm water (between 100-110°Fs,,2026-04-05 12:13:46,2026-04-05 12:13:46
+856,2 and 1/4 teaspoons  instant or active-dry yeast ,2 and 1/4 teaspoons  instant or active-dry yeast s,,2026-04-05 12:13:46,2026-04-05 12:13:46
+857,Tablespoon  granulated sugar,Tablespoon  granulated sugars,,2026-04-05 12:13:46,2026-04-05 12:13:46
+858, olive oil, olive oils,,2026-04-05 12:13:46,2026-04-05 12:13:46
+859,teaspoon salt,teaspoon salts,,2026-04-05 12:13:46,2026-04-05 12:13:46
+860,3 and 1/2 cups  all-purpose flour ,3 and 1/2 cups  all-purpose flour s,,2026-04-05 12:13:46,2026-04-05 12:13:46
+861,1 pound meats such as Italian cold cuts,,,2026-04-05 12:13:46,2026-04-05 12:13:46
+862,3/4–1 pound cheese *,3/4–1 pound cheese *s,,2026-04-05 12:13:46,2026-04-05 12:13:46
+863,wash: 1 large egg with 1 Tablespoon water,wash: 1 large egg with 1 Tablespoon waters,,2026-04-05 12:13:46,2026-04-05 12:13:46
+864,optional: fresh or dried parsley,optional: fresh or dried parsleys,,2026-04-05 12:13:46,2026-04-05 12:13:46
+865,large boneless,,,2026-04-05 12:13:49,2026-04-05 12:13:49
+866,dried oregano ,dried oregano s,,2026-04-05 12:13:50,2026-04-05 12:13:50
+867,low-sodium chicken stock,low-sodium chicken stocks,,2026-04-05 12:13:50,2026-04-05 12:13:50
+868,3/4 cup heavy cream,3/4 cup heavy creams,,2026-04-05 12:13:50,2026-04-05 12:13:50
+869,sun-dried tomatoes,,,2026-04-05 12:13:50,2026-04-05 12:13:50
+870,dry white wine or broth,dry white wine or broths,,2026-04-05 12:13:53,2026-04-05 12:13:53
+871,large or extra-large shrimp,large or extra-large shrimps,,2026-04-05 12:13:53,2026-04-05 12:13:53
+872,squeezed juice of half a lemon,squeezed juice of half a lemons,,2026-04-05 12:13:53,2026-04-05 12:13:53
+873,pasta or crusty bread,pasta or crusty breads,,2026-04-05 12:13:53,2026-04-05 12:13:53
+874,gochujang,gochujangs,,2026-04-05 12:13:57,2026-04-05 12:13:57
+875,turnips,,,2026-04-05 12:13:57,2026-04-05 12:13:57
+876,3 pounds bone-in,3 pounds bone-ins,,2026-04-05 12:13:57,2026-04-05 12:13:57
+877,radishes,,,2026-04-05 12:13:57,2026-04-05 12:13:57
+878,store-bought or homemade chili powder,store-bought or homemade chili powders,,2026-04-05 12:14:00,2026-04-05 12:14:00
+879,can fire- tomatoes,,,2026-04-05 12:14:00,2026-04-05 12:14:00
+880,can chicken broth ,can chicken broth s,,2026-04-05 12:14:00,2026-04-05 12:14:00
+881,can beans (such as kidney,can beans (such as kidneys,,2026-04-05 12:14:00,2026-04-05 12:14:00
+882,elbow macaroni or another small pasta,elbow macaroni or another small pastas,,2026-04-05 12:14:00,2026-04-05 12:14:00
+883,Worcestershire sauce or soy sauce,Worcestershire sauce or soy sauces,,2026-04-05 12:14:00,2026-04-05 12:14:00
+884,sharp Cheddar,sharp Cheddars,,2026-04-05 12:14:00,2026-04-05 12:14:00
+885,sirloin steak,sirloin steaks,,2026-04-05 12:14:04,2026-04-05 12:14:04
+886,sunflower oil or other neutral oil,sunflower oil or other neutral oils,,2026-04-05 12:14:04,2026-04-05 12:14:04
+887,sherry vinegar,sherry vinegars,,2026-04-05 12:14:04,2026-04-05 12:14:04
+888,1 ½ pounds boneless,,,2026-04-05 12:14:07,2026-04-05 12:14:07
+889,long-grain white rice,long-grain white rices,,2026-04-05 12:14:07,2026-04-05 12:14:07
+890,cherry or other small tomatoes,,,2026-04-05 12:14:07,2026-04-05 12:14:07
+891,fish sauce or soy sauce,fish sauce or soy sauces,,2026-04-05 12:14:07,2026-04-05 12:14:07
+892,sesame oil or chile oil,sesame oil or chile oils,,2026-04-05 12:14:07,2026-04-05 12:14:07
+893,cans chickpeas,,,2026-04-05 12:14:11,2026-04-05 12:14:11
+894,honey nut or butternut squash,honey nut or butternut squashs,,2026-04-05 12:14:11,2026-04-05 12:14:11
+895,baharat,baharats,,2026-04-05 12:14:11,2026-04-05 12:14:11
+896,fine salt,fine salts,,2026-04-05 12:14:11,2026-04-05 12:14:11
+897,small red onion,small red onions,,2026-04-05 12:14:11,2026-04-05 12:14:11
+898,cider vinegar or rice wine vinegar,cider vinegar or rice wine vinegars,,2026-04-05 12:14:11,2026-04-05 12:14:11
+899,fresh cilantro leaves or dill sprigs,,,2026-04-05 12:14:11,2026-04-05 12:14:11
+900,2 tablespoons hot honey,2 tablespoons hot honeys,,2026-04-05 12:14:11,2026-04-05 12:14:11
+901,whole-milk yogurt or sour cream,whole-milk yogurt or sour creams,,2026-04-05 12:14:11,2026-04-05 12:14:11
+902,large cucumber (),large cucumber ()s,,2026-04-05 12:14:13,2026-04-05 12:14:13
+903,grape tomatoes (),grape tomatoes ()s,,2026-04-05 12:14:13,2026-04-05 12:14:13
+904,½ red onion,½ red onions,,2026-04-05 12:14:13,2026-04-05 12:14:13
+905,½ cup Kalamata olives (),½ cup Kalamata olives ()s,,2026-04-05 12:14:13,2026-04-05 12:14:13
+906,⅓ cup red wine vinegar,⅓ cup red wine vinegars,,2026-04-05 12:14:13,2026-04-05 12:14:13
+907,¼ teaspoon salt,¼ teaspoon salts,,2026-04-05 12:14:13,2026-04-05 12:14:13
+908,½ cup olive oil,½ cup olive oils,,2026-04-05 12:14:13,2026-04-05 12:14:13
+909,4 pounds spare ribs,,,2026-04-05 12:14:16,2026-04-05 12:14:16
+910,berries,,,2026-04-05 12:14:16,2026-04-05 12:14:16
+911,3 3-inch cinnamon sticks,,,2026-04-05 12:14:16,2026-04-05 12:14:16
+912,nickel-sized slices unpeeled fresh ginger or 1 tablespoon ground ginger,nickel-sized slices unpeeled fresh ginger or 1 tablespoon ground gingers,,2026-04-05 12:14:16,2026-04-05 12:14:16
+913,red chiles or a teaspoon of cayenne,red chiles or a teaspoon of cayennes,,2026-04-05 12:14:16,2026-04-05 12:14:16
+914,dark beer,dark beers,,2026-04-05 12:14:16,2026-04-05 12:14:16
+915,large zucchini,large zucchinis,,2026-04-05 12:14:20,2026-04-05 12:14:20
+916,panko,pankoes,,2026-04-05 12:14:20,2026-04-05 12:14:20
+917,fresh mint,fresh mints,,2026-04-05 12:14:20,2026-04-05 12:14:20
+918,dry jumbo pasta shells,,,2026-04-05 12:14:21,2026-04-05 12:14:21
+919,½ cup heavy cream,½ cup heavy creams,,2026-04-05 12:14:21,2026-04-05 12:14:21
+920,basil (optional,basil (optionals,,2026-04-05 12:14:21,2026-04-05 12:14:21
+921,baby spinach,baby spinachs,,2026-04-05 12:14:21,2026-04-05 12:14:21
+922,½ cup whole-milk Ricotta cheese,½ cup whole-milk Ricotta cheeses,,2026-04-05 12:14:21,2026-04-05 12:14:21
+923,½ cup Parmesan cheese,½ cup Parmesan cheeses,,2026-04-05 12:14:21,2026-04-05 12:14:21
+924,⅛ teaspoon ground black pepper,⅛ teaspoon ground black peppers,,2026-04-05 12:14:21,2026-04-05 12:14:21
+925,ground beef ,ground beef s,,2026-04-05 12:14:25,2026-04-05 12:14:25
+926,chili powder,chili powders,,2026-04-05 12:14:25,2026-04-05 12:14:25
+927,can pinto beans,,,2026-04-05 12:14:25,2026-04-05 12:14:25
+928,cups/4 ounces Colby or Cheddar cheese,cups/4 ounces Colby or Cheddar cheeses,,2026-04-05 12:14:25,2026-04-05 12:14:25
+929,small head iceberg lettuce,small head iceberg lettuces,,2026-04-05 12:14:25,2026-04-05 12:14:25
+930,large beefsteak tomato,large beefsteak tomatoes,,2026-04-05 12:14:25,2026-04-05 12:14:25
+931,avocado,avocadoes,,2026-04-05 12:14:25,2026-04-05 12:14:25
+932,4 pounds bone-in,4 pounds bone-ins,,2026-04-05 12:14:28,2026-04-05 12:14:28
+933,or white onion,or white onions,,2026-04-05 12:14:28,2026-04-05 12:14:28
+934,mild green olives,,,2026-04-05 12:14:28,2026-04-05 12:14:28
+935,dried currants or raisins,,,2026-04-05 12:14:28,2026-04-05 12:14:28
+936,freshly lemon zest plus 1 tablespoon juice,freshly lemon zest plus 1 tablespoon juices,,2026-04-05 12:14:28,2026-04-05 12:14:28
+937,almonds,,,2026-04-05 12:14:28,2026-04-05 12:14:28
+938,rice or orzo,rice or orzoes,,2026-04-05 12:14:28,2026-04-05 12:14:28
+939,Thai thin soy sauce,Thai thin soy sauces,,2026-04-05 12:14:32,2026-04-05 12:14:32
+940,teaspoon palm sugar,teaspoon palm sugars,,2026-04-05 12:14:32,2026-04-05 12:14:32
+941,large cloves garlic,large cloves garlics,,2026-04-05 12:14:32,2026-04-05 12:14:32
+942,8 fresh bird’s-eye chiles,,,2026-04-05 12:14:32,2026-04-05 12:14:32
+943,beef tenderloin,beef tenderloins,,2026-04-05 12:14:32,2026-04-05 12:14:32
+944,4 makrut lime leaves,,,2026-04-05 12:14:32,2026-04-05 12:14:32
+945,loosely packed fresh holy-basil leaves or sweet Thai basil leaves,,,2026-04-05 12:14:32,2026-04-05 12:14:32

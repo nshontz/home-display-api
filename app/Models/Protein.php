@@ -17,6 +17,11 @@ class Protein extends Model
         return $this->hasMany(Dinner::class);
     }
 
+    public function recipes(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Recipe::class);
+    }
+
     public function getAliasesAttribute(){
         if (empty($this->aka)) {
             return collect([]);

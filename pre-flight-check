@@ -1,0 +1,262 @@
+#!/usr/bin/env bash
+
+# Pre-Flight Production Deployment Check
+# Run this before deploying to production
+
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+NC='\033[0m' # No Color
+
+echo ""
+echo "========================================="
+echo "  Production Deployment Pre-Flight Check"
+echo "========================================="
+echo ""
+
+ERRORS=0
+WARNINGS=0
+
+# Check 1: Environment
+echo "1. Checking environment..."
+if [ -f ".env" ]; then
+    source .env
+
+    if [ "$APP_ENV" = "production" ]; then
+        echo -e "   ${GREEN}✓${NC} APP_ENV is set to production"
+    else
+        echo -e "   ${YELLOW}⚠${NC} APP_ENV is NOT production (currently: $APP_ENV)"
+        WARNINGS=$((WARNINGS+1))
+    fi
+
+    if [ "$APP_DEBUG" = "false" ]; then
+        echo -e "   ${GREEN}✓${NC} APP_DEBUG is disabled"
+    else
+        echo -e "   ${RED}✗${NC} APP_DEBUG should be false in production!"
+        ERRORS=$((ERRORS+1))
+    fi
+
+    if [ -n "$APP_KEY" ] && [ "$APP_KEY" != "base64:" ]; then
+        echo -e "   ${GREEN}✓${NC} APP_KEY is set"
+    else
+        echo -e "   ${RED}✗${NC} APP_KEY not properly set!"
+        ERRORS=$((ERRORS+1))
+    fi
+else
+    echo -e "   ${RED}✗${NC} .env file not found!"
+    ERRORS=$((ERRORS+1))
+fi
+
+# Check 2: Dependencies
+echo ""
+echo "2. Checking dependencies..."
+
+if [ -d "vendor" ]; then
+    echo -e "   ${GREEN}✓${NC} Composer dependencies installed"
+else
+    echo -e "   ${RED}✗${NC} Vendor directory not found. Run: composer install"
+    ERRORS=$((ERRORS+1))
+fi
+
+if [ -d "node_modules" ]; then
+    echo -e "   ${YELLOW}⚠${NC} node_modules exists (should not be deployed)"
+    WARNINGS=$((WARNINGS+1))
+fi
+
+if [ -d "public/build" ] && [ -f "public/build/manifest.json" ]; then
+    echo -e "   ${GREEN}✓${NC} Frontend assets built"
+else
+    echo -e "   ${RED}✗${NC} Frontend not built. Run: npm run build"
+    ERRORS=$((ERRORS+1))
+fi
+
+# Check 3: Database Configuration
+echo ""
+echo "3. Checking database configuration..."
+
+DB_TEST=$(php artisan tinker --execute="
+try {
+    \$pdo = DB::connection()->getPdo();
+    echo 'SUCCESS';
+} catch (Exception \$e) {
+    echo 'FAILED: ' . \$e->getMessage();
+}
+" 2>&1 | grep -E "(SUCCESS|FAILED)")
+
+if echo "$DB_TEST" | grep -q "SUCCESS"; then
+    echo -e "   ${GREEN}✓${NC} Database connection successful"
+elif echo "$DB_TEST" | grep -q "FAILED"; then
+    echo -e "   ${RED}✗${NC} Database connection failed: $(echo $DB_TEST | sed 's/FAILED: //')"
+    ERRORS=$((ERRORS+1))
+else
+    echo -e "   ${YELLOW}⚠${NC} Could not verify database connection"
+    WARNINGS=$((WARNINGS+1))
+fi
+
+# Check 4: Migrations
+echo ""
+echo "4. Checking migrations..."
+
+PENDING=$(php artisan migrate:status 2>/dev/null | grep -c "Pending")
+
+if [ "$PENDING" -eq 0 ]; then
+    echo -e "   ${GREEN}✓${NC} All migrations run"
+else
+    echo -e "   ${RED}✗${NC} $PENDING pending migrations. Run: php artisan migrate --force"
+    ERRORS=$((ERRORS+1))
+fi
+
+# Check 5: Storage
+echo ""
+echo "5. Checking storage..."
+
+if [ -L "public/storage" ]; then
+    echo -e "   ${GREEN}✓${NC} Storage symlink exists"
+else
+    echo -e "   ${YELLOW}⚠${NC} Storage symlink missing. Run: php artisan storage:link"
+    WARNINGS=$((WARNINGS+1))
+fi
+
+if [ -w "storage/app" ] && [ -w "storage/logs" ]; then
+    echo -e "   ${GREEN}✓${NC} Storage directories writable"
+else
+    echo -e "   ${RED}✗${NC} Storage not writable. Run: chmod -R 775 storage"
+    ERRORS=$((ERRORS+1))
+fi
+
+# Check 6: Recipe System
+echo ""
+echo "6. Checking recipe system..."
+
+php artisan tinker --execute="
+\$tags = App\Models\IngredientTag::count();
+\$layouts = App\Models\RecipeLayout::count();
+\$ingredients = App\Models\Ingredient::count();
+
+if (\$tags > 0) {
+    echo '   \033[0;32m✓\033[0m Ingredient tags seeded (' . \$tags . ')' . PHP_EOL;
+} else {
+    echo '   \033[0;31m✗\033[0m No ingredient tags. Run: php artisan db:seed --class=IngredientTagSeeder' . PHP_EOL;
+    exit(1);
+}
+
+if (\$layouts > 0) {
+    echo '   \033[0;32m✓\033[0m Recipe layouts seeded (' . \$layouts . ')' . PHP_EOL;
+} else {
+    echo '   \033[0;31m✗\033[0m No recipe layouts. Run: php artisan db:seed --class=RecipeLayoutSeeder' . PHP_EOL;
+    exit(1);
+}
+
+if (\$ingredients > 0) {
+    echo '   \033[0;32m✓\033[0m Ingredients seeded (' . \$ingredients . ')' . PHP_EOL;
+} else {
+    echo '   \033[0;33m⚠\033[0m No ingredients seeded (optional)' . PHP_EOL;
+}
+"
+
+if [ $? -ne 0 ]; then
+    ERRORS=$((ERRORS+1))
+fi
+
+# Check 7: Admin User
+echo ""
+echo "7. Checking admin users..."
+
+php artisan tinker --execute="
+\$count = App\Models\User::count();
+if (\$count > 0) {
+    echo '   \033[0;32m✓\033[0m Admin users exist (' . \$count . ')' . PHP_EOL;
+} else {
+    echo '   \033[0;33m⚠\033[0m No admin users. Run: php artisan user:create-admin' . PHP_EOL;
+}
+"
+
+# Check 8: Caching
+echo ""
+echo "8. Checking optimization..."
+
+if [ -f "bootstrap/cache/config.php" ]; then
+    echo -e "   ${GREEN}✓${NC} Config cached"
+else
+    echo -e "   ${YELLOW}⚠${NC} Config not cached. Run: php artisan config:cache"
+    WARNINGS=$((WARNINGS+1))
+fi
+
+if [ -f "bootstrap/cache/routes-v7.php" ]; then
+    echo -e "   ${GREEN}✓${NC} Routes cached"
+else
+    echo -e "   ${YELLOW}⚠${NC} Routes not cached. Run: php artisan route:cache"
+    WARNINGS=$((WARNINGS+1))
+fi
+
+# Check 9: S3 Configuration (if using)
+echo ""
+echo "9. Checking S3 configuration..."
+
+if [ -f ".env" ]; then
+    source .env
+
+    if [ "$RECIPES_IMAGE_DISK" = "recipes" ] || [ "$RECIPES_PDF_DISK" = "recipes" ]; then
+        if [ -n "$AWS_ACCESS_KEY_ID" ] && [ -n "$AWS_SECRET_ACCESS_KEY" ] && [ -n "$AWS_BUCKET" ]; then
+            echo -e "   ${GREEN}✓${NC} AWS S3 configured"
+        else
+            echo -e "   ${RED}✗${NC} S3 disks configured but AWS credentials missing!"
+            ERRORS=$((ERRORS+1))
+        fi
+    else
+        echo -e "   ${YELLOW}⚠${NC} Using local storage (not recommended for production)"
+        WARNINGS=$((WARNINGS+1))
+    fi
+fi
+
+# Check 10: Security
+echo ""
+echo "10. Security checks..."
+
+if [ -f ".env" ]; then
+    if git ls-files --error-unmatch .env 2>/dev/null; then
+        echo -e "   ${RED}✗${NC} .env file is tracked by git!"
+        ERRORS=$((ERRORS+1))
+    else
+        echo -e "   ${GREEN}✓${NC} .env file not tracked by git"
+    fi
+fi
+
+if git ls-files --error-unmatch vendor 2>/dev/null; then
+    echo -e "   ${RED}✗${NC} vendor directory is tracked by git!"
+    ERRORS=$((ERRORS+1))
+else
+    echo -e "   ${GREEN}✓${NC} vendor directory not tracked"
+fi
+
+if git ls-files --error-unmatch node_modules 2>/dev/null; then
+    echo -e "   ${RED}✗${NC} node_modules is tracked by git!"
+    ERRORS=$((ERRORS+1))
+else
+    echo -e "   ${GREEN}✓${NC} node_modules not tracked"
+fi
+
+# Summary
+echo ""
+echo "========================================="
+echo "  Summary"
+echo "========================================="
+echo ""
+
+if [ $ERRORS -eq 0 ] && [ $WARNINGS -eq 0 ]; then
+    echo -e "${GREEN}✓ All checks passed! Ready for deployment.${NC}"
+    echo ""
+    exit 0
+elif [ $ERRORS -eq 0 ]; then
+    echo -e "${YELLOW}⚠ Warnings: $WARNINGS${NC}"
+    echo -e "${GREEN}✓ No critical errors. Proceed with caution.${NC}"
+    echo ""
+    exit 0
+else
+    echo -e "${RED}✗ Errors: $ERRORS${NC}"
+    echo -e "${YELLOW}⚠ Warnings: $WARNINGS${NC}"
+    echo ""
+    echo "Fix the errors above before deploying to production."
+    echo ""
+    exit 1
+fi

@@ -14,6 +14,7 @@ let dinnerRecommendations = ref([])
 let proteinFrequency = ref([])
 let energyData = ref([])
 let vegetarianFrequency = ref({})
+let recipeStats = ref({})
 const props = defineProps(['homeFeed'])
 const emit = defineEmits(['closeModal'])
 
@@ -26,6 +27,7 @@ function updateData(response) {
     dinnerRecommendations.value = response.data.dinner_recommendations
     proteinFrequency.value = response.data.protein_frequency
     vegetarianFrequency.value = response.data.vegetarian_frequency
+    recipeStats.value = response.data.recipe_stats || {}
     fetching.value = false;
 }
 
@@ -179,6 +181,23 @@ function fetch() {
                     </li>
                 </ul>
             </div>
+            <div class="recipe-stats" v-if="recipeStats.total_recipes > 0">
+                <h2>Recipe Library</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">{{ recipeStats.total_recipes }}</div>
+                        <div class="stat-label">Total Recipes</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">{{ recipeStats.dinners_with_recipes }}</div>
+                        <div class="stat-label">Linked Dinners</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">{{ recipeStats.coverage_percentage }}%</div>
+                        <div class="stat-label">Coverage</div>
+                    </div>
+                </div>
+            </div>
             <div class="popular-protein px-5" v-if="proteinFrequency.length > 0">
                 <h2>Protein Breakdown</h2>
                 <div class="h-50">
@@ -255,5 +274,35 @@ table {
     float: right;
     padding: 10px 15px;
     color: #ededed;
+}
+
+.recipe-stats {
+    padding: 0px 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+.stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4ade80;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: #cbd5e0;
+    margin-top: 5px;
 }
 </style>

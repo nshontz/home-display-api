@@ -1,0 +1,162 @@
+#!/usr/bin/env bash
+
+# Recipe System Setup Script
+# Run this after ./update_application to initialize the recipe management system
+
+while read p; do
+    if [[ $p == *"APP_ENV"* ]]
+    then
+      export $p
+    fi
+done <.env
+
+documentation () {
+   RED='\033[0;31m'
+   NC='\033[0m' # No Color
+   echo -e "${RED}"
+   echo "**************************************************"
+   echo "* $1"
+   echo "**************************************************"
+   echo -e "${NC}"
+}
+
+opening () {
+    RED='\033[0;31m'
+    NC='\033[0m' # No Color
+    echo -e "${RED}"
+    echo "**************************************************"
+    echo "Recipe System Setup"
+    echo " Environment: $APP_ENV"
+    echo "**************************************************"
+    echo -e "${NC}"
+}
+
+opening
+
+documentation "Step 1: Creating storage directories"
+
+mkdir -p storage/app/public/recipes/images
+mkdir -p storage/app/public/recipes/pdfs
+mkdir -p storage/app/public/recipe_layouts
+mkdir -p public/images
+
+echo "✓ Created storage/app/public/recipes/images"
+echo "✓ Created storage/app/public/recipes/pdfs"
+echo "✓ Created storage/app/public/recipe_layouts"
+echo "✓ Created public/images"
+
+documentation "Step 2: Verifying storage symlink"
+
+if [ -L "public/storage" ]; then
+    echo "✓ Storage symlink exists"
+else
+    echo "⚠ Creating storage symlink..."
+    php artisan storage:link
+fi
+
+documentation "Step 3: Seeding ingredient tags (dietary labels)"
+
+php artisan db:seed --class=IngredientTagSeeder
+
+documentation "Step 4: Seeding recipe layouts (PDF templates)"
+
+php artisan db:seed --class=RecipeLayoutSeeder
+
+documentation "Step 5: Seeding pre-classified ingredients"
+
+php artisan db:seed --class=ClassifiedIngredientDataSeeder
+
+documentation "Step 6: Setting storage permissions"
+
+chmod -R 775 storage/app/public/recipes
+chmod -R 775 storage/app/public/recipe_layouts
+
+if [[ $APP_ENV != "local" ]]
+then
+    chown -R www-data:www-data storage/app/public/recipes
+    chown -R www-data:www-data storage/app/public/recipe_layouts
+    echo "✓ Set ownership to www-data:www-data"
+fi
+
+echo "✓ Set permissions to 775"
+
+documentation "Step 7: Recipe system summary"
+
+php artisan tinker --execute="
+echo PHP_EOL;
+echo '╔════════════════════════════════════════════════╗' . PHP_EOL;
+echo '║        Recipe System Status Report             ║' . PHP_EOL;
+echo '╚════════════════════════════════════════════════╝' . PHP_EOL;
+echo PHP_EOL;
+
+\$tags = App\Models\IngredientTag::count();
+\$layouts = App\Models\RecipeLayout::count();
+\$ingredients = App\Models\Ingredient::count();
+\$recipes = App\Models\Recipe::count();
+\$collections = App\Models\RecipeCollection::count();
+
+echo '  Ingredient Tags:        ' . \$tags . PHP_EOL;
+echo '  Recipe Layouts:         ' . \$layouts . PHP_EOL;
+echo '  Ingredients:            ' . \$ingredients . PHP_EOL;
+echo '  Recipes:                ' . \$recipes . PHP_EOL;
+echo '  Recipe Collections:     ' . \$collections . PHP_EOL;
+echo PHP_EOL;
+
+if (\$tags > 0) {
+    echo '  Dietary Tag Breakdown:' . PHP_EOL;
+    foreach (App\Models\IngredientTag::withCount('ingredients')->get() as \$tag) {
+        echo '    • ' . str_pad(\$tag->name . ':', 20) . \$tag->ingredients_count . ' ingredients' . PHP_EOL;
+    }
+    echo PHP_EOL;
+}
+
+\$storageWritable = is_writable(storage_path('app/public/recipes'));
+\$storageLinked = is_link(public_path('storage'));
+
+echo '  Storage Status:' . PHP_EOL;
+echo '    • Recipes writable:   ' . (\$storageWritable ? '✓ Yes' : '✗ No') . PHP_EOL;
+echo '    • Storage linked:     ' . (\$storageLinked ? '✓ Yes' : '✗ No') . PHP_EOL;
+echo PHP_EOL;
+"
+
+documentation "Checking for admin users"
+
+php artisan tinker --execute="
+\$adminCount = App\Models\User::count();
+if (\$adminCount === 0) {
+    echo PHP_EOL;
+    echo '⚠ WARNING: No admin users found!' . PHP_EOL;
+    echo '  Run: php artisan user:create-admin' . PHP_EOL;
+    echo PHP_EOL;
+} else {
+    echo PHP_EOL;
+    echo '✓ Found ' . \$adminCount . ' admin user(s)' . PHP_EOL;
+    echo PHP_EOL;
+}
+"
+
+documentation "Recipe system setup complete!"
+
+echo ""
+echo "Next Steps:"
+echo ""
+echo "1. Configure storage (production):"
+echo "   • Set up S3 bucket (see documentation/s3-storage-setup.md)"
+echo "   • Update .env with AWS credentials"
+echo "   • Set RECIPES_IMAGE_DISK=recipes and RECIPES_PDF_DISK=recipes"
+echo ""
+echo "2. Access admin panel:"
+echo "   Visit: /admin"
+echo "   Create admin user: php artisan user:create-admin"
+echo ""
+echo "3. Import recipes:"
+echo "   php artisan recipe:import \"https://recipe-url\""
+echo ""
+echo "4. Assign proteins to recipes:"
+echo "   php artisan recipe:assign-proteins"
+echo ""
+echo "5. Review deployment documentation:"
+echo "   documentation/PRODUCTION-DEPLOYMENT.md"
+echo "   documentation/s3-storage-setup.md"
+echo ""
+echo ""

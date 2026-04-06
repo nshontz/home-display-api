@@ -10,15 +10,21 @@ class Dinner extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['uid', 'title', 'complete', 'date', 'event', 'protein_id'];
+    protected $fillable = ['uid', 'title', 'complete', 'date', 'event', 'protein_id', 'recipe_id'];
     protected $casts = [
         'event' => 'array',
+        'date' => 'date',
     ];
     protected $appends = ['recipe_url'];
 
     public function protein(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Protein::class);
+    }
+
+    public function recipe(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Recipe::class);
     }
 
     public function getRecipeUrlAttribute()

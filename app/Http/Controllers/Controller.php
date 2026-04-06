@@ -145,6 +145,11 @@ class Controller extends BaseController
             ->get();
 
 
+        // Recipe stats
+        $totalDinners = Dinner::count();
+        $dinnersWithRecipes = Dinner::whereNotNull('recipe_id')->count();
+        $recipeCount = \App\Models\Recipe::count();
+
         return response()->json([
             'dates' => $dinnerFrequency->first()->only(['created_at_min', 'created_at_max']),
             'energy_report' => $solarReport->map(function ($month) {
@@ -155,7 +160,13 @@ class Controller extends BaseController
             'dinner_frequency' => $dinnerFrequency->map->only(['title', 'freq']),
             'protein_frequency' => $proteinFrequency,
             'dinner_recommendations' => $dinnerRecommendations,
-            'vegetarian_frequency' => $vegetarianFrequency
+            'vegetarian_frequency' => $vegetarianFrequency,
+            'recipe_stats' => [
+                'total_recipes' => $recipeCount,
+                'dinners_with_recipes' => $dinnersWithRecipes,
+                'total_dinners' => $totalDinners,
+                'coverage_percentage' => $totalDinners > 0 ? round(($dinnersWithRecipes / $totalDinners) * 100, 1) : 0,
+            ],
         ]);
     }
 

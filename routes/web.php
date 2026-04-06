@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Services\RecipePDFService;
+use App\Models\Recipe;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Recipe PDF routes
+Route::get('/recipes/{recipe}/pdf/preview', function (Recipe $recipe) {
+    $pdfService = new RecipePDFService();
+    return $pdfService->streamRecipePDF($recipe);
+})->name('recipes.pdf.preview');
+
+Route::get('/recipes/{recipe}/pdf/download', function (Recipe $recipe) {
+    $pdfService = new RecipePDFService();
+    return $pdfService->downloadRecipePDF($recipe);
+})->name('recipes.pdf.download');
 
 Route::get('/{any?}', function () {
     return view('spa');

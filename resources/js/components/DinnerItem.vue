@@ -1,13 +1,13 @@
 <template>
     <div class="dinner-item" :class="[
         (dinner && dinner.complete ? 'complete' : ''),
-        (dinner && dinner.recipe_url ? 'has-recipe' : ''),
+        (dinner && hasRecipeLink ? 'has-recipe' : ''),
         dinnerTitleLengthClass
         ]">
         <template v-if="dinner">
             <h2 @click="toggleMeal()" class="dinner-name">{{ dinner.title }}</h2>
-            <div v-if="dinner.recipe_url" class="recipe-link">
-                <a :href="dinner.recipe_url" target="recipe">
+            <div v-if="hasRecipeLink" class="recipe-link">
+                <a :href="recipeLink" target="recipe" :title="recipeLinkTitle">
 
                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 30" version="1.1" x="0px" y="0px"><title>Icon/Stroke/Share</title>
                         <desc>Created with Sketch.</desc>
@@ -64,6 +64,25 @@ const dinnerTitleLengthClass = computed(() => {
     }
 
     return className;
+});
+
+const hasRecipeLink = computed(() => {
+    return dinner.value?.recipe || dinner.value?.recipe_url;
+});
+
+const recipeLink = computed(() => {
+    // Prefer local recipe over source URL
+    if (dinner.value?.recipe) {
+        return `/admin/recipes/${dinner.value.recipe.id}/edit`;
+    }
+    return dinner.value?.recipe_url;
+});
+
+const recipeLinkTitle = computed(() => {
+    if (dinner.value?.recipe) {
+        return 'View recipe in admin';
+    }
+    return 'View source recipe';
 });
 
 </script>

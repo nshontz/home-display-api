@@ -36,6 +36,11 @@ class AnyList
             return $dinner;
         })->sortBy('date');
 
-        return $upcomingWeek->values();
+        // Reload with relationships for API response
+        $dinnerIds = $upcomingWeek->pluck('id');
+        return Dinner::whereIn('id', $dinnerIds)
+            ->with(['protein', 'recipe'])
+            ->orderBy('date')
+            ->get();
     }
 }
